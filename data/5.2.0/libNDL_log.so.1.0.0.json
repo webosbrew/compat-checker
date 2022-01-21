@@ -1,0 +1,1 @@
+{"names":["libNDL_log.so.1","libNDL_log.so.1.0.0"],"symbols":["dPmLogGetContext","dPmLogIsEnabled","dPmLogMsg","NDL_FinalizeLog","NDL_InitLog","NDL_WriteLog"]}

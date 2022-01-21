@@ -1,0 +1,1 @@
+{"names":["libdile_extdevctrl.so.0","libdile_extdevctrl.so.0.1.3"],"symbols":["DILE_EXTDEVCTRL_CheckHP","DILE_EXTDEVCTRL_CheckSlideCAM","DILE_EXTDEVCTRL_CheckUSBOCD","DILE_EXTDEVCTRL_DetectVoice","DILE_EXTDEVCTRL_Initialize","DILE_EXTDEVCTRL_ReadCamVoicePin","DILE_EXTDEVCTRL_ResetMRCU","DILE_EXTDEVCTRL_SetUSBCtrl","DILE_EXTDEVCTRL_SetUSBHUBCtrl","eventBoardMatch"]}

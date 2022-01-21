@@ -1,0 +1,22 @@
+{
+  "name": "@webosbrew/compat-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "webosbrew-symlist-generate": "src/symlist-generate.js",
+    "webosbrew-elf-compat-checker": "src/elf-verify.js",
+    "webosbrew-ipk-compat-checker": "src/ipk-verify.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ar": "^0.0.1",
+    "argparse": "^2.0.1",
+    "tar": "^6.1.11"
+  }
+}

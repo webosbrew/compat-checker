@@ -1,0 +1,1 @@
+{"names":["libhal_v3d.so","libhal_v3d.so.1","libhal_v3d.so.1.0.0"],"symbols":["HAL_V3D_CtrlConvergence","HAL_V3D_CtrlDepth","HAL_V3D_GetAutoDetectingResult","HAL_V3D_Initialize","HAL_V3D_Set3DFMT","HAL_V3D_SetAutoConvEnable","HAL_V3D_SetAutoDetectingType","HAL_V3D_SetLRSeq","_ZN13CRTKTraceCallC1EjPKc","_ZN13CRTKTraceCallC2EjPKc","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}

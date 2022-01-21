@@ -1,0 +1,1 @@
+{"symbols":["calloc","free","__free_hook","independent_calloc","independent_comalloc","mallinfo","malloc","__malloc_hook","__malloc_initialized","__malloc_initialize_hook","malloc_stats","malloc_trim","malloc_usable_size","mallopt","memalign","__memalign_hook","posix_memalign","realloc","__realloc_hook","valloc"],"names":["libptmalloc3.so"]}

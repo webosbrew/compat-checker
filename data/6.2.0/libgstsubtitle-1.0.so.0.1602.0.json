@@ -1,0 +1,1 @@
+{"names":["libgstsubtitle-1.0.so.0","libgstsubtitle-1.0.so.0.1602.0"],"symbols":["gst_buffer_add_subtitle_data_meta","gst_subtitle_data_meta_api_get_type","gst_subtitle_data_meta_get_info"]}

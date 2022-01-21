@@ -1,0 +1,1 @@
+{"names":["libdile_i2c.so.1","libdile_i2c.so.1.0.0"],"symbols":["DILE_I2C_GetConfig","_DILE_I2C_InitConfigTable","DILE_I2C_Initialize","DILE_I2C_Read","DILE_I2C_Write","gsI2cAllConf"]}

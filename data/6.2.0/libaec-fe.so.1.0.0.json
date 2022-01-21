@@ -1,0 +1,1 @@
+{"names":["libaec-fe.so.1","libaec-fe.so.1.0.0"],"symbols":["aecfe_configure","aecfe_configure2","aecfe_create","aecfe_get_poll_fd","aecfe_read_data","aecfe_release","aecfe_select_ref_device","aecfe_set_mix_levels","aecfe_start","aecfe_stop","captures"]}

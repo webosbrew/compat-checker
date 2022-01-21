@@ -1,0 +1,1 @@
+{"names":["libadapter_devicereset.so.1","libadapter_devicereset.so.1.0.0"],"symbols":["devicereset_getFirstBootAfterInstop","devicereset_initialize","devicereset_registerGetInstopEventResetReady","devicereset_registerInstopEvent"]}

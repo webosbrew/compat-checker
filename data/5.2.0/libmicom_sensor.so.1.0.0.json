@@ -1,0 +1,1 @@
+{"names":["libmicom_sensor.so.1","libmicom_sensor.so.1.0.0"],"symbols":["micom_sensor_Get_EyeSensorData","micom_sensor_Get_EyeSensorStatus","micom_sensor_Get_EyeSensorType","micom_sensor_Init_CM3212","micom_sensor_Set_EnableEyeSensor"]}

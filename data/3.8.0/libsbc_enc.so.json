@@ -1,0 +1,1 @@
+{"symbols":["sbc_analyze_audio","sbc_calculate_bits","sbc_crc8","sbc_encode","sbc_finish","sbc_init","sbc_pack_frame","sbc_proto_4_40_fx","sbc_proto_8_80_fx","sbc_set"],"names":["libsbc_enc.so"]}

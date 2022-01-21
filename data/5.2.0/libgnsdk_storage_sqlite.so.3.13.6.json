@@ -1,0 +1,1 @@
+{"symbols":["gnsdk_storage_sqlite_get_build_date","gnsdk_storage_sqlite_get_sqlite_version","gnsdk_storage_sqlite_get_version","gnsdk_storage_sqlite_initialize","gnsdk_storage_sqlite_option_get","gnsdk_storage_sqlite_option_set","gnsdk_storage_sqlite_shutdown","gnsdk_storage_sqlite_use_external_library"],"names":["libgnsdk_storage_sqlite.so.3.13.6"]}

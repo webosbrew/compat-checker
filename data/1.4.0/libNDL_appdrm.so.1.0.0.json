@@ -1,0 +1,1 @@
+{"names":["libNDL_appdrm.so.1","libNDL_appdrm.so.1.0.0"],"symbols":["g_calledInit","gLGNC","NDL_AppDrmCheckEncrypted","NDL_AppDrmClose","NDL_AppDrmGetContentSize","NDL_AppDrmGetError","NDL_AppDrmGetOffset","NDL_AppDrmGetStatus","NDL_AppDrmInit","NDL_AppDrmOpen","NDL_AppDrmQuit","NDL_AppDrmRead","NDL_AppDrmSetOffset"]}

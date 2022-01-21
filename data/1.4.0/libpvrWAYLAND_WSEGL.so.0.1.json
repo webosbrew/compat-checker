@@ -1,0 +1,1 @@
+{"names":["libpvrWAYLAND_WSEGL.so","libpvrWAYLAND_WSEGL.so.0","libpvrWAYLAND_WSEGL.so.0.1"],"symbols":["wl_sgx_interface","wl_sgx_reallocate_listener_interface","WSEGL_GetFunctionTablePointer"]}

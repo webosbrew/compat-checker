@@ -1,0 +1,1 @@
+{"names":["libpulse-simple.so.0","libpulse-simple.so.0.1.0"],"symbols":["pa_simple_drain@PULSE_0","pa_simple_flush@PULSE_0","pa_simple_free@PULSE_0","pa_simple_get_latency@PULSE_0","pa_simple_new@PULSE_0","pa_simple_read@PULSE_0","pa_simple_write@PULSE_0","PULSE_0"]}

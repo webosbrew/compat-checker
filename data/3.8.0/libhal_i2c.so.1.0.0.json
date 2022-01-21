@@ -1,0 +1,1 @@
+{"names":["libhal_i2c.so","libhal_i2c.so.1","libhal_i2c.so.1.0.0"],"symbols":["HAL_I2C_Init","HAL_I2C_Read","HAL_I2C_Write","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}

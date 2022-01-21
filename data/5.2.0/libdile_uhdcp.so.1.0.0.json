@@ -1,0 +1,1 @@
+{"names":["libdile_uhdcp.so.1","libdile_uhdcp.so.1.0.0"],"symbols":["DILE_UHDCP_CalculateMpeg2CRC","DILE_UHDCP_Decrypt","DILE_UHDCP_GetEciKeySize","DILE_UHDCP_GetEciSecureData","_DILE_UHDCP_GetSeStoreDataID","DILE_UHDCP_ReadCertificate","DILE_UHDCP_SetCW","DILE_UHDCP_SetEciSecureData"]}

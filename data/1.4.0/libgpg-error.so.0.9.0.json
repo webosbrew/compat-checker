@@ -1,0 +1,1 @@
+{"names":["libgpg-error.so.0","libgpg-error.so.0.9.0"],"symbols":["gpg_err_code_from_errno","gpg_err_code_from_syserror","gpg_err_code_to_errno","gpg_err_deinit","gpg_err_init","gpg_error_check_version","gpg_err_set_errno","gpg_strerror","gpg_strerror_r","gpg_strsource"]}

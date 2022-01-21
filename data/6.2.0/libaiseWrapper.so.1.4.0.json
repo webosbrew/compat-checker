@@ -1,0 +1,1 @@
+{"names":["libaiseWrapper.so.1.0","libaiseWrapper.so.1.4.0"],"symbols":["createHandle","destroyHandle","feedExternalData","getConfigurePath","getVAD","init","process","reset","setConfigure","setConfigurePath","setExternalMic","setFlushBuffer","setMode","setVolume","uninit"]}

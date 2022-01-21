@@ -1,0 +1,1 @@
+{"names":["libgstwayland-1.0.so.0","libgstwayland-1.0.so.0.1602.0"],"symbols":["gst_is_wayland_display_handle_need_context_message","gst_wayland_display_handle_context_get_handle","gst_wayland_display_handle_context_new","gst_wayland_video_begin_geometry_change","gst_wayland_video_end_geometry_change","gst_wayland_video_get_type"]}

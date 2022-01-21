@@ -1,0 +1,1 @@
+{"names":["libglslcompiler.so","libglslcompiler.so.0","libglslcompiler.so.0.1"],"symbols":["GLSLCompileToUniflex","GLSLDisplayMetrics","GLSLFreeCompiledUniflexProgram","GLSLInitCompiler","GLSLShutDownCompiler","SGXBS_CreateBinaryProgram","SGXBS_CreateBinaryShader"]}

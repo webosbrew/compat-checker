@@ -1,0 +1,1 @@
+{"names":["libhal_gfx.so","libhal_gfx.so.2","libhal_gfx.so.2.0.1"],"symbols":["hal_gfx_blit","hal_gfx_import_surface_by_fd","hal_gfx_release_surface"]}

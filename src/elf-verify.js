@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const {ArgumentParser} = require('argparse');
 const {verifyElf} = require('./utils');
 const path = require("path");

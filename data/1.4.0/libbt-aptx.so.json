@@ -1,1 +1,47 @@
-{"symbols":["aptxbtenc_build","aptxbtenc_encodestereo","aptxbtenc_init","aptxbtenc_version","aptxEncode","aptxPostEncode","aptXStereoEncoder","AsmQmfConvI","AsmQmfConvO","BsearchHH","BsearchHL","BsearchLH","clearmem","generateDither","insertSync","invertQuantisation","invertQuantisationHL","NewAptxEnc","packCodeword","performPredictionFiltering","performPredictionFilteringHL","performPredictionFilteringLL","processSubband","processSubbandHL","processSubbandLL","QmfAnalysisFilter","quantiseDifferenceHH","quantiseDifferenceHL","quantiseDifferenceLH","quantiseDifferenceLL","SizeofAptxbtenc","swbuild","swversion","updateCodewordHistory"],"names":["libbt-aptx.so"]}
+{
+  "symbols": [
+    "aptxbtenc_build",
+    "aptxbtenc_encodestereo",
+    "aptxbtenc_init",
+    "aptxbtenc_version",
+    "aptxEncode",
+    "aptxPostEncode",
+    "aptXStereoEncoder",
+    "AsmQmfConvI",
+    "AsmQmfConvO",
+    "BsearchHH",
+    "BsearchHL",
+    "BsearchLH",
+    "clearmem",
+    "generateDither",
+    "insertSync",
+    "invertQuantisation",
+    "invertQuantisationHL",
+    "NewAptxEnc",
+    "packCodeword",
+    "performPredictionFiltering",
+    "performPredictionFilteringHL",
+    "performPredictionFilteringLL",
+    "processSubband",
+    "processSubbandHL",
+    "processSubbandLL",
+    "QmfAnalysisFilter",
+    "quantiseDifferenceHH",
+    "quantiseDifferenceHL",
+    "quantiseDifferenceLH",
+    "quantiseDifferenceLL",
+    "SizeofAptxbtenc",
+    "swbuild",
+    "swversion",
+    "updateCodewordHistory"
+  ],
+  "needed": [
+    "libc.so.6",
+    "libgcc_s.so.1",
+    "libstdc++.so.6",
+    "libm.so.6"
+  ],
+  "names": [
+    "libbt-aptx.so"
+  ]
+}

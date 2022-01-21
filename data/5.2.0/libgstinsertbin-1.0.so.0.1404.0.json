@@ -1,1 +1,23 @@
-{"names":["libgstinsertbin-1.0.so.0","libgstinsertbin-1.0.so.0.1404.0"],"symbols":["gst_insert_bin_append","gst_insert_bin_get_type","gst_insert_bin_insert_after","gst_insert_bin_insert_before","gst_insert_bin_new","gst_insert_bin_prepend","gst_insert_bin_remove"]}
+{
+  "names": [
+    "libgstinsertbin-1.0.so.0",
+    "libgstinsertbin-1.0.so.0.1404.0"
+  ],
+  "symbols": [
+    "gst_insert_bin_append",
+    "gst_insert_bin_get_type",
+    "gst_insert_bin_insert_after",
+    "gst_insert_bin_insert_before",
+    "gst_insert_bin_new",
+    "gst_insert_bin_prepend",
+    "gst_insert_bin_remove"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libgobject-2.0.so.0",
+    "libglib-2.0.so.0",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

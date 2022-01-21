@@ -1,1 +1,28 @@
-{"names":["libharfbuzz-subset.so.0","libharfbuzz-subset.so.0.10800.8"],"symbols":["hb_subset","hb_subset_get_all_codepoints","hb_subset_input_create_or_fail","hb_subset_input_destroy","hb_subset_input_drop_hints","hb_subset_input_drop_ot_layout","hb_subset_input_glyph_set","hb_subset_input_reference","hb_subset_input_unicode_set","hb_subset_profile_create","hb_subset_profile_destroy"]}
+{
+  "names": [
+    "libharfbuzz-subset.so.0",
+    "libharfbuzz-subset.so.0.10800.8"
+  ],
+  "symbols": [
+    "hb_subset",
+    "hb_subset_get_all_codepoints",
+    "hb_subset_input_create_or_fail",
+    "hb_subset_input_destroy",
+    "hb_subset_input_drop_hints",
+    "hb_subset_input_drop_ot_layout",
+    "hb_subset_input_glyph_set",
+    "hb_subset_input_reference",
+    "hb_subset_input_unicode_set",
+    "hb_subset_profile_create",
+    "hb_subset_profile_destroy"
+  ],
+  "needed": [
+    "libharfbuzz.so.0",
+    "libglib-2.0.so.0",
+    "libfreetype.so.6",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libc.so.6",
+    "libgcc_s.so.1"
+  ]
+}

@@ -1,1 +1,16 @@
-{"names":["libwayland-egl.so","libwayland-egl.so.1","libwayland-egl.so.1.0.0"],"symbols":["wl_egl_window_create","wl_egl_window_destroy","wl_egl_window_get_attached_size","wl_egl_window_resize"]}
+{
+  "names": [
+    "libwayland-egl.so",
+    "libwayland-egl.so.1",
+    "libwayland-egl.so.1.0.0"
+  ],
+  "symbols": [
+    "wl_egl_window_create",
+    "wl_egl_window_destroy",
+    "wl_egl_window_get_attached_size",
+    "wl_egl_window_resize"
+  ],
+  "needed": [
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,39 @@
-{"names":["libwebpmux.so.3","libwebpmux.so.3.0.0"],"symbols":["WebPAnimEncoderAdd","WebPAnimEncoderAssemble","WebPAnimEncoderDelete","WebPAnimEncoderGetError","WebPAnimEncoderNewInternal","WebPAnimEncoderOptionsInitInternal","WebPGetMuxVersion","WebPMuxAssemble","WebPMuxCreateInternal","WebPMuxDelete","WebPMuxDeleteChunk","WebPMuxDeleteFrame","WebPMuxGetAnimationParams","WebPMuxGetCanvasSize","WebPMuxGetChunk","WebPMuxGetFeatures","WebPMuxGetFrame","WebPMuxNumChunks","WebPMuxPushFrame","WebPMuxSetAnimationParams","WebPMuxSetCanvasSize","WebPMuxSetChunk","WebPMuxSetImage","WebPNewInternal"]}
+{
+  "names": [
+    "libwebpmux.so.3",
+    "libwebpmux.so.3.0.0"
+  ],
+  "symbols": [
+    "WebPAnimEncoderAdd",
+    "WebPAnimEncoderAssemble",
+    "WebPAnimEncoderDelete",
+    "WebPAnimEncoderGetError",
+    "WebPAnimEncoderNewInternal",
+    "WebPAnimEncoderOptionsInitInternal",
+    "WebPGetMuxVersion",
+    "WebPMuxAssemble",
+    "WebPMuxCreateInternal",
+    "WebPMuxDelete",
+    "WebPMuxDeleteChunk",
+    "WebPMuxDeleteFrame",
+    "WebPMuxGetAnimationParams",
+    "WebPMuxGetCanvasSize",
+    "WebPMuxGetChunk",
+    "WebPMuxGetFeatures",
+    "WebPMuxGetFrame",
+    "WebPMuxNumChunks",
+    "WebPMuxPushFrame",
+    "WebPMuxSetAnimationParams",
+    "WebPMuxSetCanvasSize",
+    "WebPMuxSetChunk",
+    "WebPMuxSetImage",
+    "WebPNewInternal"
+  ],
+  "needed": [
+    "libwebp.so.7",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,44 @@
-{"names":["libgibb-util.so.1","libgibb-util.so.1.0.0"],"symbols":["_Z12createLoggerPKc","_ZN8PmLogger10logWarningEPKcS1_z","_ZN8PmLogger7logInfoEPKcS1_z","_ZN8PmLogger8logDebugEPKcz","_ZN8PmLogger8logErrorEPKcS1_z","_ZN8PmLoggerC1EPKc","_ZN8PmLoggerC2EPKc","_ZN8PmLoggerD0Ev","_ZN8PmLoggerD1Ev","_ZN8PmLoggerD2Ev","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE10_M_destroyEv","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE10_M_disposeEv","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE14_M_get_deleterERKSt9type_info","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED0Ev","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED1Ev","_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED2Ev","_ZTI10LoggerBase","_ZTI8PmLogger","_ZTISt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE","_ZTISt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE","_ZTISt19_Sp_make_shared_tag","_ZTISt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE","_ZTS10LoggerBase","_ZTS8PmLogger","_ZTSSt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE","_ZTSSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE","_ZTSSt19_Sp_make_shared_tag","_ZTSSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE","_ZTV10LoggerBase","_ZTV8PmLogger","_ZTVSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE"]}
+{
+  "names": [
+    "libgibb-util.so.1",
+    "libgibb-util.so.1.0.0"
+  ],
+  "symbols": [
+    "_Z12createLoggerPKc",
+    "_ZN8PmLogger10logWarningEPKcS1_z",
+    "_ZN8PmLogger7logInfoEPKcS1_z",
+    "_ZN8PmLogger8logDebugEPKcz",
+    "_ZN8PmLogger8logErrorEPKcS1_z",
+    "_ZN8PmLoggerC1EPKc",
+    "_ZN8PmLoggerC2EPKc",
+    "_ZN8PmLoggerD0Ev",
+    "_ZN8PmLoggerD1Ev",
+    "_ZN8PmLoggerD2Ev",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE10_M_destroyEv",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE10_M_disposeEv",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE14_M_get_deleterERKSt9type_info",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED0Ev",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED1Ev",
+    "_ZNSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EED2Ev",
+    "_ZTI10LoggerBase",
+    "_ZTI8PmLogger",
+    "_ZTISt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTISt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTISt19_Sp_make_shared_tag",
+    "_ZTISt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTS10LoggerBase",
+    "_ZTS8PmLogger",
+    "_ZTSSt11_Mutex_baseILN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTSSt16_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTSSt19_Sp_make_shared_tag",
+    "_ZTSSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE",
+    "_ZTV10LoggerBase",
+    "_ZTV8PmLogger",
+    "_ZTVSt23_Sp_counted_ptr_inplaceI8PmLoggerSaIS0_ELN9__gnu_cxx12_Lock_policyE2EE"
+  ],
+  "needed": [
+    "libstdc++.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

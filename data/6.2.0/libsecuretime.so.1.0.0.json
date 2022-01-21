@@ -1,1 +1,49 @@
-{"names":["libsecuretime.so","libsecuretime.so.1","libsecuretime.so.1.0.0"],"symbols":["_clock_gettime","clock_gettime","_clock_settime","clock_settime","debug_level","_enableSettime","enableSettime","getFileModifyTime","_getlocaltime","getNTPTime","_getsecuretime","getsecuretime","_gettimeofday","gettimeofday","isFileExist","_isSettimeCall","_logWrite","ntptime","_original_clock_gettime","_original_clock_settime","setNTPTimeFile","_setsecuretime","setsecuretime","setSecureTimeFile","setTimeInfo","_settimeofday","settimeofday","st_initialize","st_initializeTime","st_logPrint","st_setDebugPrintLevel","st_setFlagUseSettime","_time","time","_writeTimeFile"]}
+{
+  "names": [
+    "libsecuretime.so",
+    "libsecuretime.so.1",
+    "libsecuretime.so.1.0.0"
+  ],
+  "symbols": [
+    "_clock_gettime",
+    "clock_gettime",
+    "_clock_settime",
+    "clock_settime",
+    "debug_level",
+    "_enableSettime",
+    "enableSettime",
+    "getFileModifyTime",
+    "_getlocaltime",
+    "getNTPTime",
+    "_getsecuretime",
+    "getsecuretime",
+    "_gettimeofday",
+    "gettimeofday",
+    "isFileExist",
+    "_isSettimeCall",
+    "_logWrite",
+    "ntptime",
+    "_original_clock_gettime",
+    "_original_clock_settime",
+    "setNTPTimeFile",
+    "_setsecuretime",
+    "setsecuretime",
+    "setSecureTimeFile",
+    "setTimeInfo",
+    "_settimeofday",
+    "settimeofday",
+    "st_initialize",
+    "st_initializeTime",
+    "st_logPrint",
+    "st_setDebugPrintLevel",
+    "st_setFlagUseSettime",
+    "_time",
+    "time",
+    "_writeTimeFile"
+  ],
+  "needed": [
+    "libdl.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,50 @@
-{"names":["libsrv_init.so","libsrv_init.so.1","libsrv_init.so.1.0"],"symbols":["_PVRDRMClose","_PVRDRMOpen","_PVRDRMOpenRender","PVRSRVAllocUserModeMem","PVRSRVBridgeCall","PVRSRVCachedMemCopy","PVRSRVCachedMemSet","PVRSRVCallocUserModeMem","PVRSRVClockus","PVRSRVCreateAppHintState","PVRSRVDeviceMemCopy","PVRSRVDeviceMemSet","PVRSRVFreeAppHintState","PVRSRVFreeUserModeMem","PVRSRVGetAppHint","PVRSRVGetCurrentProcessID","PVRSRVGetErrorString","PVRSRVGetLibFuncAddr","PVRSRVInitSrvConnect","PVRSRVInitSrvDisconnect","PVRSRVIsKernel64Bit","PVRSRVLoadLibrary","PVRSRVMemCopy","PVRSRVMemSet","PVRSRVReallocUserModeMem","PVRSRVSetCpuAffinity","PVRSRVSetLocale","PVRSRVUnloadLibrary","PVRSRVWaitus","rgx_bvnc_packed","rgx_bvnc_pack_hw","SrvInit"]}
+{
+  "names": [
+    "libsrv_init.so",
+    "libsrv_init.so.1",
+    "libsrv_init.so.1.0"
+  ],
+  "symbols": [
+    "_PVRDRMClose",
+    "_PVRDRMOpen",
+    "_PVRDRMOpenRender",
+    "PVRSRVAllocUserModeMem",
+    "PVRSRVBridgeCall",
+    "PVRSRVCachedMemCopy",
+    "PVRSRVCachedMemSet",
+    "PVRSRVCallocUserModeMem",
+    "PVRSRVClockus",
+    "PVRSRVCreateAppHintState",
+    "PVRSRVDeviceMemCopy",
+    "PVRSRVDeviceMemSet",
+    "PVRSRVFreeAppHintState",
+    "PVRSRVFreeUserModeMem",
+    "PVRSRVGetAppHint",
+    "PVRSRVGetCurrentProcessID",
+    "PVRSRVGetErrorString",
+    "PVRSRVGetLibFuncAddr",
+    "PVRSRVInitSrvConnect",
+    "PVRSRVInitSrvDisconnect",
+    "PVRSRVIsKernel64Bit",
+    "PVRSRVLoadLibrary",
+    "PVRSRVMemCopy",
+    "PVRSRVMemSet",
+    "PVRSRVReallocUserModeMem",
+    "PVRSRVSetCpuAffinity",
+    "PVRSRVSetLocale",
+    "PVRSRVUnloadLibrary",
+    "PVRSRVWaitus",
+    "rgx_bvnc_packed",
+    "rgx_bvnc_pack_hw",
+    "SrvInit"
+  ],
+  "needed": [
+    "libm.so.6",
+    "libdl.so.2",
+    "librt.so.1",
+    "libpthread.so.0",
+    "libdrm.so.2",
+    "libc.so.6",
+    "ld-linux.so.3"
+  ]
+}

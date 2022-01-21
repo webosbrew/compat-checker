@@ -1,1 +1,14 @@
-{"symbols":["good_fork","good_spawn","good_system"],"names":["libgoodfork.so.0"]}
+{
+  "symbols": [
+    "good_fork",
+    "good_spawn",
+    "good_system"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libgoodfork.so.0"
+  ]
+}

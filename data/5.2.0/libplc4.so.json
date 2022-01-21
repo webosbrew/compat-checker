@@ -1,1 +1,53 @@
-{"symbols":["libVersionPoint","PL_Base64Decode","PL_Base64Encode","PL_CreateLongOptState","PL_CreateOptState","PL_DestroyOptState","PL_FPrintError","PL_GetNextOpt","PL_PrintError","PL_strcasecmp","PL_strcaserstr","PL_strcasestr","PL_strcat","PL_strcatn","PL_strchr","PL_strcmp","PL_strcpy","PL_strdup","PL_strfree","PL_strlen","PL_strncasecmp","PL_strncaserstr","PL_strncasestr","PL_strncat","PL_strnchr","PL_strncmp","PL_strncpy","PL_strncpyz","PL_strndup","PL_strnlen","PL_strnpbrk","PL_strnprbrk","PL_strnrchr","PL_strnrstr","PL_strnstr","PL_strpbrk","PL_strprbrk","PL_strrchr","PL_strrstr","PL_strstr","PL_strtok_r"],"names":["libplc4.so"]}
+{
+  "symbols": [
+    "libVersionPoint",
+    "PL_Base64Decode",
+    "PL_Base64Encode",
+    "PL_CreateLongOptState",
+    "PL_CreateOptState",
+    "PL_DestroyOptState",
+    "PL_FPrintError",
+    "PL_GetNextOpt",
+    "PL_PrintError",
+    "PL_strcasecmp",
+    "PL_strcaserstr",
+    "PL_strcasestr",
+    "PL_strcat",
+    "PL_strcatn",
+    "PL_strchr",
+    "PL_strcmp",
+    "PL_strcpy",
+    "PL_strdup",
+    "PL_strfree",
+    "PL_strlen",
+    "PL_strncasecmp",
+    "PL_strncaserstr",
+    "PL_strncasestr",
+    "PL_strncat",
+    "PL_strnchr",
+    "PL_strncmp",
+    "PL_strncpy",
+    "PL_strncpyz",
+    "PL_strndup",
+    "PL_strnlen",
+    "PL_strnpbrk",
+    "PL_strnprbrk",
+    "PL_strnrchr",
+    "PL_strnrstr",
+    "PL_strnstr",
+    "PL_strpbrk",
+    "PL_strprbrk",
+    "PL_strrchr",
+    "PL_strrstr",
+    "PL_strstr",
+    "PL_strtok_r"
+  ],
+  "needed": [
+    "libnspr4.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libplc4.so"
+  ]
+}

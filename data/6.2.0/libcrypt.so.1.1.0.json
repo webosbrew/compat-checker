@@ -1,1 +1,38 @@
-{"names":["libcrypt.so.1","libcrypt.so.1.1.0","libowcrypt.so.1"],"symbols":["crypt@GLIBC_2.4","crypt@XCRYPT_2.0","crypt_gensalt@GLIBC_2.4","crypt_gensalt@OW_CRYPT_1.0","crypt_gensalt@XCRYPT_2.0","crypt_gensalt_ra@OW_CRYPT_1.0","crypt_gensalt_ra@GLIBC_2.4","crypt_gensalt_ra@XCRYPT_2.0","crypt_gensalt_rn@GLIBC_2.4","crypt_gensalt_rn@XCRYPT_2.0","crypt_gensalt_rn@OW_CRYPT_1.0","crypt_r@GLIBC_2.4","crypt_r@XCRYPT_2.0","crypt_ra@XCRYPT_2.0","crypt_ra@GLIBC_2.4","crypt_rn@XCRYPT_2.0","crypt_rn@GLIBC_2.4","encrypt@GLIBC_2.4","encrypt_r@GLIBC_2.4","fcrypt@GLIBC_2.4","GLIBC_2.4","OW_CRYPT_1.0","setkey@GLIBC_2.4","setkey_r@GLIBC_2.4","XCRYPT_2.0"]}
+{
+  "names": [
+    "libcrypt.so.1",
+    "libcrypt.so.1.1.0",
+    "libowcrypt.so.1"
+  ],
+  "symbols": [
+    "crypt@GLIBC_2.4",
+    "crypt@XCRYPT_2.0",
+    "crypt_gensalt@GLIBC_2.4",
+    "crypt_gensalt@OW_CRYPT_1.0",
+    "crypt_gensalt@XCRYPT_2.0",
+    "crypt_gensalt_ra@OW_CRYPT_1.0",
+    "crypt_gensalt_ra@GLIBC_2.4",
+    "crypt_gensalt_ra@XCRYPT_2.0",
+    "crypt_gensalt_rn@GLIBC_2.4",
+    "crypt_gensalt_rn@XCRYPT_2.0",
+    "crypt_gensalt_rn@OW_CRYPT_1.0",
+    "crypt_r@GLIBC_2.4",
+    "crypt_r@XCRYPT_2.0",
+    "crypt_ra@XCRYPT_2.0",
+    "crypt_ra@GLIBC_2.4",
+    "crypt_rn@XCRYPT_2.0",
+    "crypt_rn@GLIBC_2.4",
+    "encrypt@GLIBC_2.4",
+    "encrypt_r@GLIBC_2.4",
+    "fcrypt@GLIBC_2.4",
+    "GLIBC_2.4",
+    "OW_CRYPT_1.0",
+    "setkey@GLIBC_2.4",
+    "setkey_r@GLIBC_2.4",
+    "XCRYPT_2.0"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

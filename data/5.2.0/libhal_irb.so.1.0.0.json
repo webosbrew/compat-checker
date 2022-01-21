@@ -1,0 +1,18 @@
+{
+  "names": [
+    "libhal_irb.so",
+    "libhal_irb.so.1",
+    "libhal_irb.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_IRB_GenerateUEIWaveform"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libcrypto.so.1.0.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

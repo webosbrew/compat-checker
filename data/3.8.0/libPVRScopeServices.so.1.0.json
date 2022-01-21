@@ -1,1 +1,17 @@
-{"names":["libPVRScopeServices.so","libPVRScopeServices.so.1","libPVRScopeServices.so.1.0"],"symbols":["pvrssGetProcAddress"]}
+{
+  "names": [
+    "libPVRScopeServices.so",
+    "libPVRScopeServices.so.1",
+    "libPVRScopeServices.so.1.0"
+  ],
+  "symbols": [
+    "pvrssGetProcAddress"
+  ],
+  "needed": [
+    "libsrv_um.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

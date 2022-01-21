@@ -1,1 +1,12 @@
-{"symbols":["mod_accesslog_plugin_init"],"names":["mod_accesslog.so"]}
+{
+  "symbols": [
+    "mod_accesslog_plugin_init"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "mod_accesslog.so"
+  ]
+}

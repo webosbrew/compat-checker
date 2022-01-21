@@ -3,7 +3,7 @@
 const {ArgumentParser} = require('argparse');
 const fs = require('fs');
 const path = require("path");
-const {dumpSymbols} = require("./utils");
+const {dumpSymbols, listNeeded} = require("./utils");
 
 const argparser = new ArgumentParser();
 argparser.add_argument('-i', '--input', {type: String, required: true});
@@ -47,7 +47,9 @@ for (let libpath of libpaths) {
             item = libs[file.name] || {};
             try {
                 item.symbols = dumpSymbols(path.posix.join(dir, file.name));
+                item.needed = listNeeded(path.posix.join(dir, file.name));
             } catch (e) {
+                console.warn(e);
                 continue;
             }
             libs[file.name] = item;
@@ -75,9 +77,9 @@ const outdir = path.join(args.output, version);
 if (!fs.existsSync(outdir)) {
     fs.mkdirSync(outdir, {recursive: true});
 }
-fs.writeFileSync(path.join(outdir, 'index.json'), JSON.stringify(index), {encoding: 'utf-8'});
+fs.writeFileSync(path.join(outdir, 'index.json'), JSON.stringify(index, null, 2), {encoding: 'utf-8'});
 for (let name in libs) {
     let item = libs[name];
     if (!item.symbols) continue;
-    fs.writeFileSync(path.join(outdir, `${name}.json`), JSON.stringify(item), {encoding: 'utf-8'});
+    fs.writeFileSync(path.join(outdir, `${name}.json`), JSON.stringify(item, null, 2), {encoding: 'utf-8'});
 }

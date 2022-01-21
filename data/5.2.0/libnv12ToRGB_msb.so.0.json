@@ -1,0 +1,30 @@
+{
+  "symbols": [
+    "binaryBuf",
+    "programSource",
+    "vxnv12ToRGBKernelInfo",
+    "vxPublishKernels",
+    "_Z20vxnv12ToRGBValidatorP8_vx_nodePKP13_vx_referencejPP15_vx_meta_format",
+    "_Z21vxLoadVxcBinarySourcePc",
+    "_Z22vxnv12ToRGBInitializerP8_vx_nodePKP13_vx_referencej",
+    "_Z24vxnv12ToRGBDeinitializerP8_vx_nodePKP13_vx_referencej"
+  ],
+  "needed": [
+    "libOpenVX.so",
+    "libOpenVXU.so",
+    "libCLC.so",
+    "libVSC.so",
+    "libGAL.so",
+    "libovxlib.so",
+    "libm.so.6",
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libstdc++.so.6",
+    "librt.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libnv12ToRGB_msb.so.0"
+  ]
+}

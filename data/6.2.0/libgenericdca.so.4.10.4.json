@@ -1,1 +1,24 @@
-{"names":["libgenericdca.so.4","libgenericdca.so.4.10","libgenericdca.so.4.10.4"],"symbols":["distance_computation_close","distance_computation_computescores","distance_computation_create1","distance_computation_create2","distance_computation_fillscores","distance_computation_setfeature","distance_computation_setfeaturematrix"]}
+{
+  "names": [
+    "libgenericdca.so.4",
+    "libgenericdca.so.4.10",
+    "libgenericdca.so.4.10.4"
+  ],
+  "symbols": [
+    "distance_computation_close",
+    "distance_computation_computescores",
+    "distance_computation_create1",
+    "distance_computation_create2",
+    "distance_computation_fillscores",
+    "distance_computation_setfeature",
+    "distance_computation_setfeaturematrix"
+  ],
+  "needed": [
+    "libdl.so.2",
+    "librt.so.1",
+    "libpthread.so.0",
+    "libvocon3200_platform.so.4",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

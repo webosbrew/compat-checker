@@ -1,0 +1,22 @@
+{
+  "names": [
+    "libhal_cec.so",
+    "libhal_cec.so.1",
+    "libhal_cec.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_VFE_CEC_Initialize",
+    "HAL_VFE_CEC_ReadCECCommand",
+    "HAL_VFE_CEC_ReadCECResponse",
+    "HAL_VFE_CEC_ReadCECResult",
+    "HAL_VFE_CEC_WriteCECCommand"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libcrypto.so.1.0.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

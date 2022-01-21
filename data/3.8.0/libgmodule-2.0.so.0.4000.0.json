@@ -1,1 +1,23 @@
-{"names":["libgmodule-2.0.so.0","libgmodule-2.0.so.0.4000.0"],"symbols":["g_module_build_path","g_module_close","g_module_error","g_module_make_resident","g_module_name","g_module_open","g_module_supported","g_module_symbol"]}
+{
+  "names": [
+    "libgmodule-2.0.so.0",
+    "libgmodule-2.0.so.0.4000.0"
+  ],
+  "symbols": [
+    "g_module_build_path",
+    "g_module_close",
+    "g_module_error",
+    "g_module_make_resident",
+    "g_module_name",
+    "g_module_open",
+    "g_module_supported",
+    "g_module_symbol"
+  ],
+  "needed": [
+    "libdl.so.2",
+    "libglib-2.0.so.0",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

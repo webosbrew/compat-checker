@@ -1,1 +1,31 @@
-{"names":["libgstallocators-1.0.so.0","libgstallocators-1.0.so.0.1602.0"],"symbols":["gst_dmabuf_allocator_alloc","gst_dmabuf_allocator_alloc_with_flags","gst_dmabuf_allocator_get_type","gst_dmabuf_allocator_new","gst_dmabuf_memory_get_fd","gst_fd_allocator_alloc","gst_fd_allocator_get_type","gst_fd_allocator_new","gst_fd_memory_get_fd","gst_is_dmabuf_memory","gst_is_fd_memory","gst_is_phys_memory","gst_phys_memory_allocator_get_type","gst_phys_memory_get_phys_addr"]}
+{
+  "names": [
+    "libgstallocators-1.0.so.0",
+    "libgstallocators-1.0.so.0.1602.0"
+  ],
+  "symbols": [
+    "gst_dmabuf_allocator_alloc",
+    "gst_dmabuf_allocator_alloc_with_flags",
+    "gst_dmabuf_allocator_get_type",
+    "gst_dmabuf_allocator_new",
+    "gst_dmabuf_memory_get_fd",
+    "gst_fd_allocator_alloc",
+    "gst_fd_allocator_get_type",
+    "gst_fd_allocator_new",
+    "gst_fd_memory_get_fd",
+    "gst_is_dmabuf_memory",
+    "gst_is_fd_memory",
+    "gst_is_phys_memory",
+    "gst_phys_memory_allocator_get_type",
+    "gst_phys_memory_get_phys_addr"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libgobject-2.0.so.0",
+    "libglib-2.0.so.0",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

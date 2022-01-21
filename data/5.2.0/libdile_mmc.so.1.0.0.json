@@ -1,1 +1,21 @@
-{"names":["libdile_mmc.so.1","libdile_mmc.so.1.0.0"],"symbols":["DILE_MMC_Close","DILE_MMC_Get_CID","DILE_MMC_Get_CSD","DILE_MMC_Get_ExtCSD","DILE_MMC_Get_SMART_Report","DILE_MMC_Open","DILE_MMC_PON_Long","DILE_MMC_PON_Short"]}
+{
+  "names": [
+    "libdile_mmc.so.1",
+    "libdile_mmc.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_MMC_Close",
+    "DILE_MMC_Get_CID",
+    "DILE_MMC_Get_CSD",
+    "DILE_MMC_Get_ExtCSD",
+    "DILE_MMC_Get_SMART_Report",
+    "DILE_MMC_Open",
+    "DILE_MMC_PON_Long",
+    "DILE_MMC_PON_Short"
+  ],
+  "needed": [
+    "libhal_mmc.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

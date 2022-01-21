@@ -1,1 +1,24 @@
-{"names":["libgstwayland-1.0.so.0","libgstwayland-1.0.so.0.1404.0"],"symbols":["gst_is_wayland_display_handle_need_context_message","gst_wayland_display_handle_context_get_handle","gst_wayland_display_handle_context_new","gst_wayland_video_begin_geometry_change","gst_wayland_video_end_geometry_change","gst_wayland_video_get_type"]}
+{
+  "names": [
+    "libgstwayland-1.0.so.0",
+    "libgstwayland-1.0.so.0.1404.0"
+  ],
+  "symbols": [
+    "gst_is_wayland_display_handle_need_context_message",
+    "gst_wayland_display_handle_context_get_handle",
+    "gst_wayland_display_handle_context_new",
+    "gst_wayland_video_begin_geometry_change",
+    "gst_wayland_video_end_geometry_change",
+    "gst_wayland_video_get_type"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libgobject-2.0.so.0",
+    "libglib-2.0.so.0",
+    "libwayland-client.so.0",
+    "libgstvideo-1.0.so.0",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

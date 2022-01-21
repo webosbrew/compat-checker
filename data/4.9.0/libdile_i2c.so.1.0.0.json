@@ -1,1 +1,19 @@
-{"names":["libdile_i2c.so.1","libdile_i2c.so.1.0.0"],"symbols":["DILE_I2C_GetConfig","DILE_I2C_Initialize","DILE_I2C_Read","DILE_I2C_Write","gsI2cAllConf"]}
+{
+  "names": [
+    "libdile_i2c.so.1",
+    "libdile_i2c.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_I2C_GetConfig",
+    "DILE_I2C_Initialize",
+    "DILE_I2C_Read",
+    "DILE_I2C_Write",
+    "gsI2cAllConf"
+  ],
+  "needed": [
+    "libdile_boardinfo.so.1",
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

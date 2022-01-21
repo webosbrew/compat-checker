@@ -1,1 +1,15 @@
-{"symbols":["OMX_ComponentInit"],"names":["libomx_adec.so"]}
+{
+  "symbols": [
+    "OMX_ComponentInit"
+  ],
+  "needed": [
+    "librpccore.so",
+    "libkadaptor.so",
+    "libomxrtk_utils.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx_adec.so"
+  ]
+}

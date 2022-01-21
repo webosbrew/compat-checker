@@ -1,1 +1,35 @@
-{"names":["libwebpdemux.so.2","libwebpdemux.so.2.0.4"],"symbols":["WebPAnimDecoderDelete","WebPAnimDecoderGetDemuxer","WebPAnimDecoderGetInfo","WebPAnimDecoderGetNext","WebPAnimDecoderHasMoreFrames","WebPAnimDecoderNewInternal","WebPAnimDecoderOptionsInitInternal","WebPAnimDecoderReset","WebPDemuxDelete","WebPDemuxGetChunk","WebPDemuxGetFrame","WebPDemuxGetI","WebPDemuxInternal","WebPDemuxNextChunk","WebPDemuxNextFrame","WebPDemuxPrevChunk","WebPDemuxPrevFrame","WebPDemuxReleaseChunkIterator","WebPDemuxReleaseIterator","WebPGetDemuxVersion"]}
+{
+  "names": [
+    "libwebpdemux.so.2",
+    "libwebpdemux.so.2.0.4"
+  ],
+  "symbols": [
+    "WebPAnimDecoderDelete",
+    "WebPAnimDecoderGetDemuxer",
+    "WebPAnimDecoderGetInfo",
+    "WebPAnimDecoderGetNext",
+    "WebPAnimDecoderHasMoreFrames",
+    "WebPAnimDecoderNewInternal",
+    "WebPAnimDecoderOptionsInitInternal",
+    "WebPAnimDecoderReset",
+    "WebPDemuxDelete",
+    "WebPDemuxGetChunk",
+    "WebPDemuxGetFrame",
+    "WebPDemuxGetI",
+    "WebPDemuxInternal",
+    "WebPDemuxNextChunk",
+    "WebPDemuxNextFrame",
+    "WebPDemuxPrevChunk",
+    "WebPDemuxPrevFrame",
+    "WebPDemuxReleaseChunkIterator",
+    "WebPDemuxReleaseIterator",
+    "WebPGetDemuxVersion"
+  ],
+  "needed": [
+    "libwebp.so.7",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

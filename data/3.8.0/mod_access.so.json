@@ -1,1 +1,12 @@
-{"symbols":["mod_access_plugin_init"],"names":["mod_access.so"]}
+{
+  "symbols": [
+    "mod_access_plugin_init"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "mod_access.so"
+  ]
+}

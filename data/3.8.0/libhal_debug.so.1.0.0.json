@@ -1,1 +1,17 @@
-{"names":["libhal_debug.so","libhal_debug.so.1","libhal_debug.so.1.0.0"],"symbols":["HAL_Debug_Main"]}
+{
+  "names": [
+    "libhal_debug.so",
+    "libhal_debug.so.1",
+    "libhal_debug.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_Debug_Main"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

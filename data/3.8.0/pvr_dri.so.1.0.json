@@ -1,1 +1,23 @@
-{"names":["pvr_dri.so","pvr_dri.so.1","pvr_dri.so.1.0"],"symbols":["__driDriverExtensions","__driDriverGetExtensions_pvr"]}
+{
+  "names": [
+    "pvr_dri.so",
+    "pvr_dri.so.1",
+    "pvr_dri.so.1.0"
+  ],
+  "symbols": [
+    "__driDriverExtensions",
+    "__driDriverGetExtensions_pvr"
+  ],
+  "needed": [
+    "libdrm.so.2",
+    "libexpat.so.1",
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libpvr_dri_support.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libc.so.6",
+    "ld-linux.so.3",
+    "libgcc_s.so.1"
+  ]
+}

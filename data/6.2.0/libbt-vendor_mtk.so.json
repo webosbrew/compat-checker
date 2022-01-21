@@ -1,1 +1,15 @@
-{"symbols":["BLUETOOTH_VENDOR_LIB_INTERFACE","vendor_log_save_to_syslog"],"names":["libbt-vendor_mtk.so"]}
+{
+  "symbols": [
+    "BLUETOOTH_VENDOR_LIB_INTERFACE",
+    "vendor_log_save_to_syslog"
+  ],
+  "needed": [
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libbt-vendor_mtk.so"
+  ]
+}

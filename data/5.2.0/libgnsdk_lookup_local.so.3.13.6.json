@@ -1,1 +1,26 @@
-{"symbols":["gnsdk_lookup_local_get_build_date","gnsdk_lookup_local_get_version","gnsdk_lookup_local_initialize","gnsdk_lookup_local_shutdown","gnsdk_lookup_local_storage_info_count","gnsdk_lookup_local_storage_info_get","gnsdk_lookup_local_storage_location_set","gnsdk_lookup_local_storage_validate","gnsdk_lookup_local_storage_version_get"],"names":["libgnsdk_lookup_local.so.3.13.6"]}
+{
+  "symbols": [
+    "gnsdk_lookup_local_get_build_date",
+    "gnsdk_lookup_local_get_version",
+    "gnsdk_lookup_local_initialize",
+    "gnsdk_lookup_local_shutdown",
+    "gnsdk_lookup_local_storage_info_count",
+    "gnsdk_lookup_local_storage_info_get",
+    "gnsdk_lookup_local_storage_location_set",
+    "gnsdk_lookup_local_storage_validate",
+    "gnsdk_lookup_local_storage_version_get"
+  ],
+  "needed": [
+    "libgnsdk_manager.so.3.13.6",
+    "libpthread.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "librt.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6",
+    "ld-linux.so.3"
+  ],
+  "names": [
+    "libgnsdk_lookup_local.so.3.13.6"
+  ]
+}

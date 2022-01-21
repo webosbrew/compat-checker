@@ -1,0 +1,13 @@
+{
+  "names": [
+    "libOpenCL.so",
+    "libOpenCL.so.1",
+    "libOpenCL.so.1.1"
+  ],
+  "symbols": [],
+  "needed": [
+    "libmali.so",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

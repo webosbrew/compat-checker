@@ -1,1 +1,32 @@
-{"names":["libhal_pwm.so","libhal_pwm.so.1","libhal_pwm.so.1.0.0"],"symbols":["HAL_PWM_ApplyParamSet","HAL_PWM_GetParam","HAL_PWM_Init","HAL_PWM_SetAdaptFreqCtrl","HAL_PWM_SetDutyCycle","HAL_PWM_SetEnable","HAL_PWM_SetFrequency","HAL_PWM_SetParam","HAL_PWM_SetPulseWidth","HAL_PWM_SetVsyncAlign","_Z12rtk_pwm_openPcS_P11PWM_PARAM_T","_Z16rtk_pwm_info_getPcP11PWM_PARAM_T","_ZN13CRTKTraceCallC1EjPKc","_ZN13CRTKTraceCallC2EjPKc","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}
+{
+  "names": [
+    "libhal_pwm.so",
+    "libhal_pwm.so.1",
+    "libhal_pwm.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_PWM_ApplyParamSet",
+    "HAL_PWM_GetParam",
+    "HAL_PWM_Init",
+    "HAL_PWM_SetAdaptFreqCtrl",
+    "HAL_PWM_SetDutyCycle",
+    "HAL_PWM_SetEnable",
+    "HAL_PWM_SetFrequency",
+    "HAL_PWM_SetParam",
+    "HAL_PWM_SetPulseWidth",
+    "HAL_PWM_SetVsyncAlign",
+    "_Z12rtk_pwm_openPcS_P11PWM_PARAM_T",
+    "_Z16rtk_pwm_info_getPcP11PWM_PARAM_T",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

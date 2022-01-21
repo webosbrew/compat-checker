@@ -1,1 +1,51 @@
-{"symbols":["pool_findfileconflicts@SOLV_1.0","pool_parserpmrichdep@SOLV_1.0","repo_add_deltainfoxml@SOLV_1.0","repo_add_repomdxml@SOLV_1.0","repo_add_rpm@SOLV_1.0","repo_add_rpmdb@SOLV_1.0","repo_add_rpmdb_reffp@SOLV_1.0","repo_add_rpm_handle@SOLV_1.0","repo_add_rpmmd@SOLV_1.0","repo_add_updateinfoxml@SOLV_1.0","rpm_byfp@SOLV_1.0","rpm_byrpmdbid@SOLV_1.0","rpm_installedrpmdbids@SOLV_1.0","rpm_iterate_filelist@SOLV_1.0","rpm_query@SOLV_1.0","rpm_query_num@SOLV_1.0","rpm_state_create@SOLV_1.0","rpm_state_free@SOLV_1.0","SOLV_1.0","solv_xfopen@SOLV_1.0","solv_xfopen_buf@SOLV_1.0","solv_xfopen_fd@SOLV_1.0","solv_xfopen_iscompressed@SOLV_1.0","testcase_add_testtags@SOLV_1.0","testcase_dep2str@SOLV_1.0","testcase_job2str@SOLV_1.0","testcase_read@SOLV_1.0","testcase_resultdiff@SOLV_1.0","testcase_solverresult@SOLV_1.0","testcase_solvid2str@SOLV_1.0","testcase_str2dep@SOLV_1.0","testcase_str2job@SOLV_1.0","testcase_str2repo@SOLV_1.0","testcase_str2solvid@SOLV_1.0","testcase_write@SOLV_1.0","testcase_write_testtags@SOLV_1.0"],"names":["libsolvext.so.0"]}
+{
+  "symbols": [
+    "pool_findfileconflicts@SOLV_1.0",
+    "pool_parserpmrichdep@SOLV_1.0",
+    "repo_add_deltainfoxml@SOLV_1.0",
+    "repo_add_repomdxml@SOLV_1.0",
+    "repo_add_rpm@SOLV_1.0",
+    "repo_add_rpmdb@SOLV_1.0",
+    "repo_add_rpmdb_reffp@SOLV_1.0",
+    "repo_add_rpm_handle@SOLV_1.0",
+    "repo_add_rpmmd@SOLV_1.0",
+    "repo_add_updateinfoxml@SOLV_1.0",
+    "rpm_byfp@SOLV_1.0",
+    "rpm_byrpmdbid@SOLV_1.0",
+    "rpm_installedrpmdbids@SOLV_1.0",
+    "rpm_iterate_filelist@SOLV_1.0",
+    "rpm_query@SOLV_1.0",
+    "rpm_query_num@SOLV_1.0",
+    "rpm_state_create@SOLV_1.0",
+    "rpm_state_free@SOLV_1.0",
+    "SOLV_1.0",
+    "solv_xfopen@SOLV_1.0",
+    "solv_xfopen_buf@SOLV_1.0",
+    "solv_xfopen_fd@SOLV_1.0",
+    "solv_xfopen_iscompressed@SOLV_1.0",
+    "testcase_add_testtags@SOLV_1.0",
+    "testcase_dep2str@SOLV_1.0",
+    "testcase_job2str@SOLV_1.0",
+    "testcase_read@SOLV_1.0",
+    "testcase_resultdiff@SOLV_1.0",
+    "testcase_solverresult@SOLV_1.0",
+    "testcase_solvid2str@SOLV_1.0",
+    "testcase_str2dep@SOLV_1.0",
+    "testcase_str2job@SOLV_1.0",
+    "testcase_str2repo@SOLV_1.0",
+    "testcase_str2solvid@SOLV_1.0",
+    "testcase_write@SOLV_1.0",
+    "testcase_write_testtags@SOLV_1.0"
+  ],
+  "needed": [
+    "libsolv.so.0",
+    "libdb-5.3.so",
+    "libexpat.so.1",
+    "libz.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libsolvext.so.0"
+  ]
+}

@@ -1,1 +1,13 @@
-{"symbols":["mod_dirlisting_plugin_init"],"names":["mod_dirlisting.so"]}
+{
+  "symbols": [
+    "mod_dirlisting_plugin_init"
+  ],
+  "needed": [
+    "libpcre.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "mod_dirlisting.so"
+  ]
+}

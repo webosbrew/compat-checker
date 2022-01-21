@@ -1,1 +1,16 @@
-{"names":["libgstnano-1.0.so.0","libgstnano-1.0.so.0.1602.0"],"symbols":["gst_nano_object_get_type"]}
+{
+  "names": [
+    "libgstnano-1.0.so.0",
+    "libgstnano-1.0.so.0.1602.0"
+  ],
+  "symbols": [
+    "gst_nano_object_get_type"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libgobject-2.0.so.0",
+    "libglib-2.0.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

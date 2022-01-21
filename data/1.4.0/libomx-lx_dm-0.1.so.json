@@ -1,1 +1,26 @@
-{"symbols":["dpb","LIM_DpbManagerDeinit","LIM_DpbManagerInit","omx_debug_init","omx_debug_print","omx_debug_print2","omx_debug_print3","omx_dump2hex","strsplit_clear"],"names":["libomx-lx_dm-0.1.so"]}
+{
+  "symbols": [
+    "dpb",
+    "LIM_DpbManagerDeinit",
+    "LIM_DpbManagerInit",
+    "omx_debug_init",
+    "omx_debug_print",
+    "omx_debug_print2",
+    "omx_debug_print3",
+    "omx_dump2hex",
+    "strsplit_clear"
+  ],
+  "needed": [
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libomx-0.1.so",
+    "libkadaptor.so",
+    "liblxv.so",
+    "libhma.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx-lx_dm-0.1.so"
+  ]
+}

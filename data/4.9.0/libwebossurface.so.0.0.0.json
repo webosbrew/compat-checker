@@ -1,1 +1,32 @@
-{"names":["libwebossurface.so.0","libwebossurface.so.0.0.0"],"symbols":["pfneglAcquireCPUMappingStarfishSurfaceLG","pfneglCreateImageKHR","pfneglCreateStarfishSurfaceLG","pfneglDestroyStarfishSurfaceLG","pfneglExportStarfishSurfaceLG","pfneglImportStarfishSurfaceLG","pfneglReleaseCPUMappingStarfishSurfaceLG","webos_surface_create","webos_surface_create_image","webos_surface_destroy","webos_surface_export","webos_surface_exported_size","webos_surface_fd_count","webos_surface_format","webos_surface_height","webos_surface_import","webos_surface_map","webos_surface_stride","webos_surface_unmap","webos_surface_width"]}
+{
+  "names": [
+    "libwebossurface.so.0",
+    "libwebossurface.so.0.0.0"
+  ],
+  "symbols": [
+    "pfneglAcquireCPUMappingStarfishSurfaceLG",
+    "pfneglCreateImageKHR",
+    "pfneglCreateStarfishSurfaceLG",
+    "pfneglDestroyStarfishSurfaceLG",
+    "pfneglExportStarfishSurfaceLG",
+    "pfneglImportStarfishSurfaceLG",
+    "pfneglReleaseCPUMappingStarfishSurfaceLG",
+    "webos_surface_create",
+    "webos_surface_create_image",
+    "webos_surface_destroy",
+    "webos_surface_export",
+    "webos_surface_exported_size",
+    "webos_surface_fd_count",
+    "webos_surface_format",
+    "webos_surface_height",
+    "webos_surface_import",
+    "webos_surface_map",
+    "webos_surface_stride",
+    "webos_surface_unmap",
+    "webos_surface_width"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

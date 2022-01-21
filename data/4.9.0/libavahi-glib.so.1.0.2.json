@@ -1,1 +1,20 @@
-{"names":["libavahi-glib.so.1","libavahi-glib.so.1.0.2"],"symbols":["avahi_glib_allocator","avahi_glib_poll_free","avahi_glib_poll_get","avahi_glib_poll_new"]}
+{
+  "names": [
+    "libavahi-glib.so.1",
+    "libavahi-glib.so.1.0.2"
+  ],
+  "symbols": [
+    "avahi_glib_allocator",
+    "avahi_glib_poll_free",
+    "avahi_glib_poll_get",
+    "avahi_glib_poll_new"
+  ],
+  "needed": [
+    "libavahi-common.so.3",
+    "libglib-2.0.so.0",
+    "libpcre.so.1",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

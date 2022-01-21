@@ -1,1 +1,53 @@
-{"names":["libhal_gpio.so","libhal_gpio.so.1","libhal_gpio.so.1.0.0"],"symbols":["CMNIO_GPIO_GetInputPort","CMNIO_GPIO_SetOutputPort","gpio_CB","gpioDebugPin","HAL_GPIO_GetInputPhysicalPort","HAL_GPIO_GetInputPort","HAL_GPIO_GetInputPortArray","HAL_GPIO_GetIntrCount","HAL_GPIO_I2C_ReadWriteByte","HAL_GPIO_Init","HAL_GPIO_InitEx","HAL_GPIO_SetIntrCallBack","HAL_GPIO_SetOutputPhysicalPort","HAL_GPIO_SetOutputPort","HAL_GPIO_SetOutputPortArray","HAL_GPIO_SetPhysicalPortDirection","HAL_GPIO_SetPortDirection","HAL_GPIO_SetPortDirection_SP","PCB_PINS","_Z12set_SOC_typev","_Z14IsGpioPinValidj12_tagGPIOTYPE","_Z14showGPIOInformj12_tagGPIOTYPEihi","_Z16getGpioDebugInfoP14_gpioDebugInfo","_Z16readGpioDebugPinPh","_Z16setK3L_GpioTablev","_Z16showGpioDebugPinv","_Z17checkPhysicalPortjjj","_Z17setK3LP_GpioTablev","_Z17writeGpioDebugPinv","_Z19getGpioPinAttributejPiP12_tagGPIOTYPE","_Z21threadGpioIntCallBackPv","_Z22check_TOTAL_WR_RD_PINSv","_Z23getGpioDebugInformationv","_ZN13CRTKTraceCallC1EjPKc","_ZN13CRTKTraceCallC2EjPKc","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}
+{
+  "names": [
+    "libhal_gpio.so",
+    "libhal_gpio.so.1",
+    "libhal_gpio.so.1.0.0"
+  ],
+  "symbols": [
+    "CMNIO_GPIO_GetInputPort",
+    "CMNIO_GPIO_SetOutputPort",
+    "gpio_CB",
+    "gpioDebugPin",
+    "HAL_GPIO_GetInputPhysicalPort",
+    "HAL_GPIO_GetInputPort",
+    "HAL_GPIO_GetInputPortArray",
+    "HAL_GPIO_GetIntrCount",
+    "HAL_GPIO_I2C_ReadWriteByte",
+    "HAL_GPIO_Init",
+    "HAL_GPIO_InitEx",
+    "HAL_GPIO_SetIntrCallBack",
+    "HAL_GPIO_SetOutputPhysicalPort",
+    "HAL_GPIO_SetOutputPort",
+    "HAL_GPIO_SetOutputPortArray",
+    "HAL_GPIO_SetPhysicalPortDirection",
+    "HAL_GPIO_SetPortDirection",
+    "HAL_GPIO_SetPortDirection_SP",
+    "PCB_PINS",
+    "_Z12set_SOC_typev",
+    "_Z14IsGpioPinValidj12_tagGPIOTYPE",
+    "_Z14showGPIOInformj12_tagGPIOTYPEihi",
+    "_Z16getGpioDebugInfoP14_gpioDebugInfo",
+    "_Z16readGpioDebugPinPh",
+    "_Z16setK3L_GpioTablev",
+    "_Z16showGpioDebugPinv",
+    "_Z17checkPhysicalPortjjj",
+    "_Z17setK3LP_GpioTablev",
+    "_Z17writeGpioDebugPinv",
+    "_Z19getGpioPinAttributejPiP12_tagGPIOTYPE",
+    "_Z21threadGpioIntCallBackPv",
+    "_Z22check_TOTAL_WR_RD_PINSv",
+    "_Z23getGpioDebugInformationv",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

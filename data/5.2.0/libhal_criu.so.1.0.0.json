@@ -1,0 +1,20 @@
+{
+  "names": [
+    "libhal_criu.so",
+    "libhal_criu.so.1",
+    "libhal_criu.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_CRIU_PostDumpNotify",
+    "HAL_CRIU_PostRestoreNotify",
+    "HAL_CRIU_PreCheckpointNotify"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libcrypto.so.1.0.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

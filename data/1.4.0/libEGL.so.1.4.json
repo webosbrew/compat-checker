@@ -1,1 +1,48 @@
-{"names":["libEGL.so","libEGL.so.1","libEGL.so.1.4"],"symbols":["eglBindAPI","eglBindTexImage","eglChooseConfig","eglCopyBuffers","eglCreateContext","eglCreatePbufferFromClientBuffer","eglCreatePbufferSurface","eglCreatePixmapSurface","eglCreateWindowSurface","eglDestroyContext","eglDestroySurface","eglGetConfigAttrib","eglGetConfigs","eglGetCurrentContext","eglGetCurrentDisplay","eglGetCurrentSurface","eglGetDisplay","eglGetError","eglGetProcAddress","eglInitialize","eglMakeCurrent","eglQueryAPI","eglQueryContext","eglQueryString","eglQuerySurface","eglReleaseTexImage","eglReleaseThread","eglSurfaceAttrib","eglSwapBuffers","eglSwapInterval","eglTerminate","eglWaitClient","eglWaitGL","eglWaitNative"]}
+{
+  "names": [
+    "libEGL.so",
+    "libEGL.so.1",
+    "libEGL.so.1.4"
+  ],
+  "symbols": [
+    "eglBindAPI",
+    "eglBindTexImage",
+    "eglChooseConfig",
+    "eglCopyBuffers",
+    "eglCreateContext",
+    "eglCreatePbufferFromClientBuffer",
+    "eglCreatePbufferSurface",
+    "eglCreatePixmapSurface",
+    "eglCreateWindowSurface",
+    "eglDestroyContext",
+    "eglDestroySurface",
+    "eglGetConfigAttrib",
+    "eglGetConfigs",
+    "eglGetCurrentContext",
+    "eglGetCurrentDisplay",
+    "eglGetCurrentSurface",
+    "eglGetDisplay",
+    "eglGetError",
+    "eglGetProcAddress",
+    "eglInitialize",
+    "eglMakeCurrent",
+    "eglQueryAPI",
+    "eglQueryContext",
+    "eglQueryString",
+    "eglQuerySurface",
+    "eglReleaseTexImage",
+    "eglReleaseThread",
+    "eglSurfaceAttrib",
+    "eglSwapBuffers",
+    "eglSwapInterval",
+    "eglTerminate",
+    "eglWaitClient",
+    "eglWaitGL",
+    "eglWaitNative"
+  ],
+  "needed": [
+    "libIMGegl.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

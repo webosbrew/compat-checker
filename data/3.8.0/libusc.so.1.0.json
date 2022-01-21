@@ -1,1 +1,40 @@
-{"names":["libusc.so","libusc.so.1","libusc.so.1.0"],"symbols":["PVRCleanupUniflexHw","PVRUniFlexCleanupEndOfTileProgram","PVRUniFlexCompileKernels","PVRUniFlexCompileToHw","PVRUniFlexCreateContext","PVRUniFlexCreateRenderTargetSetup","PVRUniFlexDeserialise","PVRUniFlexDeserialiseBuffer","PVRUniFlexDestroyContext","PVRUniFlexDestroyRenderTargetSetup","PVRUniFlexDisableRenderTarget","PVRUniFlexEnableRenderTarget","PVRUniFlexEncodeComparisonOperator","PVRUniFlexFreeComputeProgram","PVRUniFlexGenerateEndOfTileProgram","PVRUniFlexGetInputInstDesc","PVRUniFlexInitImageParameters","PVRUniFlexInitInst","PVRUniFlexInitSamplerParameters","PVRUniflexReadHWBinary","PVRUniFlexSerialise","PVRUniFlexSwizzleToPckHWSwizzleFmt","PVRUniFlexUnpackImageStateConstantOffset","PVRUniFlexUnpackSampleStateConstantOffset","PVRUniFlexUnpackUavStateConstantOffset","PVRUniflexWriteHWBinary"]}
+{
+  "names": [
+    "libusc.so",
+    "libusc.so.1",
+    "libusc.so.1.0"
+  ],
+  "symbols": [
+    "PVRCleanupUniflexHw",
+    "PVRUniFlexCleanupEndOfTileProgram",
+    "PVRUniFlexCompileKernels",
+    "PVRUniFlexCompileToHw",
+    "PVRUniFlexCreateContext",
+    "PVRUniFlexCreateRenderTargetSetup",
+    "PVRUniFlexDeserialise",
+    "PVRUniFlexDeserialiseBuffer",
+    "PVRUniFlexDestroyContext",
+    "PVRUniFlexDestroyRenderTargetSetup",
+    "PVRUniFlexDisableRenderTarget",
+    "PVRUniFlexEnableRenderTarget",
+    "PVRUniFlexEncodeComparisonOperator",
+    "PVRUniFlexFreeComputeProgram",
+    "PVRUniFlexGenerateEndOfTileProgram",
+    "PVRUniFlexGetInputInstDesc",
+    "PVRUniFlexInitImageParameters",
+    "PVRUniFlexInitInst",
+    "PVRUniFlexInitSamplerParameters",
+    "PVRUniflexReadHWBinary",
+    "PVRUniFlexSerialise",
+    "PVRUniFlexSwizzleToPckHWSwizzleFmt",
+    "PVRUniFlexUnpackImageStateConstantOffset",
+    "PVRUniFlexUnpackSampleStateConstantOffset",
+    "PVRUniFlexUnpackUavStateConstantOffset",
+    "PVRUniflexWriteHWBinary"
+  ],
+  "needed": [
+    "libsrv_um.so",
+    "libm.so.6",
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,14 @@
-{"symbols":["digits"],"names":["libSegFault.so","libSegFault.so.1"]}
+{
+  "symbols": [
+    "digits"
+  ],
+  "needed": [
+    "libunwind-arm.so.8",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libSegFault.so",
+    "libSegFault.so.1"
+  ]
+}

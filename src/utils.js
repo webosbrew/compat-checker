@@ -6,7 +6,7 @@ const ignoredSymbols = ['__bss_end__', '_bss_end__', '__bss_start', '__bss_start
     '_init', '_edata'];
 
 function dumpSymbols(path) {
-    return execSync(`nm --dynamic --extern-only --defined-only ${path}`).toString('utf-8')
+    return execSync(`nm --dynamic --extern-only --defined-only ${path}`, {maxBuffer: 131072 * 1024}).toString('utf-8')
         .split('\n')
         .filter(l => l)
         .map(l => l.split(/[ ]+/))
@@ -15,11 +15,27 @@ function dumpSymbols(path) {
         .filter(sym => !ignoredSymbols.includes(sym));
 }
 
+function listNeeded(path) {
+    return execSync(`objdump -p "${path}"`).toString('utf-8')
+        .split('\n')
+        .map(l => l.trim().split(/[ ]+/))
+        .filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
+        .map(segs => segs[1]);
+}
+
 function hasLib(libdirs, lib) {
     for (let libdir of libdirs) {
         if (fs.existsSync(path.join(libdir, lib))) {
             return true;
         }
+    }
+    return false;
+}
+
+function symMatches(list, symbol) {
+    if (list.includes(symbol)) return true;
+    if (!symbol.includes('@')) {
+        return list.find((s) => s.startsWith(`${symbol}@`));
     }
     return false;
 }
@@ -66,18 +82,35 @@ function verifyElf(file, libs, version) {
                 break
             }
         }
-    })
+    });
+    const indirectSyms = libDep.map(lib => index[lib]).filter(f => f).flatMap((f) => {
+        const lib = require(path.join(__dirname, `../data/${version}/${f}`));
+        return (lib.needed || []).filter(l => !libDep.includes(l));
+    }).flatMap(l => {
+        const i = index[l];
+        if (!i) return [];
+        const lib = require(path.join(__dirname, `../data/${version}/${i}`));
+        return lib.symbols;
+    });
     for (let symbol of symReq) {
-        let found = symbols.includes(symbol);
-        if (!found && !symbol.includes('@')) {
-            found = symbols.find((s) => s.startsWith(`${symbol}@`));
+        let found = symMatches(symbols, symbol);
+        let indirect = false;
+        if (!found) {
+            if (symMatches(indirectSyms, symbol)) {
+                found = true;
+                indirect = true;
+            }
         }
         if (!found) {
             let segs = symbol.split('@');
             segs[0] = execSync(`c++filt ${segs[0]}`).toString('utf-8').trim() || segs[0];
             console.error(`Symbol ${segs.join('@')} not satisfied`);
+        } else if (indirect) {
+            let segs = symbol.split('@');
+            segs[0] = execSync(`c++filt ${segs[0]}`).toString('utf-8').trim() || segs[0];
+            console.warn(`Symbol ${segs.join('@')} is indirectly linked, which is not ideal`);
         }
     }
 }
 
-module.exports = {dumpSymbols, verifyElf};
+module.exports = {dumpSymbols, listNeeded, verifyElf};

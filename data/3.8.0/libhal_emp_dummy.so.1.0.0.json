@@ -1,1 +1,45 @@
-{"names":["libhal_emp_dummy.so","libhal_emp_dummy.so.1","libhal_emp_dummy.so.1.0.0"],"symbols":["DDI_EMP_ClearFrameBuffer","DDI_EMP_CreateMediaItem","DDI_EMP_DeleteMediaItem","DDI_EMP_Finalize","DDI_EMP_FlushFrameBuffer","DDI_EMP_GetFrameBuffer","DDI_EMP_GetFullThumbnail","DDI_EMP_GetFullThumbNail","DDI_EMP_GetJpegXYWH","DDI_EMP_GetMetaData","DDI_EMP_GetThumbNail","DDI_EMP_GetThumbNail_BG","DDI_EMP_Initialize","DDI_EMP_IsMPOFile","DDI_EMP_NotifyFullScreenPictureDisplay","DDI_EMP_Play","DDI_EMP_ReadySlideshowEffect","DDI_EMP_RegisterCallback","DDI_EMP_RegisterSwDecCallback","DDI_EMP_Rotate","DDI_EMP_SetEnlargement","DDI_EMP_SetPictureMovePosition","DDI_EMP_SetSlideShowEffect","DDI_EMP_Stop","DDI_EMP_StopSlideShowEffect","_ZN13CRTKTraceCallC1EjPKc","_ZN13CRTKTraceCallC2EjPKc","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}
+{
+  "names": [
+    "libhal_emp_dummy.so",
+    "libhal_emp_dummy.so.1",
+    "libhal_emp_dummy.so.1.0.0"
+  ],
+  "symbols": [
+    "DDI_EMP_ClearFrameBuffer",
+    "DDI_EMP_CreateMediaItem",
+    "DDI_EMP_DeleteMediaItem",
+    "DDI_EMP_Finalize",
+    "DDI_EMP_FlushFrameBuffer",
+    "DDI_EMP_GetFrameBuffer",
+    "DDI_EMP_GetFullThumbnail",
+    "DDI_EMP_GetFullThumbNail",
+    "DDI_EMP_GetJpegXYWH",
+    "DDI_EMP_GetMetaData",
+    "DDI_EMP_GetThumbNail",
+    "DDI_EMP_GetThumbNail_BG",
+    "DDI_EMP_Initialize",
+    "DDI_EMP_IsMPOFile",
+    "DDI_EMP_NotifyFullScreenPictureDisplay",
+    "DDI_EMP_Play",
+    "DDI_EMP_ReadySlideshowEffect",
+    "DDI_EMP_RegisterCallback",
+    "DDI_EMP_RegisterSwDecCallback",
+    "DDI_EMP_Rotate",
+    "DDI_EMP_SetEnlargement",
+    "DDI_EMP_SetPictureMovePosition",
+    "DDI_EMP_SetSlideShowEffect",
+    "DDI_EMP_Stop",
+    "DDI_EMP_StopSlideShowEffect",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

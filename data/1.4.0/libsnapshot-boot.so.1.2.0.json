@@ -1,1 +1,16 @@
-{"names":["libsnapshot-boot.so.1","libsnapshot-boot.so.1.2.0"],"symbols":["snapshot_boot_mode","snapshot_boot_ready","snapshot_boot_remake","snapshot_boot_wait"]}
+{
+  "names": [
+    "libsnapshot-boot.so.1",
+    "libsnapshot-boot.so.1.2.0"
+  ],
+  "symbols": [
+    "snapshot_boot_mode",
+    "snapshot_boot_ready",
+    "snapshot_boot_remake",
+    "snapshot_boot_wait"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,27 @@
-{"symbols":["gst_lxclock_get_type","gst_lxclock_new"],"names":["libgstlxclock.so"]}
+{
+  "symbols": [
+    "gst_lxclock_get_type",
+    "gst_lxclock_new"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libgobject-2.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libgthread-2.0.so.0",
+    "libgio-2.0.so.0",
+    "libgstbase-1.0.so.0",
+    "libgstapp-1.0.so.0",
+    "libgstaudio-1.0.so.0",
+    "librt.so.1",
+    "libz.so.1",
+    "libm.so.6",
+    "libglib-2.0.so.0",
+    "libkadaptor.so",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ],
+  "names": [
+    "libgstlxclock.so"
+  ]
+}

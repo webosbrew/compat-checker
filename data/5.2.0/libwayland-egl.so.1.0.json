@@ -1,0 +1,14 @@
+{
+  "names": [
+    "libwayland-egl.so",
+    "libwayland-egl.so.1",
+    "libwayland-egl.so.1.0"
+  ],
+  "symbols": [],
+  "needed": [
+    "libmali.so",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

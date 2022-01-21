@@ -1,1 +1,21 @@
-{"names":["libcamshm.so.1","libcamshm.so.1.0.0"],"symbols":["CloseShmem","CreateShmem","getShmemCount","_IncreseReadIndex","_OpenShmem","OpenShmem","ReadLastShmem","_ReadShmem","ReadShmem","WriteShmem"]}
+{
+  "names": [
+    "libcamshm.so.1",
+    "libcamshm.so.1.0.0"
+  ],
+  "symbols": [
+    "CloseShmem",
+    "CreateShmem",
+    "getShmemCount",
+    "_IncreseReadIndex",
+    "_OpenShmem",
+    "OpenShmem",
+    "ReadLastShmem",
+    "_ReadShmem",
+    "ReadShmem",
+    "WriteShmem"
+  ],
+  "needed": [
+    "libc.so.6"
+  ]
+}

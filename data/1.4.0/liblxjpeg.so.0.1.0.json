@@ -1,1 +1,32 @@
-{"names":["liblxjpeg.so","liblxjpeg.so.0","liblxjpeg.so.0.1.0"],"symbols":["lxjpeg_create","lxjpeg_destroy","lxjpeg__get16","lxjpeg__get32","lxjpeg_get_debugmem","lxjpeg_get_info","lxjpeg_get_priv","lxjpeg_parse","lxjpeg_parse_create","lxjpeg_parse_done","lxjpeg_read_data","lxjpeg_set_fb","lxjpeg_set_fb2","lxjpeg_set_info","lxjpeg_set_option","lxjpeg_set_print_function","lxjpeg_set_priv","lxjpeg_write","lxjpeg_write2"]}
+{
+  "names": [
+    "liblxjpeg.so",
+    "liblxjpeg.so.0",
+    "liblxjpeg.so.0.1.0"
+  ],
+  "symbols": [
+    "lxjpeg_create",
+    "lxjpeg_destroy",
+    "lxjpeg__get16",
+    "lxjpeg__get32",
+    "lxjpeg_get_debugmem",
+    "lxjpeg_get_info",
+    "lxjpeg_get_priv",
+    "lxjpeg_parse",
+    "lxjpeg_parse_create",
+    "lxjpeg_parse_done",
+    "lxjpeg_read_data",
+    "lxjpeg_set_fb",
+    "lxjpeg_set_fb2",
+    "lxjpeg_set_info",
+    "lxjpeg_set_option",
+    "lxjpeg_set_print_function",
+    "lxjpeg_set_priv",
+    "lxjpeg_write",
+    "lxjpeg_write2"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

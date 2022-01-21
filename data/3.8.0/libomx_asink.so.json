@@ -1,1 +1,22 @@
-{"symbols":["logfp","OMX_ComponentInit","OMX_Log"],"names":["libomx_asink.so"]}
+{
+  "symbols": [
+    "logfp",
+    "OMX_ComponentInit",
+    "OMX_Log"
+  ],
+  "needed": [
+    "librpccore.so",
+    "libkadaptor.so",
+    "libomxrtk_utils.so",
+    "libasound.so.2",
+    "libm.so.6",
+    "libdl.so.2",
+    "libpthread.so.0",
+    "librt.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx_asink.so"
+  ]
+}

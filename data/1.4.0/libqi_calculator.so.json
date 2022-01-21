@@ -1,1 +1,15 @@
-{"symbols":["qi_calculator_init","qi_calculator_on_join_requested","qi_calculator_scan","qi_calculator_term"],"names":["libqi_calculator.so"]}
+{
+  "symbols": [
+    "qi_calculator_init",
+    "qi_calculator_on_join_requested",
+    "qi_calculator_scan",
+    "qi_calculator_term"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libqi_calculator.so"
+  ]
+}

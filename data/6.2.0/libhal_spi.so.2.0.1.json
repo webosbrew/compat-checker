@@ -1,1 +1,22 @@
-{"names":["libhal_spi.so","libhal_spi.so.2","libhal_spi.so.2.0.1"],"symbols":["gHalSpiLogmFd","HAL_SPI_Init","HAL_SPI_Read","HAL_SPI_ReadEx","HAL_SPI_SetConfig","HAL_SPI_SetConfigEx","HAL_SPI_Write","HAL_SPI_WriteEx"]}
+{
+  "names": [
+    "libhal_spi.so",
+    "libhal_spi.so.2",
+    "libhal_spi.so.2.0.1"
+  ],
+  "symbols": [
+    "gHalSpiLogmFd",
+    "HAL_SPI_Init",
+    "HAL_SPI_Read",
+    "HAL_SPI_ReadEx",
+    "HAL_SPI_SetConfig",
+    "HAL_SPI_SetConfigEx",
+    "HAL_SPI_Write",
+    "HAL_SPI_WriteEx"
+  ],
+  "needed": [
+    "libkadaptor.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,1 +1,23 @@
-{"names":["libFPS.so","libFPS.so.2.10.22"],"symbols":["FPSCreateMovieSession","FPSDestroyCryptor","FPSDestroyMovieSession","FPSDestroyServerExchange","FPSDisposeStorage","FPSGenerateChallenge","FPSGenerateChallengeWithVersionList","FPSGenerateSecureStop","FPSGenerateSecureStopWithVersionList","FPSGetLibraryVersion","FPSHandleCommand","FPSInitLibrary","FPSProcessLicence","FPSProcessSample"]}
+{
+  "names": [
+    "libFPS.so",
+    "libFPS.so.2.10.22"
+  ],
+  "symbols": [
+    "FPSCreateMovieSession",
+    "FPSDestroyCryptor",
+    "FPSDestroyMovieSession",
+    "FPSDestroyServerExchange",
+    "FPSDisposeStorage",
+    "FPSGenerateChallenge",
+    "FPSGenerateChallengeWithVersionList",
+    "FPSGenerateSecureStop",
+    "FPSGenerateSecureStopWithVersionList",
+    "FPSGetLibraryVersion",
+    "FPSHandleCommand",
+    "FPSInitLibrary",
+    "FPSProcessLicence",
+    "FPSProcessSample"
+  ],
+  "needed": []
+}

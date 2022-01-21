@@ -1,1 +1,37 @@
-{"names":["libturbojpeg.so.0","libturbojpeg.so.0.0.0"],"symbols":["tjAlloc@TURBOJPEG_1.2","tjBufSize@TURBOJPEG_1.2","TJBUFSIZE@TURBOJPEG_1.0","tjBufSizeYUV@TURBOJPEG_1.2","TJBUFSIZEYUV@TURBOJPEG_1.1","tjCompress@TURBOJPEG_1.0","tjCompress2@TURBOJPEG_1.2","tjDecompress@TURBOJPEG_1.0","tjDecompress2@TURBOJPEG_1.2","tjDecompressHeader@TURBOJPEG_1.0","tjDecompressHeader2@TURBOJPEG_1.1","tjDecompressToYUV@TURBOJPEG_1.1","tjDestroy@TURBOJPEG_1.0","tjEncodeYUV@TURBOJPEG_1.1","tjEncodeYUV2@TURBOJPEG_1.2","tjFree@TURBOJPEG_1.2","tjGetErrorStr@TURBOJPEG_1.0","tjGetScalingFactors@TURBOJPEG_1.2","tjInitCompress@TURBOJPEG_1.0","tjInitDecompress@TURBOJPEG_1.0","tjInitTransform@TURBOJPEG_1.2","tjTransform@TURBOJPEG_1.2","TURBOJPEG_1.0","TURBOJPEG_1.1","TURBOJPEG_1.2"]}
+{
+  "names": [
+    "libturbojpeg.so.0",
+    "libturbojpeg.so.0.0.0"
+  ],
+  "symbols": [
+    "tjAlloc@TURBOJPEG_1.2",
+    "tjBufSize@TURBOJPEG_1.2",
+    "TJBUFSIZE@TURBOJPEG_1.0",
+    "tjBufSizeYUV@TURBOJPEG_1.2",
+    "TJBUFSIZEYUV@TURBOJPEG_1.1",
+    "tjCompress@TURBOJPEG_1.0",
+    "tjCompress2@TURBOJPEG_1.2",
+    "tjDecompress@TURBOJPEG_1.0",
+    "tjDecompress2@TURBOJPEG_1.2",
+    "tjDecompressHeader@TURBOJPEG_1.0",
+    "tjDecompressHeader2@TURBOJPEG_1.1",
+    "tjDecompressToYUV@TURBOJPEG_1.1",
+    "tjDestroy@TURBOJPEG_1.0",
+    "tjEncodeYUV@TURBOJPEG_1.1",
+    "tjEncodeYUV2@TURBOJPEG_1.2",
+    "tjFree@TURBOJPEG_1.2",
+    "tjGetErrorStr@TURBOJPEG_1.0",
+    "tjGetScalingFactors@TURBOJPEG_1.2",
+    "tjInitCompress@TURBOJPEG_1.0",
+    "tjInitDecompress@TURBOJPEG_1.0",
+    "tjInitTransform@TURBOJPEG_1.2",
+    "tjTransform@TURBOJPEG_1.2",
+    "TURBOJPEG_1.0",
+    "TURBOJPEG_1.1",
+    "TURBOJPEG_1.2"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

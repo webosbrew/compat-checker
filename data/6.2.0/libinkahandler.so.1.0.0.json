@@ -1,1 +1,15 @@
-{"names":["libinkahandler.so","libinkahandler.so.1","libinkahandler.so.1.0.0"],"symbols":["API_DRM_INKA_IsDrm"]}
+{
+  "names": [
+    "libinkahandler.so",
+    "libinkahandler.so.1",
+    "libinkahandler.so.1.0.0"
+  ],
+  "symbols": [
+    "API_DRM_INKA_IsDrm"
+  ],
+  "needed": [
+    "libncg_agent.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

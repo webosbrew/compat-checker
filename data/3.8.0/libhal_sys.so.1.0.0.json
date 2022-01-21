@@ -1,1 +1,45 @@
-{"names":["libhal_sys.so","libhal_sys.so.1","libhal_sys.so.1.0.0"],"symbols":["checkMode","HAL_SYS_GetDramBWInfo","HAL_SYS_GetWarmWolStatus","HAL_SYS_GetWolStatus","HAL_SYS_InitEthernet","HAL_SYS_LockDebugPort","HAL_SYS_ResetWol","HAL_SYS_Resume","HAL_SYS_SetDramBWEnable","HAL_SYS_SetSpreadSpectrum","HAL_SYS_SetWarmWolOnOff","HAL_SYS_SetWolOnOff","HAL_SYS_Suspend","HAL_SYS_WakeUpInternalMicom","ip","ipBWCurrent","ipBWHistoryMax","ipGroupNum","period_ms","_Z16set_PC_go_statusc","_Z16update_bw_valuesc","_Z18get_bw_values_infoPjS_","_Z29RHAL_SYS_SetCPUSpreadSpectrumj","_Z29RHAL_SYS_SetDDRSpreadSpectrumj","_Z30RHAL_SYS_SetDISPSpreadSpectrumj","_ZN13CRTKTraceCallC1EjPKc","_ZN13CRTKTraceCallC2EjPKc","_ZN13CRTKTraceCallD1Ev","_ZN13CRTKTraceCallD2Ev"]}
+{
+  "names": [
+    "libhal_sys.so",
+    "libhal_sys.so.1",
+    "libhal_sys.so.1.0.0"
+  ],
+  "symbols": [
+    "checkMode",
+    "HAL_SYS_GetDramBWInfo",
+    "HAL_SYS_GetWarmWolStatus",
+    "HAL_SYS_GetWolStatus",
+    "HAL_SYS_InitEthernet",
+    "HAL_SYS_LockDebugPort",
+    "HAL_SYS_ResetWol",
+    "HAL_SYS_Resume",
+    "HAL_SYS_SetDramBWEnable",
+    "HAL_SYS_SetSpreadSpectrum",
+    "HAL_SYS_SetWarmWolOnOff",
+    "HAL_SYS_SetWolOnOff",
+    "HAL_SYS_Suspend",
+    "HAL_SYS_WakeUpInternalMicom",
+    "ip",
+    "ipBWCurrent",
+    "ipBWHistoryMax",
+    "ipGroupNum",
+    "period_ms",
+    "_Z16set_PC_go_statusc",
+    "_Z16update_bw_valuesc",
+    "_Z18get_bw_values_infoPjS_",
+    "_Z29RHAL_SYS_SetCPUSpreadSpectrumj",
+    "_Z29RHAL_SYS_SetDDRSpreadSpectrumj",
+    "_Z30RHAL_SYS_SetDISPSpreadSpectrumj",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

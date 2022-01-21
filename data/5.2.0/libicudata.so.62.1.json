@@ -1,1 +1,13 @@
-{"names":["libicudata.so.62","libicudata.so.62.1"],"symbols":["icudt62_dat"]}
+{
+  "names": [
+    "libicudata.so.62",
+    "libicudata.so.62.1"
+  ],
+  "symbols": [
+    "icudt62_dat"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

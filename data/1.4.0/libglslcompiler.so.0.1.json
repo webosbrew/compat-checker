@@ -1,1 +1,23 @@
-{"names":["libglslcompiler.so","libglslcompiler.so.0","libglslcompiler.so.0.1"],"symbols":["GLSLCompileToUniflex","GLSLDisplayMetrics","GLSLFreeCompiledUniflexProgram","GLSLInitCompiler","GLSLShutDownCompiler","SGXBS_CreateBinaryProgram","SGXBS_CreateBinaryShader"]}
+{
+  "names": [
+    "libglslcompiler.so",
+    "libglslcompiler.so.0",
+    "libglslcompiler.so.0.1"
+  ],
+  "symbols": [
+    "GLSLCompileToUniflex",
+    "GLSLDisplayMetrics",
+    "GLSLFreeCompiledUniflexProgram",
+    "GLSLInitCompiler",
+    "GLSLShutDownCompiler",
+    "SGXBS_CreateBinaryProgram",
+    "SGXBS_CreateBinaryShader"
+  ],
+  "needed": [
+    "libsrv_um.so",
+    "libusc.so",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

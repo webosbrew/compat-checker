@@ -1,1 +1,26 @@
-{"symbols":["OMX_ComponentRegistration","omx_debug_init","omx_debug_print","omx_debug_print2","omx_debug_print3","omx_dump2hex","OMX_LXVDEC_MakeThumbnail","OMX_LXVDEC_VOConvertFrame","strsplit_clear"],"names":["libomx-lxvdec-0.1.so"]}
+{
+  "symbols": [
+    "OMX_ComponentRegistration",
+    "omx_debug_init",
+    "omx_debug_print",
+    "omx_debug_print2",
+    "omx_debug_print3",
+    "omx_dump2hex",
+    "OMX_LXVDEC_MakeThumbnail",
+    "OMX_LXVDEC_VOConvertFrame",
+    "strsplit_clear"
+  ],
+  "needed": [
+    "libhma.so",
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libomx-0.1.so",
+    "libkadaptor.so",
+    "liblxv.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx-lxvdec-0.1.so"
+  ]
+}

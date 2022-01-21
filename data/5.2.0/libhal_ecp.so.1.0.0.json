@@ -1,0 +1,33 @@
+{
+  "names": [
+    "libhal_ecp.so",
+    "libhal_ecp.so.1",
+    "libhal_ecp.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_ECP_CA_CI_PLUS_ExecuteTEE",
+    "HAL_ECP_CI_PLUS_Finalize",
+    "HAL_ECP_CI_PLUS_Initialize",
+    "HAL_ECP_CI_PLUS_LoadCertKey",
+    "HAL_ECP_CI_PLUS_LoadKeyMaterials",
+    "HAL_ECP_CI_PLUS_SetCipherKeysByChannel",
+    "HAL_ECP_CI_PLUS_SetCryptographyByChannel",
+    "HAL_ECP_CI_PLUS_WriteCertKey",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev",
+    "_ZN8CCritSecD1Ev",
+    "_ZN8CCritSecD2Ev",
+    "_ZN9CAutoLockD1Ev",
+    "_ZN9CAutoLockD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libcrypto.so.1.0.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

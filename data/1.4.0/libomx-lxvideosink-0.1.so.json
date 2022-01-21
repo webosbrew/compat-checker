@@ -1,1 +1,27 @@
-{"symbols":["convert","free_remain_buffer","make_thumbnail","OMX_ComponentRegistration","omx_debug_init","omx_debug_print","omx_debug_print2","omx_debug_print3","omx_dump2hex","OMX_LXVIDEOSINK_VOConvertFrame","strsplit_clear"],"names":["libomx-lxvideosink-0.1.so"]}
+{
+  "symbols": [
+    "convert",
+    "free_remain_buffer",
+    "make_thumbnail",
+    "OMX_ComponentRegistration",
+    "omx_debug_init",
+    "omx_debug_print",
+    "omx_debug_print2",
+    "omx_debug_print3",
+    "omx_dump2hex",
+    "OMX_LXVIDEOSINK_VOConvertFrame",
+    "strsplit_clear"
+  ],
+  "needed": [
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libomx-0.1.so",
+    "libkadaptor.so",
+    "liblxv.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx-lxvideosink-0.1.so"
+  ]
+}

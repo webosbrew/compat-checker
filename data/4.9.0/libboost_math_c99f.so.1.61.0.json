@@ -1,1 +1,39 @@
-{"symbols":["boost_acoshf","boost_asinhf","boost_atanhf","boost_cbrtf","boost_copysignf","boost_erfcf","boost_erff","boost_expm1f","boost_fmaxf","boost_fminf","boost_hypotf","boost_lgammaf","boost_llroundf","boost_log1pf","boost_lroundf","boost_nextafterf","boost_nexttowardf","boost_roundf","boost_tgammaf","boost_truncf","_ZN5boost4math3tr110fpclassifyIfEEiT_","_ZN5boost4math3tr15isinfIfEEbT_","_ZN5boost4math3tr15isnanIfEEbT_","_ZN5boost4math3tr17signbitIfEEbT_","_ZN5boost4math3tr18isfiniteIfEEbT_","_ZN5boost4math3tr18isnormalIfEEbT_"],"names":["libboost_math_c99f.so.1.61.0"]}
+{
+  "symbols": [
+    "boost_acoshf",
+    "boost_asinhf",
+    "boost_atanhf",
+    "boost_cbrtf",
+    "boost_copysignf",
+    "boost_erfcf",
+    "boost_erff",
+    "boost_expm1f",
+    "boost_fmaxf",
+    "boost_fminf",
+    "boost_hypotf",
+    "boost_lgammaf",
+    "boost_llroundf",
+    "boost_log1pf",
+    "boost_lroundf",
+    "boost_nextafterf",
+    "boost_nexttowardf",
+    "boost_roundf",
+    "boost_tgammaf",
+    "boost_truncf",
+    "_ZN5boost4math3tr110fpclassifyIfEEiT_",
+    "_ZN5boost4math3tr15isinfIfEEbT_",
+    "_ZN5boost4math3tr15isnanIfEEbT_",
+    "_ZN5boost4math3tr17signbitIfEEbT_",
+    "_ZN5boost4math3tr18isfiniteIfEEbT_",
+    "_ZN5boost4math3tr18isnormalIfEEbT_"
+  ],
+  "needed": [
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0"
+  ],
+  "names": [
+    "libboost_math_c99f.so.1.61.0"
+  ]
+}

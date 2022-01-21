@@ -1,1 +1,19 @@
-{"names":["libdile_vbe.so.1","libdile_vbe.so.1.0.0"],"symbols":["DILE_VBE_GetOSDAlphaVal","DILE_VBE_SetOSDRGBLvl","DILE_VBE_SetScreenMute","DILE_VBE_SetVideoMirror"]}
+{
+  "names": [
+    "libdile_vbe.so.1",
+    "libdile_vbe.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_VBE_GetOSDAlphaVal",
+    "DILE_VBE_SetOSDRGBLvl",
+    "DILE_VBE_SetScreenMute",
+    "DILE_VBE_SetVideoMirror"
+  ],
+  "needed": [
+    "libhal_lg115x.so.2",
+    "liblxv.so.2",
+    "libdrmddi.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

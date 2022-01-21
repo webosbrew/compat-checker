@@ -1,0 +1,31 @@
+{
+  "names": [
+    "libhal_sys.so",
+    "libhal_sys.so.1",
+    "libhal_sys.so.1.0.0"
+  ],
+  "symbols": [
+    "HAL_IPC_Read",
+    "HAL_IPC_Write",
+    "HAL_SYS_CheckRPMBPartition",
+    "HAL_SYS_GetWolStatus",
+    "HAL_SYS_LockDebugPort",
+    "HAL_SYS_SetWolOnOff",
+    "HAL_SYS_WakeUpInternalMicom",
+    "_Z29RHAL_SYS_SetCPUSpreadSpectrumj",
+    "_Z29RHAL_SYS_SetDDRSpreadSpectrumj",
+    "_Z30RHAL_SYS_SetDISPSpreadSpectrumj",
+    "_ZN13CRTKTraceCallC1EjPKc",
+    "_ZN13CRTKTraceCallC2EjPKc",
+    "_ZN13CRTKTraceCallD1Ev",
+    "_ZN13CRTKTraceCallD2Ev"
+  ],
+  "needed": [
+    "libkadaptor.so",
+    "libcrypto.so.1.0.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

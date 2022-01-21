@@ -1,1 +1,18 @@
-{"names":["libdile_vsc.so.1","libdile_vsc.so.1.0.0"],"symbols":["_DILE_VSC_CheckWindowSettingDelay","DILE_VSC_DEBUG_GetPmLogContext","DILE_VSC_DEBUG_PRINT","DILE_VSC_RegisterWindowSettingDelayCallback"]}
+{
+  "names": [
+    "libdile_vsc.so.1",
+    "libdile_vsc.so.1.0.0"
+  ],
+  "symbols": [
+    "_DILE_VSC_CheckWindowSettingDelay",
+    "DILE_VSC_DEBUG_GetPmLogContext",
+    "DILE_VSC_DEBUG_PRINT",
+    "DILE_VSC_RegisterWindowSettingDelayCallback"
+  ],
+  "needed": [
+    "libhal_lg115x.so.2",
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

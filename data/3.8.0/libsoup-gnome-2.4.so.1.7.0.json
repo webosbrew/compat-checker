@@ -1,1 +1,30 @@
-{"names":["libsoup-gnome-2.4.so.1","libsoup-gnome-2.4.so.1.7.0"],"symbols":["soup_cookie_jar_sqlite_get_type","soup_cookie_jar_sqlite_new","soup_gnome_features_2_26_get_type","soup_password_manager_gnome_get_type","soup_proxy_resolver_gnome_get_type"]}
+{
+  "names": [
+    "libsoup-gnome-2.4.so.1",
+    "libsoup-gnome-2.4.so.1.7.0"
+  ],
+  "symbols": [
+    "soup_cookie_jar_sqlite_get_type",
+    "soup_cookie_jar_sqlite_new",
+    "soup_gnome_features_2_26_get_type",
+    "soup_password_manager_gnome_get_type",
+    "soup_proxy_resolver_gnome_get_type"
+  ],
+  "needed": [
+    "libsoup-2.4.so.1",
+    "libxml2.so.2",
+    "libm.so.6",
+    "libsqlite3.so.0",
+    "libgio-2.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libdl.so.2",
+    "libz.so.1",
+    "libresolv.so.2",
+    "libgobject-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

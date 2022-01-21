@@ -1,1 +1,13 @@
-{"names":["libdile_soc.so.1","libdile_soc.so.1.0.0"],"symbols":["DILE_SOC_ScreenTest"]}
+{
+  "names": [
+    "libdile_soc.so.1",
+    "libdile_soc.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_SOC_ScreenTest"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

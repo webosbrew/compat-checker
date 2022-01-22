@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import {ArgumentParser} from "argparse";
 
-import {verifyElf} from "./utils";
+import {BinutilsNotInstalledError, verifyElf} from "./utils";
 
 import path from "path";
 import colors from 'colors';
@@ -36,4 +36,9 @@ async function main() {
     }
 }
 
-main();
+main().catch(error => {
+    if (error instanceof BinutilsNotInstalledError) {
+        console.error(error.message);
+    }
+    process.exit(1);
+});

@@ -22,7 +22,8 @@
     "argparse": "^2.0.1",
     "cli-table": "^0.3.11",
     "colors": "^1.4.0",
-    "tar-stream": "^2.2.0"
+    "tar-stream": "^2.2.0",
+    "zx": "^4.3.0"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.10",

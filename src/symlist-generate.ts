@@ -56,8 +56,8 @@ async function main(args: Args) {
             if (file.isFile()) {
                 item = libs[file.name] || {};
                 try {
-                    item.symbols = dumpSymbols(path.posix.join(dir, file.name));
-                    item.needed = listNeeded(path.posix.join(dir, file.name));
+                    item.symbols = await dumpSymbols(path.posix.join(dir, file.name));
+                    item.needed = await listNeeded(path.posix.join(dir, file.name));
                 } catch (e) {
                     console.warn(e);
                     continue;

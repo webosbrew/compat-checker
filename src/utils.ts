@@ -1,7 +1,10 @@
-import {execSync} from "child_process";
+import 'zx/globals';
 
 import fs from "fs";
 import path from "path";
+import {ProcessOutput} from "zx";
+
+$.verbose = false;
 
 const ignoredSymbols = ['__bss_end__', '_bss_end__', '__bss_start', '__bss_start__', '__end__', '_end', '_fini',
     '_init', '_edata'];
@@ -21,8 +24,16 @@ export interface LibInfo {
     needed?: string[];
 }
 
-export function dumpSymbols(path: string) {
-    return execSync(`nm --dynamic --extern-only --defined-only ${path}`, {maxBuffer: 131072 * 1024}).toString('utf-8')
+export class BinutilsNotInstalledError extends Error {
+    constructor() {
+        super("binutils is not installed.");
+    }
+}
+
+export async function dumpSymbols(path: string): Promise<string[]> {
+    const output = await $`nm --dynamic --extern-only --defined-only ${path}`.catch(handleMissingBinutils);
+    if (output.exitCode != 0) throw new Error(output.stderr);
+    return output.stdout
         .split('\n')
         .filter(l => l)
         .map(l => l.split(/[ ]+/))
@@ -31,8 +42,10 @@ export function dumpSymbols(path: string) {
         .filter(sym => !ignoredSymbols.includes(sym));
 }
 
-export function listNeeded(path: string) {
-    return execSync(`objdump -p "${path}"`).toString('utf-8')
+export async function listNeeded(path: string) {
+    const output = await $`objdump -p "${path}"`.catch(handleMissingBinutils);
+    if (output.exitCode != 0) throw new Error(output.stderr);
+    return output.stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/))
         .filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
@@ -56,13 +69,17 @@ function symMatches(symbols: string[], symbol: string) {
     return false;
 }
 
-function demangle(sym: string): string {
-    return execSync(`c++filt ${sym}`).toString('utf-8').trim();
+async function demangle(sym: string): Promise<string> {
+    return (await $`c++filt ${sym}`.catch(handleMissingBinutils)).stdout.trim();
+}
+
+async function handleMissingBinutils(): Promise<ProcessOutput> {
+    throw new BinutilsNotInstalledError();
 }
 
 export async function verifyElf(file: string, libs: string[], version: string): Promise<VerifyResult> {
     let status: VerifyStatus = 'ok';
-    let objdumpResult = execSync(`objdump -p "${file}"`).toString('utf-8')
+    let objdumpResult = (await $`objdump -p "${file}"`.catch(handleMissingBinutils)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/));
     const libDirs = [...libs];
@@ -76,7 +93,7 @@ export async function verifyElf(file: string, libs: string[], version: string): 
         .filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
         .map(segs => segs[1]);
 
-    const symReq = execSync(`nm --dynamic --extern-only --undefined-only ${file}`).toString('utf-8')
+    const symReq = (await $`nm --dynamic --extern-only --undefined-only ${file}`.catch(handleMissingBinutils)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/))
         .filter(segs => segs.length === 2 && segs[0] === 'U')
@@ -92,15 +109,15 @@ export async function verifyElf(file: string, libs: string[], version: string): 
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${f}`));
         return lib.symbols || [];
     });
-    libDep.map(lib => {
+    for (const lib of libDep) {
         for (let libDir of libDirs) {
             let libPath = path.join(libDir, lib);
             if (fs.existsSync(libPath)) {
-                symbols.push(...dumpSymbols(libPath));
+                symbols.push(...(await dumpSymbols(libPath)));
                 break
             }
         }
-    });
+    }
     const indirectSyms = libDep.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${f}`));
         return (lib.needed || []).filter((l: string) => !libDep.includes(l));
@@ -124,12 +141,12 @@ export async function verifyElf(file: string, libs: string[], version: string): 
         }
         if (!found) {
             let segs = symbol.split('@');
-            segs[0] = demangle(segs[0]) || segs[0];
+            segs[0] = await demangle(segs[0]) || segs[0];
             missingReferences.push(segs.join('@'));
             status = 'fail';
         } else if (indirect) {
             let segs = symbol.split('@');
-            segs[0] = demangle(segs[0]) || segs[0];
+            segs[0] = await demangle(segs[0]) || segs[0];
             indirectReferences.push(segs.join('@'));
             status = 'warn';
         }

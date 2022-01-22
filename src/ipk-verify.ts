@@ -10,6 +10,7 @@ import tar, {ReadEntry} from "tar";
 import os from "os";
 import Table from "cli-table";
 import colors from "colors";
+import {existsSync} from "fs";
 
 const versions = require(path.join(__dirname, '../data/versions.json'));
 
@@ -70,10 +71,12 @@ async function main(tmp: string, args: Args) {
             [`main: ${appinfo.main}`.reset]: await verifyColumn(mainexe)
         });
 
-        for (const lib of await readdir(libdir)) {
-            table.push({
-                [`lib: ${path.basename(lib)}`.reset]: await verifyColumn(path.join(libdir, lib))
-            });
+        if (existsSync(libdir)) {
+            for (const lib of await readdir(libdir)) {
+                table.push({
+                    [`lib: ${path.basename(lib)}`.reset]: await verifyColumn(path.join(libdir, lib))
+                });
+            }
         }
         console.log(table.toString());
     }

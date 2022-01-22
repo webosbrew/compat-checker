@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepack": "tsc",
+    "build": "tsc",
     "test": "echo \"No test specified\""
   },
   "bin": {
@@ -19,7 +20,6 @@
     "@npmcli/fs": "^1.1.0",
     "ar": "^0.0.1",
     "argparse": "^2.0.1",
-    "cli-color": "^2.0.1",
     "cli-table": "^0.3.11",
     "colors": "^1.4.0",
     "tar": "^6.1.11"

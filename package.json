@@ -6,7 +6,7 @@
   "scripts": {
     "prepack": "tsc",
     "build": "tsc",
-    "test": "echo \"No test specified\""
+    "test": "node dist/elf-verify.js test/test"
   },
   "bin": {
     "webosbrew-symlist-generate": "src/symlist-generate.ts",
@@ -27,7 +27,7 @@
   "devDependencies": {
     "@types/argparse": "^2.0.10",
     "@types/cli-table": "^0.3.0",
-    "@types/node": "^16.11.21",
+    "@types/node": "^14.18.9",
     "@types/tar": "^6.1.1",
     "@types/tar-stream": "^2.2.2",
     "ts-node": "^10.4.0",

@@ -112,9 +112,10 @@ async function main(tmp: string, args: Args) {
 
             if (existsSync(libdir)) {
                 for (const lib of await readdir(libdir)) {
-                    if ((await lstat(lib)).isSymbolicLink()) continue;
+                    const libpath = path.join(libdir, lib);
+                    if ((await lstat(libpath)).isSymbolicLink()) continue;
                     table.push({
-                        [`lib: ${path.basename(lib)}`.reset]: await verifyColumn(path.join(libdir, lib))
+                        [`lib: ${path.basename(lib)}`.reset]: await verifyColumn(libpath)
                     });
                 }
             }

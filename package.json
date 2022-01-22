@@ -22,13 +22,14 @@
     "argparse": "^2.0.1",
     "cli-table": "^0.3.11",
     "colors": "^1.4.0",
-    "tar": "^6.1.11"
+    "tar-stream": "^2.2.0"
   },
   "devDependencies": {
     "@types/argparse": "^2.0.10",
     "@types/cli-table": "^0.3.0",
     "@types/node": "^16.11.21",
     "@types/tar": "^6.1.1",
+    "@types/tar-stream": "^2.2.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"
   }

@@ -1,0 +1,16 @@
+{
+  "names": [
+    "libunwind-setjmp.so.0",
+    "libunwind-setjmp.so.0.0.0"
+  ],
+  "symbols": [
+    "_UI_longjmp_cont",
+    "_UI_siglongjmp_cont"
+  ],
+  "needed": [
+    "libunwind-arm.so.8",
+    "libunwind.so.8",
+    "libc.so.6",
+    "libgcc_s.so.1"
+  ]
+}

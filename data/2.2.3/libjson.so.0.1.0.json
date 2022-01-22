@@ -1,0 +1,11 @@
+{
+  "names": [
+    "libjson.so.0",
+    "libjson.so.0.1.0"
+  ],
+  "symbols": [],
+  "needed": [
+    "libjson-c.so.2",
+    "libc.so.6"
+  ]
+}

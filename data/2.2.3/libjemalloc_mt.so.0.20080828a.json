@@ -1,0 +1,34 @@
+{
+  "names": [
+    "libjemalloc_mt.so.0",
+    "libjemalloc_mt.so.0.20080828a"
+  ],
+  "symbols": [
+    "calloc",
+    "free",
+    "je_calloc",
+    "je_dumpHeap",
+    "je_free",
+    "je_malloc",
+    "je_memalign",
+    "je_posix_memalign",
+    "je_realloc",
+    "je_valloc",
+    "malloc",
+    "malloc_message",
+    "_malloc_options",
+    "_malloc_postfork",
+    "_malloc_prefork",
+    "_malloc_thread_cleanup",
+    "malloc_usable_size",
+    "memalign",
+    "posix_memalign",
+    "realloc",
+    "valloc"
+  ],
+  "needed": [
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

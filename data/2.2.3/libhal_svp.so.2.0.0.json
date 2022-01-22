@@ -1,0 +1,28 @@
+{
+  "names": [
+    "libhal_svp.so",
+    "libhal_svp.so.0",
+    "libhal_svp.so.0.1.0",
+    "libhal_svp.so.2",
+    "libhal_svp.so.2.0.0"
+  ],
+  "symbols": [
+    "HAL_SVP_CloseSecureCpb",
+    "HAL_SVP_CopyFromSecureBuffer",
+    "HAL_SVP_CopyToSecureDecryptBuffer",
+    "HAL_SVP_FlushSecureDecryptBuffer",
+    "HAL_SVP_GetAuInformation",
+    "HAL_SVP_GetSecureCpbInformation",
+    "HAL_SVP_GetSecureDecryptBufferHandle",
+    "HAL_SVP_OpenSecureCpb",
+    "HAL_SVP_SetSecureReformatter",
+    "HAL_SVP_Widevine_DecryptAudio",
+    "HAL_SVP_Widevine_DecryptVideo"
+  ],
+  "needed": [
+    "libkadaptor.so.2",
+    "liblxv.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

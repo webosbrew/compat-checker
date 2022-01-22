@@ -1,0 +1,32 @@
+{
+  "symbols": [
+    "OMX_ComponentRegistration",
+    "OMX_LXVDEC_MakeThumbnail",
+    "OMX_LXVDEC_VOConvertFrame"
+  ],
+  "needed": [
+    "libomx-1.0.so.0",
+    "librt.so.1",
+    "libz.so.1",
+    "libkadaptor.so.2",
+    "libomxdebug-1.0.so.0",
+    "liblxv.so.2",
+    "libhma.so.2",
+    "liblxjpeg.so.2",
+    "libgstbase-1.0.so.0",
+    "libgstreamer-1.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "libgobject-2.0.so.0",
+    "libgthread-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx_lxvideodec-1.0.so"
+  ]
+}

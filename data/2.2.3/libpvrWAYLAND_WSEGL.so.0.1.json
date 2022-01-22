@@ -1,0 +1,18 @@
+{
+  "names": [
+    "libpvrWAYLAND_WSEGL.so",
+    "libpvrWAYLAND_WSEGL.so.0",
+    "libpvrWAYLAND_WSEGL.so.0.1"
+  ],
+  "symbols": [
+    "wl_sgx_interface",
+    "wl_sgx_reallocate_listener_interface",
+    "WSEGL_GetFunctionTablePointer"
+  ],
+  "needed": [
+    "libsrv_um.so",
+    "libwayland-client.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

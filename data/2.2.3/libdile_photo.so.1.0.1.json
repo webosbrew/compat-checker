@@ -1,0 +1,26 @@
+{
+  "names": [
+    "libdile_photo.so.1",
+    "libdile_photo.so.1.0.1"
+  ],
+  "symbols": [
+    "DILE_JPEG_Close",
+    "DILE_JPEG_Decode",
+    "DILE_JPEG_Encode",
+    "DILE_JPEG_Open",
+    "DILE_PHOTO_DEBUG_MSG",
+    "DILE_PNG_Close",
+    "DILE_PNG_Decode",
+    "DILE_PNG_Open",
+    "DILE_VO_Close",
+    "DILE_VO_Config",
+    "DILE_VO_DisplayPicture",
+    "DILE_VO_Open",
+    "DILE_VO_RedrawPicture"
+  ],
+  "needed": [
+    "libhal_photo.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

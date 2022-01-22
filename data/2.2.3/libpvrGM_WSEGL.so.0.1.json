@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libpvrGM_WSEGL.so",
+    "libpvrGM_WSEGL.so.0",
+    "libpvrGM_WSEGL.so.0.1"
+  ],
+  "symbols": [
+    "WSEGL_GetFunctionTablePointer"
+  ],
+  "needed": [
+    "libpvr2d.so",
+    "libsrv_um.so",
+    "libgm.so.1",
+    "libpthread.so.0",
+    "librt.so.1",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

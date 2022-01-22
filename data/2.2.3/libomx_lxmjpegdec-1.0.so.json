@@ -1,0 +1,53 @@
+{
+  "symbols": [
+    "convert",
+    "OMX_ComponentRegistration",
+    "OMX_LXMJPEGDEC_Close",
+    "OMX_LXMJPEGDEC_Create",
+    "OMX_LXMJPEGDEC_Decode",
+    "OMX_LXMJPEGDEC_Destroy",
+    "OMX_LXMJPEGDEC_DPBClose",
+    "OMX_LXMJPEGDEC_DPBGetCurrentIDX",
+    "OMX_LXMJPEGDEC_DPBIncreaseIDX",
+    "OMX_LXMJPEGDEC_DPBInit",
+    "OMX_LXMJPEGDEC_DPBNumEmpty",
+    "OMX_LXMJPEGDEC_GetInfo",
+    "OMX_LXMJPEGDEC_HMAAlloc",
+    "OMX_LXMJPEGDEC_HMAFree",
+    "OMX_LXMJPEGDEC_Init",
+    "OMX_LXMJPEGDEC_MakeThumbnail",
+    "OMX_LXMJPEGDEC_Parse",
+    "OMX_LXMJPEGDEC_ParseCreate",
+    "OMX_LXMJPEGDEC_ParseDone",
+    "OMX_LXMJPEGDEC_SetFB",
+    "OMX_LXMJPEGDEC_SetOption",
+    "OMX_LXMJPEGDEC_SetPriv",
+    "OMX_LXMJPEGDEC_VOConvertFrame",
+    "OMX_LXMJPEGDEC_Write"
+  ],
+  "needed": [
+    "libomx-1.0.so.0",
+    "librt.so.1",
+    "libz.so.1",
+    "libkadaptor.so.2",
+    "libomxdebug-1.0.so.0",
+    "liblxv.so.2",
+    "libhma.so.2",
+    "liblxjpeg.so.2",
+    "libgstbase-1.0.so.0",
+    "libgstreamer-1.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "libgobject-2.0.so.0",
+    "libgthread-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx_lxmjpegdec-1.0.so"
+  ]
+}

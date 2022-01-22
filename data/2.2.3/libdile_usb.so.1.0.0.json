@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libdile_usb.so.1",
+    "libdile_usb.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_USB_Open",
+    "DILE_USB_SetUSBCtl",
+    "DILE_USB_SuperSpeedDisable",
+    "DILE_USB_SuperSpeedPortOff",
+    "DILE_USB_SuperSpeedPortUp",
+    "DILE_USB_SuperSpeedVbusControl"
+  ],
+  "needed": [
+    "libhal_usb.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

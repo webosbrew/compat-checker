@@ -1,0 +1,30 @@
+{
+  "names": [
+    "libstarfishsurface.so.0",
+    "libstarfishsurface.so.0.0.0"
+  ],
+  "symbols": [
+    "pfneglAcquireCPUMappingStarfishSurfaceLG",
+    "pfneglCreateImageKHR",
+    "pfneglCreateStarfishSurfaceLG",
+    "pfneglDestroyStarfishSurfaceLG",
+    "pfneglExportStarfishSurfaceLG",
+    "pfneglImportStarfishSurfaceLG",
+    "pfneglReleaseCPUMappingStarfishSurfaceLG",
+    "starfish_surface_create",
+    "starfish_surface_create_image",
+    "starfish_surface_destroy",
+    "starfish_surface_export",
+    "starfish_surface_format",
+    "starfish_surface_height",
+    "starfish_surface_import",
+    "starfish_surface_map",
+    "starfish_surface_stride",
+    "starfish_surface_unmap",
+    "starfish_surface_width"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

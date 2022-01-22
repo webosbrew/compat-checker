@@ -1,0 +1,35 @@
+{
+  "names": [
+    "libexslt.so.0",
+    "libexslt.so.0.8.17"
+  ],
+  "symbols": [
+    "exsltCommonRegister",
+    "exsltDateRegister",
+    "exsltDateXpathCtxtRegister",
+    "exsltDynRegister",
+    "exsltFuncRegister",
+    "exsltLibexsltVersion",
+    "exsltLibraryVersion",
+    "exsltLibxmlVersion",
+    "exsltLibxsltVersion",
+    "exsltMathRegister",
+    "exsltMathXpathCtxtRegister",
+    "exsltRegisterAll",
+    "exsltSaxonRegister",
+    "exsltSetsRegister",
+    "exsltSetsXpathCtxtRegister",
+    "exsltStrRegister",
+    "exsltStrXpathCtxtRegister"
+  ],
+  "needed": [
+    "libxslt.so.1",
+    "libxml2.so.2",
+    "libz.so.1",
+    "libpthread.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

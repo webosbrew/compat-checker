@@ -1,0 +1,33 @@
+{
+  "symbols": [
+    "convert",
+    "free_remain_buffer",
+    "make_thumbnail",
+    "OMX_ComponentRegistration",
+    "OMX_LXVIDEOSINK_VOConvertFrame"
+  ],
+  "needed": [
+    "liblxv.so.2",
+    "libhma.so.2",
+    "libomx-1.0.so.0",
+    "librt.so.1",
+    "libz.so.1",
+    "libkadaptor.so.2",
+    "libomxdebug-1.0.so.0",
+    "libgstbase-1.0.so.0",
+    "libgstreamer-1.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libm.so.6",
+    "libdl.so.2",
+    "libgobject-2.0.so.0",
+    "libgthread-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libomx_lxvideosink-1.0.so"
+  ]
+}

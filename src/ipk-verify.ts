@@ -4,7 +4,7 @@ import {ArgumentParser} from "argparse";
 import {verifyElf} from "./utils";
 
 import path from "path";
-import {mkdir, mkdtemp, readdir, readFile, rm, symlink} from "fs/promises";
+import {lstat, mkdir, mkdtemp, readdir, readFile, rm, symlink} from "fs/promises";
 
 import ar from "ar";
 import os from "os";
@@ -112,6 +112,7 @@ async function main(tmp: string, args: Args) {
 
             if (existsSync(libdir)) {
                 for (const lib of await readdir(libdir)) {
+                    if ((await lstat(lib)).isSymbolicLink()) continue;
                     table.push({
                         [`lib: ${path.basename(lib)}`.reset]: await verifyColumn(path.join(libdir, lib))
                     });

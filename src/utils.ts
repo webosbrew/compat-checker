@@ -3,6 +3,7 @@ import 'zx/globals';
 import fs from "fs";
 import path from "path";
 import {ProcessOutput} from "zx";
+import Dict = NodeJS.Dict;
 
 $.verbose = false;
 
@@ -11,11 +12,23 @@ const ignoredSymbols = ['__bss_end__', '_bss_end__', '__bss_start', '__bss_start
 
 export type VerifyStatus = 'ok' | 'fail' | 'warn';
 
-export interface VerifyResult {
-    status: VerifyStatus;
-    missingLibraries: string[];
-    missingReferences: string[];
-    indirectReferences: string[];
+export class VerifyResult {
+
+    constructor(
+        public readonly name: string,
+        public readonly version: string,
+        public readonly requireLibraries: string[],
+        public readonly missingLibraries: string[],
+        public readonly missingReferences: string[],
+        public readonly indirectReferences: string[]
+    ) {
+    }
+
+    status(results: Dict<VerifyResult>, pkgLinks: Dict<string>): VerifyStatus {
+        if (this.missingLibraries.length || this.missingReferences.length) return 'fail';
+        if (this.indirectReferences.length) return 'warn';
+        return 'ok';
+    }
 }
 
 export interface LibInfo {
@@ -26,7 +39,18 @@ export interface LibInfo {
 
 export class BinutilsNotInstalledError extends Error {
     constructor() {
-        super("binutils is not installed.");
+        super(`binutils is not installed`);
+    }
+}
+
+export class BinaryInfo {
+    constructor(
+        public readonly name: string,
+        public readonly path: string,
+        public readonly type: 'main' | 'lib',
+        public readonly rpath: string[],
+        public readonly needed: string[],
+    ) {
     }
 }
 
@@ -43,7 +67,7 @@ export async function dumpSymbols(path: string): Promise<string[]> {
 }
 
 export async function listNeeded(path: string) {
-    const output = await $`objdump -p "${path}"`.catch(handleMissingBinutils);
+    const output = await $`objdump -p ${path}`.catch(handleMissingBinutils);
     if (output.exitCode != 0) throw new Error(output.stderr);
     return output.stdout
         .split('\n')
@@ -73,44 +97,51 @@ async function demangle(sym: string): Promise<string> {
     return (await $`c++filt ${sym}`.catch(handleMissingBinutils)).stdout.trim();
 }
 
-async function handleMissingBinutils(): Promise<ProcessOutput> {
+async function handleMissingBinutils(e: any): Promise<ProcessOutput> {
     throw new BinutilsNotInstalledError();
 }
 
-export async function verifyElf(file: string, libs: string[], version: string): Promise<VerifyResult> {
-    let status: VerifyStatus = 'ok';
-    let objdumpResult = (await $`objdump -p "${file}"`.catch(handleMissingBinutils)).stdout
-        .split('\n')
-        .map(l => l.trim().split(/[ ]+/));
-    const libDirs = [...libs];
-    libDirs.push(...objdumpResult
-        .filter(segs => segs.length === 2 && segs[0] === 'RUNPATH')
-        .map(segs => segs[1]));
-    libDirs.push(...objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'RPATH')
-        .flatMap((segs: string[]) => segs[1].split(':').filter(i => i)));
-
-    const libDep = objdumpResult
-        .filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
-        .map(segs => segs[1]);
-
-    const symReq = (await $`nm --dynamic --extern-only --undefined-only ${file}`.catch(handleMissingBinutils)).stdout
+async function getSymReq(file: string) {
+    return (await $`nm --dynamic --extern-only --undefined-only ${file}`.catch(handleMissingBinutils)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/))
         .filter(segs => segs.length === 2 && segs[0] === 'U')
         .map(segs => segs[1]);
+}
+
+export async function binInfo(file: string, type: 'main' | 'lib'): Promise<BinaryInfo> {
+    let objdumpResult = (await $`objdump -p ${file}`.catch(handleMissingBinutils)).stdout
+        .split('\n')
+        .map(l => l.trim().split(/[ ]+/));
+    const rpath = [
+        ...objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'RUNPATH').map(segs => segs[1]),
+        ...objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'RPATH')
+            .flatMap((segs: string[]) => segs[1].split(':').filter(i => i))
+    ];
+    const needed = objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
+        .map(segs => segs[1]);
+    return new BinaryInfo(path.basename(file), file, type, rpath, needed);
+}
+
+export async function verifyElf(info: BinaryInfo, libDirs: string[], version: string): Promise<VerifyResult> {
+    const allLibDirs = [...libDirs, ...info.rpath];
+
+    const requireLibraries = info.needed;
+
+    const symReq = await getSymReq(info.path);
     const missingLibraries = [];
     const index = require(path.join(__dirname, `../data/${version}/index.json`));
-    for (let lib of libDep) {
-        if (!hasLib(libDirs, lib) && !index[lib]) {
+    for (let lib of requireLibraries) {
+        if (!hasLib(allLibDirs, lib) && !index[lib]) {
             missingLibraries.push(lib);
         }
     }
-    const symbols = libDep.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
+    const symbols = requireLibraries.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${f}`));
         return lib.symbols || [];
     });
-    for (const lib of libDep) {
-        for (let libDir of libDirs) {
+    for (const lib of requireLibraries) {
+        for (let libDir of allLibDirs) {
             let libPath = path.join(libDir, lib);
             if (fs.existsSync(libPath)) {
                 symbols.push(...(await dumpSymbols(libPath)));
@@ -118,16 +149,15 @@ export async function verifyElf(file: string, libs: string[], version: string): 
             }
         }
     }
-    const indirectSyms = libDep.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
+    const indirectSyms = requireLibraries.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${f}`));
-        return (lib.needed || []).filter((l: string) => !libDep.includes(l));
+        return (lib.needed || []).filter((l: string) => !requireLibraries.includes(l));
     }).flatMap((l: string) => {
         const i = index[l];
         if (!i) return [];
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${i}`));
         return lib.symbols || [];
     });
-
 
     const missingReferences = [], indirectReferences = [];
     for (let symbol of symReq) {
@@ -143,13 +173,12 @@ export async function verifyElf(file: string, libs: string[], version: string): 
             let segs = symbol.split('@');
             segs[0] = await demangle(segs[0]) || segs[0];
             missingReferences.push(segs.join('@'));
-            status = 'fail';
         } else if (indirect) {
             let segs = symbol.split('@');
             segs[0] = await demangle(segs[0]) || segs[0];
             indirectReferences.push(segs.join('@'));
-            status = 'warn';
         }
     }
-    return {status, missingLibraries, missingReferences, indirectReferences};
+    return new VerifyResult(path.basename(info.path), version, requireLibraries, missingLibraries, missingReferences,
+        indirectReferences);
 }

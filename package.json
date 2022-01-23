@@ -2,6 +2,10 @@
   "name": "@webosbrew/compat-checker",
   "version": "1.1.7",
   "description": "",
+  "repository": {
+    "url": "https://github.com/webosbrew/compat-checker.git"
+  },
+  "homepage": "https://github.com/webosbrew/compat-checker",
   "main": "index.js",
   "scripts": {
     "prepack": "tsc",
@@ -9,8 +13,8 @@
     "test": "node dist/elf-verify.js test/test"
   },
   "bin": {
-    "webosbrew-symlist-generate": "src/symlist-generate.ts",
-    "webosbrew-elf-compat-checker": "src/elf-verify.ts",
+    "webosbrew-symlist-generate": "dist/symlist-generate.js",
+    "webosbrew-elf-compat-checker": "dist/elf-verify.js",
     "webosbrew-ipk-compat-checker": "dist/ipk-verify.js"
   },
   "keywords": [],

@@ -19,52 +19,25 @@ This tool can help developers quickly find linkage problem, and better understan
 ## Usage
 
 ```
-$ webosbrew-ipk-compat-checker com.limelight.webos_1.3.1_arm.ipk
-Extracting package com.limelight.webos_1.3.1_arm.ipk...
-Checking app com.limelight.webos 1.3.1...
-┌─────────────────────────────────┬───────┬───────┬───────┬───────┬───────┬───────┐
-│                                 │ 1.4.0 │ 2.2.3 │ 3.8.0 │ 4.9.0 │ 5.2.0 │ 6.2.0 │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ main: bin/moonlight             │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedcrypto.so           │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedcrypto.so.2.27.0    │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedcrypto.so.7         │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedx509.so             │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedx509.so.1           │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmbedx509.so.2.27.0      │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmicrodns.so             │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-alsa.so       │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-cgl.so        │ fail  │ ok    │ ok    │ ok    │ ok    │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-lgnc.so       │ ok    │ ok    │ ok    │ ok    │ ok    │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-ndl-webos5.so │ fail  │ fail  │ fail  │ fail  │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-ndl.so        │ fail  │ fail  │ ok    │ ok    │ fail  │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-ndlaud.so     │ fail  │ fail  │ ok    │ ok    │ fail  │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-pulse.so      │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-smp-webos3.so │ fail  │ fail  │ ok    │ fail  │ fail  │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-smp-webos4.so │ fail  │ fail  │ fail  │ ok    │ fail  │ fail  │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libmoonlight-smp.so        │ fail  │ fail  │ fail  │ fail  │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libopus.so                 │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libopus.so.0               │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-├─────────────────────────────────┼───────┼───────┼───────┼───────┼───────┼───────┤
-│ lib: libopus.so.0.8.0           │ ok    │ ok    │ ok    │ ok    │ ok    │ ok    │
-└─────────────────────────────────┴───────┴───────┴───────┴───────┴───────┴───────┘
+$ webosbrew-ipk-compat-checker com.limelight.webos_1.4.0_arm.ipk
 ```
+
+### Output
+
+|                                    | 1.4.0    | 2.2.3    | 3.8.0    | 4.9.0    | 5.2.0    | 6.2.0    |
+|------------------------------------|----------|----------|----------|----------|----------|----------|
+| **main\*: moonlight**              | ok       | ok       | ok       | ok       | ok       | ok       |
+| **lib\*: libmbedcrypto.so.2.27.0** | ok       | ok       | ok       | ok       | ok       | ok       |
+| **lib\*: libmbedx509.so.2.27.0**   | ok       | ok       | ok       | ok       | ok       | ok       |
+| **lib\*: libmicrodns.so**          | ok       | ok       | ok       | ok       | ok       | ok       |
+| **lib\*: libopus.so.0.8.0**        | ok       | ok       | ok       | ok       | ok       | ok       |
+| lib: libmoonlight-alsa.so          | ok       | ok       | ok       | ok       | ok       | ok       |
+| lib: libmoonlight-cgl.so           | **fail** | ok       | ok       | ok       | ok       | **fail** |
+| lib: libmoonlight-lgnc.so          | ok       | ok       | ok       | ok       | ok       | **fail** |
+| lib: libmoonlight-ndl-webos5.so    | **fail** | **fail** | **fail** | **fail** | ok       | ok       |
+| lib: libmoonlight-ndl.so           | **fail** | **fail** | ok       | ok       | **fail** | **fail** |
+| lib: libmoonlight-ndlaud.so        | **fail** | **fail** | ok       | ok       | **fail** | **fail** |
+| lib: libmoonlight-pulse.so         | ok       | ok       | ok       | ok       | ok       | ok       |
+| lib: libmoonlight-smp-webos3.so    | **fail** | **fail** | ok       | **fail** | **fail** | **fail** |
+| lib: libmoonlight-smp-webos4.so    | **fail** | **fail** | **fail** | ok       | **fail** | **fail** |
+| lib: libmoonlight-smp.so           | **fail** | **fail** | **fail** | **fail** | ok       | ok       |

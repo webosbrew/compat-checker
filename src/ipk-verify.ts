@@ -16,10 +16,17 @@ import {gunzipSync} from "zlib";
 import Dict = NodeJS.Dict;
 
 const versions: string[] = require(path.join(__dirname, '../data/versions.json'));
+const markdownChars = {
+    'top': '', 'top-mid': '', 'top-left': '', 'top-right': '',
+    'mid': '-', 'left-mid': '|', 'mid-mid': '|', 'right-mid': '|',
+    'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '',
+    'middle': '|', 'left': '|', 'right': '|'
+};
 
 interface Args {
     packages: string[];
     list: boolean;
+    markdown: boolean;
     verbose: boolean;
 }
 
@@ -96,7 +103,7 @@ async function readlinkr(p: string) {
     return tmp;
 }
 
-async function listLibraries(libdir: string): Promise<LibsInfo> {
+async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsInfo> {
     if (!existsSync(libdir)) return new LibsInfo([], {});
     const libs = await readdir(libdir);
     const libpaths = libs.map(lib => path.join(libdir, lib));
@@ -106,7 +113,63 @@ async function listLibraries(libdir: string): Promise<LibsInfo> {
     }))));
     return new LibsInfo(await Promise.all(libpaths
         .filter(p => !libstats[p].isSymbolicLink())
-        .map(async p => await binInfo(p, 'lib'))), links);
+        .map(async p => await binInfo(p, 'lib', mainbin, links))), links);
+}
+
+function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults: Dict<Dict<VerifyResult>>,
+                    ipkinfo: IpkInfo, markdown: boolean) {
+    function bold(s: string): string {
+        if (markdown) {
+            return colors.bold(`**${s}**`);
+        }
+        return colors.bold(s);
+    }
+
+    function applyStyle(status: VerifyStatus): string {
+        switch (status) {
+            case 'ok':
+                return colors.green(status);
+            case 'warn':
+                return colors.yellow(status);
+            case 'fail':
+                return colors.red(bold(status));
+            default:
+                return status;
+        }
+    }
+
+
+    const table = new Table({
+        colors: false,
+        style: {compact: markdown},
+        chars: markdown ? markdownChars : {},
+        head: ['', ...versions.map((version: string) => colors.reset(version))]
+    });
+    const mainbin = binaries.filter(bin => bin.type == 'main')[0]!!;
+    const importantSym = markdown ? '\\*' : '*';
+    for (const binary of binaries) {
+        let name = `${binary.type}${binary.important ? importantSym : ''}: ${binary.name}`;
+        const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
+        const important = binary.type == 'main' || needed.includes(binary.name);
+        if (binary.important) {
+            name = colors.reset(bold(name));
+        } else {
+            name = colors.reset(name);
+        }
+        table.push({
+            [name]: versions.map(version => {
+                const results = versionedResults[version]!!;
+                const status = results[binary.name]!!.status(results, ipkinfo.links);
+                if (important && status == 'fail') {
+                    process.exitCode = 1;
+                }
+                return applyStyle(status);
+            })
+        })
+    }
+
+    console.log(table.toString());
+    console.log(`  ${importantSym}: main executable or libraries directly linked to main executable`);
 }
 
 async function main(tmp: string, args: Args) {
@@ -122,13 +185,13 @@ async function main(tmp: string, args: Args) {
                 continue;
             }
             console.log(`Checking app ${appinfo.id} ${appinfo.version}...`);
-            const mainexe = path.join(appdir, appinfo.main);
-
             const libdir = path.join(appdir, 'lib');
 
             const binaries: BinaryInfo[] = [];
-            const libsInfo = await listLibraries(libdir);
-            binaries.push(await binInfo(mainexe, 'main'));
+            const mainBin = await binInfo(path.join(appdir, appinfo.main), 'main');
+            binaries.push(mainBin);
+
+            const libsInfo = await listLibraries(libdir, mainBin);
             binaries.push(...libsInfo.libs);
 
             async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
@@ -144,46 +207,15 @@ async function main(tmp: string, args: Args) {
                     return {[version]: verify};
                 })));
 
-            function applyStyle(status: VerifyStatus): string {
-                switch (status) {
-                    case 'ok':
-                        return colors.green(status);
-                    case 'warn':
-                        return colors.yellow(status);
-                    case 'fail':
-                        return colors.bold.red(status);
-                    default:
-                        return status;
-                }
-            }
 
-            const table = new Table({
-                colors: false,
-                head: ['', ...versions.map((version: string) => colors.reset(version))]
+            binaries.sort((a, b) => {
+                const importantDiff = Number(b.important) - Number(a.important);
+                if (importantDiff != 0) return importantDiff;
+                if (a.type == 'main') return -1;
+                if (b.type == 'main') return 1;
+                return a.name.localeCompare(b.name);
             });
-            const mainbin = binaries.filter(bin => bin.type == 'main')[0]!!;
-            for (const binary of binaries) {
-                let name = `${binary.type}: ${binary.name}`;
-                const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
-                const important = binary.type == 'main' || needed.includes(binary.name);
-                if (important) {
-                    name = colors.reset(colors.bold(name));
-                } else {
-                    name = colors.reset(name);
-                }
-                table.push({
-                    [name]: versions.map(version => {
-                        const results = versionedResults[version]!!;
-                        const status = results[binary.name]!!.status(results, ipkinfo.links);
-                        if (important && status == 'fail') {
-                            process.exitCode = 1;
-                        }
-                        return applyStyle(status);
-                    })
-                })
-            }
-
-            console.log(table.toString());
+            printTable(binaries, libsInfo, versionedResults, ipkinfo, args.markdown);
         }
     }
 }
@@ -191,6 +223,8 @@ async function main(tmp: string, args: Args) {
 const argparser = new ArgumentParser();
 argparser.add_argument('packages', {type: String, nargs: '+'});
 argparser.add_argument('--list', '-l', {action: 'store_const', const: true, default: false});
+argparser.add_argument('--markdown', '-m', {action: 'store_const', const: true, default: false});
+
 argparser.add_argument('--verbose', '-v', {action: 'store_const', const: true, default: false});
 
 const args: Args = argparser.parse_args();

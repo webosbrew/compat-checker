@@ -50,6 +50,7 @@ export class BinaryInfo {
         public readonly type: 'main' | 'lib',
         public readonly rpath: string[],
         public readonly needed: string[],
+        public readonly important: boolean,
     ) {
     }
 }
@@ -109,7 +110,7 @@ async function getSymReq(file: string) {
         .map(segs => segs[1]);
 }
 
-export async function binInfo(file: string, type: 'main' | 'lib'): Promise<BinaryInfo> {
+export async function binInfo(file: string, type: 'main' | 'lib', mainbin?: BinaryInfo, liblinks?: Dict<string>): Promise<BinaryInfo> {
     let objdumpResult = (await $`objdump -p ${file}`.catch(handleMissingBinutils)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/));
@@ -120,7 +121,10 @@ export async function binInfo(file: string, type: 'main' | 'lib'): Promise<Binar
     ];
     const needed = objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
         .map(segs => segs[1]);
-    return new BinaryInfo(path.basename(file), file, type, rpath, needed);
+    const mainNeeded = mainbin?.needed?.map(name => liblinks?.[name] || name) || [];
+    const name = path.basename(file);
+    const important = type == 'main' || mainNeeded.includes(name);
+    return new BinaryInfo(name, file, type, rpath, needed, important);
 }
 
 export async function verifyElf(info: BinaryInfo, libDirs: string[], version: string): Promise<VerifyResult> {

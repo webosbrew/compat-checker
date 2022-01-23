@@ -9,7 +9,7 @@ import colors from 'colors';
 const versions = require(path.join(__dirname, '../data/versions.json'));
 
 interface Args {
-    libs: string[];
+    libdirs: string[];
     files: [];
 }
 
@@ -20,7 +20,7 @@ async function main(args: Args) {
         for (let file of args.files) {
             console.log(`File ${path.basename(file)}:`);
             const info = await binInfo(file, 'main');
-            const result = await verifyElf(info, args.libs, version);
+            const result = await verifyElf(info, args.libdirs, version);
             for (const lib of result.missingLibraries) {
                 console.error(colors.red(`Missing library: ${lib}`));
             }
@@ -37,8 +37,14 @@ async function main(args: Args) {
 }
 
 const argparser = new ArgumentParser();
-argparser.add_argument('--libs', '-l', {type: String, nargs: '+', required: false, default: []});
-argparser.add_argument('files', {type: String, nargs: '+'});
+argparser.add_argument('--libdirs', '-l', {
+    type: String,
+    nargs: '+',
+    required: false,
+    default: [],
+    help: 'Extra library paths'
+});
+argparser.add_argument('files', {type: String, nargs: '+', help: 'ELF binaries to verify'});
 
 main(argparser.parse_args()).catch(error => {
     if (error instanceof BinutilsNotInstalledError) {

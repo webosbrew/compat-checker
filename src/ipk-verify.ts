@@ -168,8 +168,10 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
         })
     }
 
-    console.log(table.toString());
-    console.log(`  ${importantSym}: main executable or libraries directly linked to main executable`);
+    process.stdout.write(table.toString());
+    process.stdout.write('\n');
+    process.stdout.write(`  ${importantSym}: main executable or libraries directly linked to main executable`);
+    process.stdout.write('\n');
 }
 
 async function main(tmp: string, args: Args) {

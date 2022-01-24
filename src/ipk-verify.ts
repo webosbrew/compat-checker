@@ -14,8 +14,9 @@ import {createWriteStream, existsSync, lstatSync} from "fs";
 import tar, {Headers} from 'tar-stream';
 import {gunzipSync} from "zlib";
 import Dict = NodeJS.Dict;
+import semver from 'semver';
 
-const versions: string[] = require(path.join(__dirname, '../data/versions.json'));
+const allVersions: string[] = require(path.join(__dirname, '../data/versions.json'));
 const markdownChars = {
     'top': '', 'top-mid': '', 'top-left': '', 'top-right': '',
     'mid': '-', 'left-mid': '|', 'mid-mid': '|', 'right-mid': '|',
@@ -30,6 +31,9 @@ interface Args {
     summary: boolean;
     verbose: boolean;
     quiet: boolean;
+    min_os?: string;
+    max_os?: string;
+    max_os_exclusive?: string;
 }
 
 interface IpkInfo {
@@ -129,8 +133,8 @@ function bold(s: string, markdown: boolean): string {
     return colors.bold(s);
 }
 
-function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults: Dict<Dict<VerifyResult>>,
-                    ipkinfo: IpkInfo, args: Args) {
+function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
+                    versionedResults: Dict<Dict<VerifyResult>>, ipkinfo: IpkInfo, args: Args) {
 
     function applyStyle(status: VerifyStatus): string {
         switch (status) {
@@ -144,7 +148,6 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
                 return status;
         }
     }
-
 
     const table = new Table({
         colors: false,
@@ -215,6 +218,23 @@ async function main(tmp: string, args: Args) {
                 })));
             }
 
+            const versions = allVersions.filter(version => {
+                if (args.min_os && semver.lt(version, args.min_os)) {
+                    return false;
+                }
+                if (args.max_os && semver.gt(version, args.max_os)) {
+                    return false;
+                }
+                if (args.max_os_exclusive && semver.gte(version, args.max_os_exclusive)) {
+                    return false;
+                }
+                return true;
+            });
+            if (!versions.length) {
+                console.error('No version available');
+                return;
+            }
+
             const versionedResults: Dict<Dict<VerifyResult>> = Object.assign({}, ...await Promise.all(versions
                 .map(async version => {
                     const verify = await verifyBinaries(binaries, version);
@@ -229,7 +249,7 @@ async function main(tmp: string, args: Args) {
                 if (b.type == 'main') return 1;
                 return a.name.localeCompare(b.name);
             });
-            printTable(binaries, libsInfo, versionedResults, ipkinfo, args);
+            printTable(binaries, libsInfo, versions, versionedResults, ipkinfo, args);
         }
     }
 }
@@ -247,7 +267,19 @@ argparser.add_argument('--unicode', '-u', {
     const: true,
     default: false,
     help: 'Use unicode symbols for result output'
-})
+});
+
+argparser.add_argument('--min-os', {
+    dest: 'min_os'
+});
+
+argparser.add_argument('--max-os', {
+    dest: 'max_os'
+});
+argparser.add_argument('--max-os-exclusive', {
+    dest: 'max_os_exclusive'
+});
+
 argparser.add_argument('--summary', '-s', {
     action: 'store_const',
     const: true,

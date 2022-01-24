@@ -30,6 +30,7 @@
     "argparse": "^2.0.1",
     "cli-table": "^0.3.11",
     "colors": "^1.4.0",
+    "semver": "^7.3.5",
     "tar-stream": "^2.2.0",
     "zx": "^4.3.0"
   },
@@ -37,6 +38,7 @@
     "@types/argparse": "^2.0.10",
     "@types/cli-table": "^0.3.0",
     "@types/node": "^14.18.9",
+    "@types/semver": "^7.3.9",
     "@types/tar": "^6.1.1",
     "@types/tar-stream": "^2.2.2",
     "ts-node": "^10.4.0",

@@ -26,6 +26,7 @@ const markdownChars = {
 interface Args {
     packages: string[];
     markdown: boolean;
+    unicode: boolean;
     summary: boolean;
     verbose: boolean;
     quiet: boolean;
@@ -129,16 +130,16 @@ function bold(s: string, markdown: boolean): string {
 }
 
 function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults: Dict<Dict<VerifyResult>>,
-                    ipkinfo: IpkInfo, markdown: boolean) {
+                    ipkinfo: IpkInfo, args: Args) {
 
     function applyStyle(status: VerifyStatus): string {
         switch (status) {
             case 'ok':
-                return colors.green(status);
+                return args.unicode ? '✅' : colors.green(status);
             case 'warn':
-                return colors.yellow(status);
+                return args.unicode ? '⚠' : colors.yellow(status);
             case 'fail':
-                return colors.red(bold(status, markdown));
+                return args.unicode ? '❌' : colors.red(bold(status, args.markdown));
             default:
                 return status;
         }
@@ -147,18 +148,18 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
 
     const table = new Table({
         colors: false,
-        style: {compact: markdown},
-        chars: markdown ? markdownChars : {},
+        style: {compact: args.markdown},
+        chars: args.markdown ? markdownChars : {},
         head: ['', ...versions.map((version: string) => colors.reset(version))]
     });
     const mainbin = binaries.filter(bin => bin.type == 'main')[0]!!;
-    const importantSym = markdown ? '\\*' : '*';
+    const importantSym = args.markdown ? '\\*' : '*';
     for (const binary of binaries) {
         let name = `${binary.type}${binary.important ? importantSym : ''}: ${binary.name}`;
         const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
         const important = binary.type == 'main' || needed.includes(binary.name);
         if (binary.important) {
-            name = colors.reset(bold(name, markdown));
+            name = colors.reset(bold(name, args.markdown));
         } else {
             name = colors.reset(name);
         }
@@ -228,7 +229,7 @@ async function main(tmp: string, args: Args) {
                 if (b.type == 'main') return 1;
                 return a.name.localeCompare(b.name);
             });
-            printTable(binaries, libsInfo, versionedResults, ipkinfo, args.markdown);
+            printTable(binaries, libsInfo, versionedResults, ipkinfo, args);
         }
     }
 }
@@ -241,6 +242,12 @@ argparser.add_argument('--markdown', '-m', {
     default: false,
     help: 'Print validation result in Markdown format, useful for automation'
 });
+argparser.add_argument('--unicode', '-u', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Use unicode symbols for result output'
+})
 argparser.add_argument('--summary', '-s', {
     action: 'store_const',
     const: true,

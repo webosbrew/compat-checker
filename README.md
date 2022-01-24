@@ -19,7 +19,7 @@ This tool can help developers quickly find linkage problem, and better understan
 ## Usage
 
 ```
-webosbrew-ipk-compat-checker [-h] [--markdown] [--summary] [--verbose | --quiet] packages [packages ...]
+webosbrew-ipk-compat-checker [-h] [--markdown] [--unicode] [--summary] [--verbose | --quiet] packages [packages ...]
 
 positional arguments:
   packages        List of IPKs
@@ -27,6 +27,7 @@ positional arguments:
 optional arguments:
   -h, --help      show this help message and exit
   --markdown, -m  Print validation result in Markdown format, useful for automation
+  --unicode, -u   Use unicode symbols for result output
   --summary, -s   Display summary of issues
   --verbose, -v   Print more logs
   --quiet, -q     Do not print anything except result

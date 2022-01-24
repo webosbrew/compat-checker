@@ -25,12 +25,14 @@ const markdownChars = {
 
 interface Args {
     packages: string[];
-    list: boolean;
     markdown: boolean;
+    summary: boolean;
     verbose: boolean;
+    quiet: boolean;
 }
 
 interface IpkInfo {
+    name: string;
     appdirs: string[];
     links: Dict<string>;
 }
@@ -52,10 +54,13 @@ async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
             const extract = tar.extract();
             const result: string[] = [];
             const links: { [key: string]: string } = {};
+            let name = 'unknown';
             extract.on('entry', async (header: Headers, stream, next) => {
                 const filepath = path.posix.resolve(tmp, header.name);
                 if (path.posix.basename(header.name) === 'appinfo.json') {
                     result.push(path.posix.dirname(filepath));
+                } else if (path.posix.basename(header.name) === 'packageinfo.json') {
+                    name = path.posix.basename(path.posix.dirname(filepath));
                 }
                 stream.on('end', () => {
                     next();
@@ -88,7 +93,7 @@ async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
                 stream.resume();
             });
             extract.on('finish', () => {
-                resolve({appdirs: result, links: links});
+                resolve({name, appdirs: result, links: links});
             });
             extract.write(gunzipSync(file.fileData()), () => extract.end());
         }
@@ -116,14 +121,15 @@ async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsI
         .map(async p => await binInfo(p, 'lib', mainbin, links))), links);
 }
 
+function bold(s: string, markdown: boolean): string {
+    if (markdown) {
+        return colors.bold(`**${s}**`);
+    }
+    return colors.bold(s);
+}
+
 function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults: Dict<Dict<VerifyResult>>,
                     ipkinfo: IpkInfo, markdown: boolean) {
-    function bold(s: string): string {
-        if (markdown) {
-            return colors.bold(`**${s}**`);
-        }
-        return colors.bold(s);
-    }
 
     function applyStyle(status: VerifyStatus): string {
         switch (status) {
@@ -132,7 +138,7 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
             case 'warn':
                 return colors.yellow(status);
             case 'fail':
-                return colors.red(bold(status));
+                return colors.red(bold(status, markdown));
             default:
                 return status;
         }
@@ -152,7 +158,7 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
         const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
         const important = binary.type == 'main' || needed.includes(binary.name);
         if (binary.important) {
-            name = colors.reset(bold(name));
+            name = colors.reset(bold(name, markdown));
         } else {
             name = colors.reset(name);
         }
@@ -169,24 +175,29 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versionedResults
     }
 
     process.stdout.write(table.toString());
-    process.stdout.write('\n');
+    process.stdout.write('\n\n');
     process.stdout.write(`  ${importantSym}: main executable or libraries directly linked to main executable`);
     process.stdout.write('\n');
 }
 
 async function main(tmp: string, args: Args) {
     for (const pkg of args.packages) {
-        console.log(`Extracting package ${path.basename(pkg)}...`);
+        if (!args.quiet) {
+            console.log(`Extracting package ${path.basename(pkg)}...`);
+        }
 
         const ipkinfo: IpkInfo = await extractIpk(tmp, pkg);
 
+        process.stdout.write(bold(`Compatibility info for ${ipkinfo.name}:`, args.markdown));
+        process.stdout.write('\n\n');
         for (const appdir of ipkinfo.appdirs) {
             const appinfo = require(path.join(appdir, 'appinfo.json'));
             if (appinfo.type !== 'native') {
-                console.log(`Skipping non-native app ${appinfo.id}`);
+                process.stdout.write(`Application ${appinfo.id} is not native.\n`);
                 continue;
             }
-            console.log(`Checking app ${appinfo.id} ${appinfo.version}...`);
+            process.stdout.write(bold(`Application ${appinfo.id} (v${appinfo.version}):`, args.markdown));
+            process.stdout.write('\n\n');
             const libdir = path.join(appdir, 'lib');
 
             const binaries: BinaryInfo[] = [];
@@ -223,11 +234,33 @@ async function main(tmp: string, args: Args) {
 }
 
 const argparser = new ArgumentParser();
-argparser.add_argument('packages', {type: String, nargs: '+'});
-argparser.add_argument('--list', '-l', {action: 'store_const', const: true, default: false});
-argparser.add_argument('--markdown', '-m', {action: 'store_const', const: true, default: false});
+argparser.add_argument('packages', {type: String, nargs: '+', help: 'List of IPKs'});
+argparser.add_argument('--markdown', '-m', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Print validation result in Markdown format, can be used in automation'
+});
+argparser.add_argument('--summary', '-s', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Display summary of issues'
+});
 
-argparser.add_argument('--verbose', '-v', {action: 'store_const', const: true, default: false});
+const verbosity = argparser.add_mutually_exclusive_group();
+verbosity.add_argument('--verbose', '-v', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Print more logs'
+});
+verbosity.add_argument('--quiet', '-q', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Do not print anything except result'
+});
 
 const args: Args = argparser.parse_args();
 mkdtemp(path.resolve(os.tmpdir(), 'webosbrew-compat-checker-')).then(async (tmp: string) => {

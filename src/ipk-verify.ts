@@ -239,7 +239,7 @@ argparser.add_argument('--markdown', '-m', {
     action: 'store_const',
     const: true,
     default: false,
-    help: 'Print validation result in Markdown format, can be used in automation'
+    help: 'Print validation result in Markdown format, useful for automation'
 });
 argparser.add_argument('--summary', '-s', {
     action: 'store_const',

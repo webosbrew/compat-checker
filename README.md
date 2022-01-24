@@ -19,10 +19,25 @@ This tool can help developers quickly find linkage problem, and better understan
 ## Usage
 
 ```
-$ webosbrew-ipk-compat-checker com.limelight.webos_1.4.0_arm.ipk
+webosbrew-ipk-compat-checker [-h] [--markdown] [--summary] [--verbose | --quiet] packages [packages ...]
+
+positional arguments:
+  packages        List of IPKs
+
+optional arguments:
+  -h, --help      show this help message and exit
+  --markdown, -m  Print validation result in Markdown format, useful for automation
+  --summary, -s   Display summary of issues
+  --verbose, -v   Print more logs
+  --quiet, -q     Do not print anything except result
 ```
 
-### Output
+### Example Output
+
+**Compatibility info for com.limelight.webos:**
+
+**Application com.limelight.webos (v1.4.0):**
+
 
 |                                    | 1.4.0    | 2.2.3    | 3.8.0    | 4.9.0    | 5.2.0    | 6.2.0    |
 |------------------------------------|----------|----------|----------|----------|----------|----------|

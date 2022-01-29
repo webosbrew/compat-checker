@@ -20,13 +20,15 @@ export class VerifyResult {
         public readonly requireLibraries: string[],
         public readonly missingLibraries: string[],
         public readonly missingReferences: string[],
-        public readonly indirectReferences: string[]
+        public readonly indirectReferences: string[],
+        public readonly noVersionReferences: string[],
     ) {
     }
 
     status(results: Dict<VerifyResult>, pkgLinks: Dict<string>): VerifyStatus {
         if (this.missingLibraries.length || this.missingReferences.length) return 'fail';
         if (this.indirectReferences.length) return 'warn';
+        if (this.noVersionReferences.length) return 'warn';
         return 'ok';
     }
 }
@@ -163,11 +165,15 @@ export async function verifyElf(info: BinaryInfo, libDirs: string[], version: st
         return lib.symbols || [];
     });
 
-    const missingReferences = [], indirectReferences = [];
+    const missingReferences: string[] = [], indirectReferences: string[] = [], noVersionReferences: string[] = [];
     for (let symbol of symReq) {
         let found = symMatches(symbols, symbol);
-        let indirect = false;
+        let indirect = false, noVersion = false;
         if (!found) {
+            if (symbol.includes('@') && symMatches(symbols, symbol.substring(0, symbol.indexOf('@')))) {
+                found = true;
+                noVersion = true;
+            }
             if (symMatches(indirectSyms, symbol)) {
                 found = true;
                 indirect = true;
@@ -177,6 +183,10 @@ export async function verifyElf(info: BinaryInfo, libDirs: string[], version: st
             let segs = symbol.split('@');
             segs[0] = await demangle(segs[0]) || segs[0];
             missingReferences.push(segs.join('@'));
+        } else if (noVersion) {
+            let segs = symbol.split('@');
+            segs[0] = await demangle(segs[0]) || segs[0];
+            noVersionReferences.push(segs.join('@'));
         } else if (indirect) {
             let segs = symbol.split('@');
             segs[0] = await demangle(segs[0]) || segs[0];
@@ -184,5 +194,5 @@ export async function verifyElf(info: BinaryInfo, libDirs: string[], version: st
         }
     }
     return new VerifyResult(path.basename(info.path), version, requireLibraries, missingLibraries, missingReferences,
-        indirectReferences);
+        indirectReferences, noVersionReferences);
 }

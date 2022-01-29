@@ -27,6 +27,9 @@ async function main(args: Args) {
             for (const ref of result.missingReferences) {
                 console.error(colors.red(`Missing symbol: ${ref}`));
             }
+            for (const ref of result.noVersionReferences) {
+                console.warn(colors.yellow(`No version info: ${ref}`));
+            }
             for (const ref of result.indirectReferences) {
                 console.warn(colors.yellow(`Indirectly referencing: ${ref}`));
             }

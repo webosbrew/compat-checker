@@ -1,0 +1,24 @@
+{
+  "names": [
+    "libdile_uhdcp.so.1",
+    "libdile_uhdcp.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_UHDCP_CalculateMpeg2CRC",
+    "DILE_UHDCP_Decrypt",
+    "DILE_UHDCP_GetEciKeySize",
+    "DILE_UHDCP_GetEciSecureData",
+    "_DILE_UHDCP_GetSeStoreDataID",
+    "DILE_UHDCP_ReadCertificate",
+    "DILE_UHDCP_SetCW",
+    "DILE_UHDCP_SetEciSecureData"
+  ],
+  "needed": [
+    "libhal_sstr.so.2",
+    "libsestore.so.0",
+    "libPmLogLib.so.3",
+    "libdrmddi.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "names": [
+    "libdile_gpio.so.1",
+    "libdile_gpio.so.1.0.0"
+  ],
+  "symbols": [
+    "dile_GPIO_GetGPIOMap",
+    "DILE_GPIO_GetGPIOPortNum",
+    "DILE_GPIO_Initialize",
+    "dile_GPIO_initializeMap",
+    "dile_GPIO_KERNEL_GetInputPort",
+    "dile_GPIO_KERNEL_SetOutputPort",
+    "DILE_GPIO_ReadInputPort",
+    "DILE_GPIO_WriteOutputPort",
+    "gGPIMapTable",
+    "gGPIMapTable_M2",
+    "gGPOMapTable",
+    "gGPOMapTable_M2"
+  ],
+  "needed": [
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

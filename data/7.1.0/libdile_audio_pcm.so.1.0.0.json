@@ -1,0 +1,17 @@
+{
+  "names": [
+    "libdile_audio_pcm.so.1",
+    "libdile_audio_pcm.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_AUDIO_PCM_RegSendPCMCallback",
+    "DILE_AUDIO_PCM_SetChannel",
+    "DILE_AUDIO_PCM_SetVolume",
+    "DILE_AUDIO_PCM_StartUpload",
+    "DILE_AUDIO_PCM_StopUpload"
+  ],
+  "needed": [
+    "libhal_audio_pcm.so.2",
+    "libgcc_s.so.1"
+  ]
+}

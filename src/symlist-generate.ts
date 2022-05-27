@@ -10,6 +10,7 @@ import {readFile} from "fs/promises";
 interface Args {
     input: string;
     output: string;
+    release?: string;
 }
 
 
@@ -20,18 +21,26 @@ async function getSystemVersion(input: string): Promise<string> {
     return match[0];
 }
 
+async function getExtLibPaths(input: string): Promise<string[]> {
+    return (await readFile(path.join(input, 'etc', 'ld.so.conf'), {encoding: 'utf-8'}))
+        .split('\n')
+        .filter(l => l)
+        .map(l => l.trim().substring(1));
+}
+
 async function main(args: Args) {
-    const version = await getSystemVersion(args.input);
+    const version = args.release ?? await getSystemVersion(args.input);
     if (!version) {
         return;
     }
     console.log(`Extracting symbols list for webOS ${version}`);
 
     const libpaths = ['lib', 'usr/lib'];
-    libpaths.push(...(await readFile(path.join(args.input, 'etc', 'ld.so.conf'), {encoding: 'utf-8'}))
-        .split('\n')
-        .filter(l => l)
-        .map(l => l.trim().substring(1)));
+    try {
+        libpaths.push(...(await getExtLibPaths(args.input)));
+    } catch (e) {
+        console.warn('Failed to read /etc/ld.so.conf, continue with default paths...');
+    }
 
     const libs: { [key: string]: LibInfo } = {};
     const index: { [key: string]: string } = {};
@@ -98,5 +107,6 @@ async function main(args: Args) {
 const argparser = new ArgumentParser();
 argparser.add_argument('-i', '--input', {type: String, required: true});
 argparser.add_argument('-o', '--output', {type: String, required: true});
+argparser.add_argument('-r', '--release', {type: String, required: false});
 
 main(argparser.parse_args());

@@ -1,0 +1,14 @@
+{
+  "names": [
+    "librim_util.so",
+    "librim_util.so.1.0.19"
+  ],
+  "symbols": [
+    "RIM_base_64_decode",
+    "RIM_base_64_encode"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

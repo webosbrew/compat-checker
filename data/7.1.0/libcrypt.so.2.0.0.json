@@ -1,0 +1,24 @@
+{
+  "names": [
+    "libcrypt.so.2",
+    "libcrypt.so.2.0.0"
+  ],
+  "symbols": [
+    "crypt@XCRYPT_2.0",
+    "crypt_checksalt@XCRYPT_4.3",
+    "crypt_gensalt@XCRYPT_2.0",
+    "crypt_gensalt_ra@XCRYPT_2.0",
+    "crypt_gensalt_rn@XCRYPT_2.0",
+    "crypt_preferred_method@XCRYPT_4.4",
+    "crypt_r@XCRYPT_2.0",
+    "crypt_ra@XCRYPT_2.0",
+    "crypt_rn@XCRYPT_2.0",
+    "XCRYPT_2.0",
+    "XCRYPT_4.3",
+    "XCRYPT_4.4"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

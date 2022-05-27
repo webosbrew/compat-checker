@@ -1,0 +1,23 @@
+{
+  "symbols": [
+    "C_GetFunctionList@NSS_3.4",
+    "FC_GetFunctionList@NSS_3.4",
+    "NSC_GetFunctionList@NSS_3.4",
+    "NSC_ModuleDBFunc@NSS_3.4",
+    "NSS_3.4"
+  ],
+  "needed": [
+    "libsqlite3.so.0",
+    "libnssutil3.so",
+    "libplc4.so",
+    "libplds4.so",
+    "libnspr4.so",
+    "libpthread.so.0",
+    "libdl.so.2",
+    "libc.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libsoftokn3.so"
+  ]
+}

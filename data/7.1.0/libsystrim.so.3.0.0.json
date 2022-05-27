@@ -1,0 +1,25 @@
+{
+  "names": [
+    "libsystrim.so.3",
+    "libsystrim.so.3.0.0"
+  ],
+  "symbols": [
+    "begin_watch",
+    "check_zygote_process",
+    "end_watch",
+    "get_malloc_trim_interval_time",
+    "prev_array",
+    "_read_comm",
+    "read_func",
+    "safeOpen",
+    "set_malloc_trim_interval_time",
+    "sleep_func",
+    "sleep_func_with_endfile"
+  ],
+  "needed": [
+    "libpthread.so.0",
+    "libglib-2.0.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

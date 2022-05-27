@@ -1,0 +1,12 @@
+{
+  "symbols": [
+    "mod_indexfile_plugin_init"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "mod_indexfile.so"
+  ]
+}

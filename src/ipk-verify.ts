@@ -28,6 +28,7 @@ interface Args {
     packages: string[];
     markdown: boolean;
     unicode: boolean;
+    github_emoji: boolean;
     summary: boolean;
     verbose: boolean;
     quiet: boolean;
@@ -48,6 +49,24 @@ class LibsInfo {
         public readonly links: Dict<string>
     ) {
     }
+}
+
+interface ResultSymbol {
+    ok: string;
+    warn: string;
+    fail: string;
+}
+
+const unicodeResultSymbol: ResultSymbol = {
+    ok: '✅',
+    warn: '⚠',
+    fail: '❌',
+}
+
+const githubEmojiResultSymbol: ResultSymbol = {
+    ok: ':ok:',
+    warn: ':warning:',
+    fail: ':x:',
 }
 
 async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
@@ -137,6 +156,11 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string
                     versionedResults: Dict<Dict<VerifyResult>>, ipkinfo: IpkInfo, args: Args) {
 
     function applyStyle(status: VerifyStatus): string {
+        if (args.unicode) {
+            return unicodeResultSymbol[status] || status;
+        } else if (args.github_emoji) {
+            return githubEmojiResultSymbol[status] || status;
+        }
         switch (status) {
             case 'ok':
                 return args.unicode ? '✅' : colors.green(status);
@@ -267,6 +291,12 @@ argparser.add_argument('--unicode', '-u', {
     const: true,
     default: false,
     help: 'Use unicode symbols for result output'
+});
+argparser.add_argument('--github-emoji', '-e', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Use GitHub Emojis (:ok:) for result output'
 });
 
 argparser.add_argument('--min-os', {

@@ -10,14 +10,16 @@ const versions = require(path.join(__dirname, '../data/versions.json'));
 
 interface Args {
     libdirs: string[];
-    files: [];
+    executables?: string[];
+    files?: string[];
 }
 
 async function main(args: Args) {
     for (const version of versions) {
         console.log(`On webOS ${version}`);
         console.log('--------');
-        for (let file of args.files) {
+        const executables: string[] = args.executables ?? args.files ?? [];
+        for (let file of executables) {
             console.log(`File ${path.basename(file)}:`);
             const info = await binInfo(file, 'main');
             const result = await verifyElf(info, args.libdirs, version);
@@ -40,14 +42,26 @@ async function main(args: Args) {
 }
 
 const argparser = new ArgumentParser();
-argparser.add_argument('--libdirs', '-l', {
+argparser.add_argument('-l', '--libdirs', {
     type: String,
     nargs: '+',
     required: false,
     default: [],
-    help: 'Extra library paths'
+    help: 'Extra library paths',
 });
-argparser.add_argument('files', {type: String, nargs: '+', help: 'ELF binaries to verify'});
+const group = argparser.add_mutually_exclusive_group({required: true});
+group.add_argument('-e', '--executables', {
+    type: String,
+    nargs: '+',
+    required: false,
+    help: 'ELF binaries to verify',
+});
+group.add_argument('files', {
+    type: String,
+    nargs: '*',
+    default: [],
+    help: 'ELF binaries to verify',
+});
 
 main(argparser.parse_args()).catch(error => {
     if (error instanceof BinutilsNotInstalledError) {

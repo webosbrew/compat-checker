@@ -134,7 +134,7 @@ async function readlinkr(p: string) {
 
 async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsInfo> {
     if (!existsSync(libdir)) return new LibsInfo([], {});
-    const libs = await readdir(libdir);
+    const libs = await readdir(libdir).then(files => files.filter(file => file.match(/^.+\.so(.\d+)*$/)));
     const libpaths = libs.map(lib => path.join(libdir, lib));
     const libstats = Object.assign({}, ...libpaths.map(libpath => ({[libpath]: lstatSync(libpath)})));
     const links = Object.assign({}, ...await Promise.all(libpaths.filter(p => libstats[p].isSymbolicLink()).map(async p => ({

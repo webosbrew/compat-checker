@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import {ArgumentParser} from "argparse";
 
-import {binInfo, BinutilsNotInstalledError, verifyElf} from "./utils";
+import {binInfo, verifyElf} from "./utils";
 
 import path from "path";
 import colors from 'colors';
@@ -64,8 +64,10 @@ group.add_argument('files', {
 });
 
 main(argparser.parse_args()).catch(error => {
-    if (error instanceof BinutilsNotInstalledError) {
+    if (error instanceof Error) {
         console.error(error.message);
+    } else {
+        console.error(error);
     }
     process.exit(1);
 });

@@ -39,9 +39,15 @@ export interface LibInfo {
     needed?: string[];
 }
 
-export class BinutilsNotInstalledError extends Error {
-    constructor() {
-        super(`binutils is not installed`);
+export class CommandNotFoundError extends Error {
+    constructor(cmd: string) {
+        super(`Command ${cmd} not found.`);
+    }
+}
+
+export class BinutilsExitCodeError extends Error {
+    constructor(output: ProcessOutput) {
+        super(`Command exited with status ${output.exitCode}: ${output.stderr}`);
     }
 }
 
@@ -58,7 +64,7 @@ export class BinaryInfo {
 }
 
 export async function dumpSymbols(path: string): Promise<string[]> {
-    const output = await $`nm --dynamic --extern-only --defined-only ${path}`.catch(handleMissingBinutils);
+    const output = await $`nm --dynamic --extern-only --defined-only ${path}`.catch(handleBinutilsCommandError);
     if (output.exitCode != 0) throw new Error(output.stderr);
     return output.stdout
         .split('\n')
@@ -70,7 +76,7 @@ export async function dumpSymbols(path: string): Promise<string[]> {
 }
 
 export async function listNeeded(path: string) {
-    const output = await $`objdump -p ${path}`.catch(handleMissingBinutils);
+    const output = await $`objdump -p ${path}`.catch(handleBinutilsCommandError);
     if (output.exitCode != 0) throw new Error(output.stderr);
     return output.stdout
         .split('\n')
@@ -97,15 +103,22 @@ function symMatches(symbols: string[], symbol: string) {
 }
 
 async function demangle(sym: string): Promise<string> {
-    return (await $`c++filt ${sym}`.catch(handleMissingBinutils)).stdout.trim();
+    return (await $`c++filt ${sym}`.catch(handleBinutilsCommandError)).stdout.trim();
 }
 
-async function handleMissingBinutils(e: any): Promise<ProcessOutput> {
-    throw new BinutilsNotInstalledError();
+async function handleBinutilsCommandError(e: ProcessOutput): Promise<ProcessOutput> {
+    if (e.exitCode == 127) {
+        const matched = e.stderr.match(/([^:\s]+): command not found/);
+        if (matched) {
+            throw new CommandNotFoundError(matched[1]);
+        }
+        throw new Error(e.stderr);
+    }
+    throw new BinutilsExitCodeError(e);
 }
 
 async function getSymReq(file: string) {
-    return (await $`nm --dynamic --extern-only --undefined-only ${file}`.catch(handleMissingBinutils)).stdout
+    return (await $`nm --dynamic --extern-only --undefined-only ${file}`.catch(handleBinutilsCommandError)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/))
         .filter(segs => segs.length === 2 && segs[0] === 'U')
@@ -113,7 +126,7 @@ async function getSymReq(file: string) {
 }
 
 export async function binInfo(file: string, type: 'main' | 'lib', mainbin?: BinaryInfo, liblinks?: Dict<string>): Promise<BinaryInfo> {
-    let objdumpResult = (await $`objdump -p ${file}`.catch(handleMissingBinutils)).stdout
+    let objdumpResult = (await $`objdump -p ${file}`.catch(handleBinutilsCommandError)).stdout
         .split('\n')
         .map(l => l.trim().split(/[ ]+/));
     const rpath = [

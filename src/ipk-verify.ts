@@ -4,17 +4,18 @@ import {ArgumentParser} from "argparse";
 import {BinaryInfo, binInfo, verifyElf, VerifyResult, VerifyStatus} from "./utils";
 
 import path from "path";
-import {lstat, mkdir, mkdtemp, readdir, readFile, readlink, rm, symlink} from "fs/promises";
+import {lstat, mkdtemp, readdir, readlink, rm} from "fs/promises";
 
-import ar from "ar";
+import {ArEntry, ArReader} from "ar-async";
 import os from "os";
 import Table from "cli-table";
 import colors from "colors";
-import {createWriteStream, existsSync, lstatSync} from "fs";
-import tar, {Headers} from 'tar-stream';
-import {gunzipSync} from "zlib";
-import Dict = NodeJS.Dict;
+import {existsSync, lstatSync} from "fs";
+import tar, {ReadEntry} from 'tar';
 import semver from 'semver';
+import {AppInfo, ServiceInfo} from "./types";
+import {toGenerator} from "./to-generator";
+import Dict = NodeJS.Dict;
 
 const allVersions: string[] = require(path.join(__dirname, '../data/versions.json'));
 const markdownChars = {
@@ -40,6 +41,7 @@ interface Args {
 interface IpkInfo {
     name: string;
     appdirs: string[];
+    svcdirs: string[];
     links: Dict<string>;
 }
 
@@ -70,58 +72,38 @@ const githubEmojiResultSymbol: ResultSymbol = {
 }
 
 async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
-    return await new Promise(async (resolve, reject) => {
-        const archive = new ar.Archive(await readFile(pkg));
-
-        for (let file of archive.getFiles()) {
-            if (file.name() !== 'data.tar.gz') continue;
-            const extract = tar.extract();
-            const result: string[] = [];
-            const links: { [key: string]: string } = {};
-            let name = 'unknown';
-            extract.on('entry', async (header: Headers, stream, next) => {
-                const filepath = path.posix.resolve(tmp, header.name);
-                if (path.posix.basename(header.name) === 'appinfo.json') {
-                    result.push(path.posix.dirname(filepath));
-                } else if (path.posix.basename(header.name) === 'packageinfo.json') {
-                    name = path.posix.basename(path.posix.dirname(filepath));
-                }
-                stream.on('end', () => {
-                    next();
-                });
-                switch (header.type) {
-                    case 'directory':
-                        await mkdir(filepath, {recursive: true});
-                        if (args.verbose) {
-                            console.log(`mkdir ${filepath}`);
-                        }
-                        break;
-                    case 'file':
-                        if (args.verbose) {
-                            console.log(`write ${filepath}`);
-                        }
-                        stream.pipe(createWriteStream(filepath));
-                        break;
-                    case 'symlink':
-                        if (!header.linkname) {
-                            break;
-                        }
-                        const target = path.posix.resolve(path.posix.dirname(filepath), header.linkname);
-                        if (args.verbose) {
-                            console.log(`link ${filepath} => ${target}`);
-                        }
-                        await symlink(target, filepath);
-                        links[filepath] = target;
-                        break;
-                }
-                stream.resume();
-            });
-            extract.on('finish', () => {
-                resolve({name, appdirs: result, links: links});
-            });
-            extract.write(gunzipSync(file.fileData()), () => extract.end());
+    const appdirs: string[] = [];
+    const svcdirs: string[] = [];
+    const links: { [key: string]: string } = {};
+    let name: string | undefined;
+    for await (let {entry, next} of toGenerator<ArReader, ArEntry>(new ArReader(pkg))) {
+        if (entry.fileName() !== 'data.tar.gz') {
+            next();
+            continue;
         }
-    });
+        await new Promise<void>((resolve, reject) => {
+            const unpack = entry.fileData().pipe(tar.x({
+                cwd: tmp,
+                onentry(entry: ReadEntry) {
+                    let filepath = path.posix.resolve(tmp, entry.path);
+                    if (path.posix.basename(filepath) === 'appinfo.json') {
+                        appdirs.push(path.posix.dirname(filepath));
+                    } else if (path.posix.basename(filepath) === 'services.json') {
+                        svcdirs.push(path.posix.dirname(filepath));
+                    } else if (path.posix.basename(filepath) === 'packageinfo.json') {
+                        name = path.posix.basename(path.posix.dirname(filepath));
+                    }
+                }
+            }));
+            unpack.once('end', () => resolve());
+            unpack.once('error', (e) => reject(e));
+        });
+        next();
+    }
+    if (!name) {
+        throw new Error('Unknown package ID');
+    }
+    return {name, appdirs, svcdirs, links};
 }
 
 async function readlinkr(p: string) {
@@ -208,6 +190,58 @@ function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string
     process.stdout.write('\n');
 }
 
+async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo) {
+    const libdir = path.join(dir, 'lib');
+
+    const binaries: BinaryInfo[] = [];
+    const mainBin = await binInfo(path.join(dir, exe), 'main');
+    binaries.push(mainBin);
+
+    const libsInfo = await listLibraries(libdir, mainBin);
+    binaries.push(...libsInfo.libs);
+
+    async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
+        return Object.assign({}, ...await Promise.all(binaries.map(async binary => {
+            const verify = await verifyElf(binary, [libdir], version);
+            return {[binary.name]: verify};
+        })));
+    }
+
+    const versions = allVersions.filter(version => {
+        if (args.min_os && semver.lt(version, args.min_os)) {
+            return false;
+        }
+        if (args.max_os && semver.gt(version, args.max_os)) {
+            return false;
+        }
+        // noinspection RedundantIfStatementJS
+        if (args.max_os_exclusive && semver.gte(version, args.max_os_exclusive)) {
+            return false;
+        }
+        return true;
+    });
+    if (!versions.length) {
+        console.error('No version available');
+        return;
+    }
+
+    const versionedResults: Dict<Dict<VerifyResult>> = Object.assign({}, ...await Promise.all(versions
+        .map(async version => {
+            const verify = await verifyBinaries(binaries, version);
+            return {[version]: verify};
+        })));
+
+
+    binaries.sort((a, b) => {
+        const importantDiff = Number(b.important) - Number(a.important);
+        if (importantDiff != 0) return importantDiff;
+        if (a.type == 'main') return -1;
+        if (b.type == 'main') return 1;
+        return a.name.localeCompare(b.name);
+    });
+    printTable(binaries, libsInfo, versions, versionedResults, ipkinfo, args);
+}
+
 async function main(tmp: string, args: Args) {
     for (const pkg of args.packages) {
         if (!args.quiet) {
@@ -219,61 +253,28 @@ async function main(tmp: string, args: Args) {
         process.stdout.write(bold(`Compatibility info for ${ipkinfo.name}:`, args.markdown));
         process.stdout.write('\n\n');
         for (const appdir of ipkinfo.appdirs) {
-            const appinfo = require(path.join(appdir, 'appinfo.json'));
+            const appinfo = require(path.join(appdir, 'appinfo.json')) as AppInfo;
             if (appinfo.type !== 'native') {
                 process.stdout.write(`Application ${appinfo.id} is not native.\n`);
                 continue;
             }
             process.stdout.write(bold(`Application ${appinfo.id} (v${appinfo.version}):`, args.markdown));
             process.stdout.write('\n\n');
-            const libdir = path.join(appdir, 'lib');
-
-            const binaries: BinaryInfo[] = [];
-            const mainBin = await binInfo(path.join(appdir, appinfo.main), 'main');
-            binaries.push(mainBin);
-
-            const libsInfo = await listLibraries(libdir, mainBin);
-            binaries.push(...libsInfo.libs);
-
-            async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
-                return Object.assign({}, ...await Promise.all(binaries.map(async binary => {
-                    const verify = await verifyElf(binary, [libdir], version);
-                    return {[binary.name]: verify};
-                })));
+            await verifyExecutable(appdir, appinfo.main, ipkinfo);
+        }
+        for (const svcdir of ipkinfo.svcdirs) {
+            const svcinfo = require(path.join(svcdir, 'services.json')) as ServiceInfo;
+            if (svcinfo.engine !== 'native') {
+                process.stdout.write(`Service ${svcinfo.id} is not native.\n`);
+                continue;
             }
-
-            const versions = allVersions.filter(version => {
-                if (args.min_os && semver.lt(version, args.min_os)) {
-                    return false;
-                }
-                if (args.max_os && semver.gt(version, args.max_os)) {
-                    return false;
-                }
-                if (args.max_os_exclusive && semver.gte(version, args.max_os_exclusive)) {
-                    return false;
-                }
-                return true;
-            });
-            if (!versions.length) {
-                console.error('No version available');
-                return;
+            if (!svcinfo.executable) {
+                console.error(`Service ${svcinfo.id} doesn't have valid executable.\n`);
+                continue;
             }
-
-            const versionedResults: Dict<Dict<VerifyResult>> = Object.assign({}, ...await Promise.all(versions
-                .map(async version => {
-                    const verify = await verifyBinaries(binaries, version);
-                    return {[version]: verify};
-                })));
-
-
-            binaries.sort((a, b) => {
-                const importantDiff = Number(b.important) - Number(a.important);
-                if (importantDiff != 0) return importantDiff;
-                if (a.type == 'main') return -1;
-                if (b.type == 'main') return 1;
-                return a.name.localeCompare(b.name);
-            });
-            printTable(binaries, libsInfo, versions, versionedResults, ipkinfo, args);
+            process.stdout.write(bold(`Service ${svcinfo.id}`, args.markdown));
+            process.stdout.write('\n\n');
+            await verifyExecutable(svcdir, svcinfo.executable, ipkinfo);
         }
     }
 }

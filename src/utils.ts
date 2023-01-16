@@ -143,7 +143,8 @@ export async function binInfo(file: string, type: 'main' | 'lib', mainbin?: Bina
     return new BinaryInfo(name, file, type, rpath, needed, important);
 }
 
-export async function verifyElf(info: BinaryInfo, libDirs: string[], version: string): Promise<VerifyResult> {
+export async function verifyElf(info: BinaryInfo, libDirs: string[], version: string,
+                                mainBin?: BinaryInfo): Promise<VerifyResult> {
     const allLibDirs = [...libDirs, ...info.rpath];
 
     const requireLibraries = info.needed;
@@ -168,6 +169,9 @@ export async function verifyElf(info: BinaryInfo, libDirs: string[], version: st
                 break
             }
         }
+    }
+    if (info.type == 'lib' && mainBin) {
+        symbols.push(...(await dumpSymbols(mainBin.path)));
     }
     const indirectSyms = requireLibraries.map(lib => index[lib]).filter(f => f).flatMap((f: string) => {
         const lib: LibInfo = require(path.join(__dirname, `../data/${version}/${f}`));

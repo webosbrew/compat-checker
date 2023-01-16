@@ -122,7 +122,7 @@ async function main(tmp: string, args: Args) {
                 printer.hr();
                 continue;
             }
-            await verifyExecutable(appdir, appinfo.main, ipkinfo, versions);
+            await printVerifyResults(appdir, appinfo.main, ipkinfo, versions);
             printer.hr();
         }
         for (const svcdir of ipkinfo.svcdirs) {
@@ -138,13 +138,13 @@ async function main(tmp: string, args: Args) {
                 printer.hr();
                 continue;
             }
-            await verifyExecutable(svcdir, svcinfo.executable, ipkinfo, versions);
+            await printVerifyResults(svcdir, svcinfo.executable, ipkinfo, versions);
             printer.hr();
         }
     }
 }
 
-async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo, versions: string[]) {
+async function printVerifyResults(dir: string, exe: string, ipkinfo: IpkInfo, versions: string[]) {
     const libdir = path.join(dir, 'lib');
 
     const binaries: BinaryInfo[] = [];
@@ -167,7 +167,7 @@ async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo, vers
 
     async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
         return Object.assign({}, ...await Promise.all(binaries.map(async binary => {
-            const verify = await verifyElf(binary, libdirs, version);
+            const verify = await verifyElf(binary, libdirs, version, mainBin);
             return {[binary.name]: verify};
         })));
     }

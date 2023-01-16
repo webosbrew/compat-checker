@@ -25,7 +25,7 @@ export class VerifyResult {
     ) {
     }
 
-    status(results: Dict<VerifyResult>, pkgLinks: Dict<string>): VerifyStatus {
+    get status(): VerifyStatus {
         if (this.missingLibraries.length || this.missingReferences.length) return 'fail';
         if (this.indirectReferences.length) return 'warn';
         if (this.noVersionReferences.length) return 'warn';
@@ -133,6 +133,7 @@ export async function binInfo(file: string, type: 'main' | 'lib', mainbin?: Bina
         ...objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'RUNPATH').map(segs => segs[1]),
         ...objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'RPATH')
             .flatMap((segs: string[]) => segs[1].split(':').filter(i => i))
+            .map(p => p.replace('$ORIGIN', '.'))
     ];
     const needed = objdumpResult.filter(segs => segs.length === 2 && segs[0] === 'NEEDED')
         .map(segs => segs[1]);

@@ -1,41 +1,34 @@
 #!/usr/bin/env node
 import {ArgumentParser} from "argparse";
 
-import {BinaryInfo, binInfo, verifyElf, VerifyResult, VerifyStatus} from "./utils";
+import {BinaryInfo, binInfo, verifyElf, VerifyResult} from "./utils";
 
 import path from "path";
 import {lstat, mkdtemp, readdir, readlink, rm} from "fs/promises";
 
 import {ArEntry, ArReader} from "ar-async";
 import os from "os";
-import Table from "cli-table";
-import colors from "colors";
 import {existsSync, lstatSync} from "fs";
 import tar, {ReadEntry} from 'tar';
 import semver from 'semver';
 import {AppInfo, ServiceInfo} from "./types";
 import {toGenerator} from "./to-generator";
+import {Printer} from "./printer";
+import colors from "colors";
 import Dict = NodeJS.Dict;
 
 const allVersions: string[] = require(path.join(__dirname, '../data/versions.json'));
-const markdownChars = {
-    'top': '', 'top-mid': '', 'top-left': '', 'top-right': '',
-    'mid': '-', 'left-mid': '|', 'mid-mid': '|', 'right-mid': '|',
-    'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '',
-    'middle': '|', 'left': '|', 'right': '|'
-};
 
-interface Args {
+interface Args extends Printer.Options {
     packages: string[];
-    markdown: boolean;
-    unicode: boolean;
-    github_emoji: boolean;
     summary: boolean;
+    details: boolean;
     verbose: boolean;
     quiet: boolean;
     min_os?: string;
     max_os?: string;
     max_os_exclusive?: string;
+    github_emoji: boolean;
 }
 
 interface IpkInfo {
@@ -53,22 +46,153 @@ class LibsInfo {
     }
 }
 
-interface ResultSymbol {
-    ok: string;
-    warn: string;
-    fail: string;
+const argparser = new ArgumentParser();
+argparser.add_argument('packages', {type: String, nargs: '+', help: 'List of IPKs'});
+
+argparser.add_argument('--min-os', {
+    dest: 'min_os'
+});
+
+argparser.add_argument('--max-os', {
+    dest: 'max_os'
+});
+argparser.add_argument('--max-os-exclusive', {
+    dest: 'max_os_exclusive'
+});
+
+argparser.add_argument('--summary', '-s', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Display summary of issues'
+});
+
+argparser.add_argument('--details', '-d', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Display detailed list of issues'
+});
+
+Printer.setupArgParser(argparser);
+
+argparser.add_argument('--github-emoji', '-e', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Use GitHub Emojis (:ok:) for result output'
+});
+
+const verbosity = argparser.add_mutually_exclusive_group();
+verbosity.add_argument('--verbose', '-v', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Print more logs'
+});
+verbosity.add_argument('--quiet', '-q', {
+    action: 'store_const',
+    const: true,
+    default: false,
+    help: 'Do not print anything except result'
+});
+
+const args: Args = argparser.parse_args();
+const printer = new Printer(process.stdout, args);
+mkdtemp(path.resolve(os.tmpdir(), 'webosbrew-compat-checker-')).then(async (tmp: string) => {
+    await main(tmp, args).finally(() => rm(tmp, {recursive: true}));
+});
+
+async function main(tmp: string, args: Args) {
+    const versions = optVersions(args);
+
+    for (const pkg of args.packages) {
+        if (!args.quiet) {
+            console.log(`Extracting package ${path.basename(pkg)}...`);
+        }
+
+        const ipkinfo: IpkInfo = await extractIpk(tmp, pkg);
+
+        printer.h2(`Compatibility info for ${ipkinfo.name}:`);
+        for (const appdir of ipkinfo.appdirs) {
+            const appinfo = require(path.join(appdir, 'appinfo.json')) as AppInfo;
+            printer.h3(`Application ${appinfo.id} (v${appinfo.version}):`);
+            if (appinfo.type !== 'native') {
+                printer.body(`Application is not native.`);
+                printer.hr();
+                continue;
+            }
+            await verifyExecutable(appdir, appinfo.main, ipkinfo, versions);
+            printer.hr();
+        }
+        for (const svcdir of ipkinfo.svcdirs) {
+            const svcinfo = require(path.join(svcdir, 'services.json')) as ServiceInfo;
+            printer.h3(`Service ${svcinfo.id}:`);
+            if (svcinfo.engine !== 'native') {
+                printer.body(`Service is not native.`);
+                printer.hr();
+                continue;
+            }
+            if (!svcinfo.executable) {
+                printer.body(`Service doesn't have valid executable.`);
+                printer.hr();
+                continue;
+            }
+            await verifyExecutable(svcdir, svcinfo.executable, ipkinfo, versions);
+            printer.hr();
+        }
+    }
 }
 
-const unicodeResultSymbol: ResultSymbol = {
-    ok: '✅',
-    warn: '⚠',
-    fail: '❌',
-}
+async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo, versions: string[]) {
+    const libdir = path.join(dir, 'lib');
 
-const githubEmojiResultSymbol: ResultSymbol = {
-    ok: ':ok:',
-    warn: ':warning:',
-    fail: ':x:',
+    const binaries: BinaryInfo[] = [];
+    const mainBin = await binInfo(path.join(dir, exe), 'main');
+    binaries.push(mainBin);
+    const rpathDirs = mainBin.rpath.map(p => path.resolve(dir, p));
+    const libdirs = [...rpathDirs, ...[libdir].filter(p => !rpathDirs.includes(p))];
+
+    const allLibs: BinaryInfo[] = [];
+    const allLibLinks: Dict<string> = {};
+
+    for (const d of libdirs.reverse()) {
+        const i = await listLibraries(d, mainBin);
+        allLibs.push(...i.libs);
+        Object.assign(allLibLinks, i.links);
+        binaries.push(...i.libs);
+    }
+
+    const libsInfo = new LibsInfo(allLibs, allLibLinks);
+
+    async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
+        return Object.assign({}, ...await Promise.all(binaries.map(async binary => {
+            const verify = await verifyElf(binary, libdirs, version);
+            return {[binary.name]: verify};
+        })));
+    }
+
+
+    const versionedResults: Dict<Dict<VerifyResult>> = Object.assign({}, ...await Promise.all(versions
+        .map(async version => {
+            const verify = await verifyBinaries(binaries, version);
+            return {[version]: verify};
+        })));
+
+
+    binaries.sort((a, b) => {
+        const importantDiff = Number(b.important) - Number(a.important);
+        if (importantDiff != 0) return importantDiff;
+        if (a.type == 'main') return -1;
+        if (b.type == 'main') return 1;
+        return a.name.localeCompare(b.name);
+    });
+    if (args.summary) {
+        printSummary(binaries, libsInfo, versions, versionedResults);
+    }
+    if (args.details) {
+        printDetails(binaries, libsInfo, versions, versionedResults);
+    }
 }
 
 async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
@@ -96,7 +220,7 @@ async function extractIpk(tmp: string, pkg: string): Promise<IpkInfo> {
                 }
             }));
             unpack.once('end', () => resolve());
-            unpack.once('error', (e) => reject(e));
+            unpack.once('error', e => reject(e));
         });
         next();
     }
@@ -127,86 +251,7 @@ async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsI
         .map(async p => await binInfo(p, 'lib', mainbin, links))), links);
 }
 
-function bold(s: string, markdown: boolean): string {
-    if (markdown) {
-        return colors.bold(`**${s}**`);
-    }
-    return colors.bold(s);
-}
-
-function printTable(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
-                    versionedResults: Dict<Dict<VerifyResult>>, ipkinfo: IpkInfo, args: Args) {
-
-    function applyStyle(status: VerifyStatus): string {
-        if (args.unicode) {
-            return unicodeResultSymbol[status] || status;
-        } else if (args.github_emoji) {
-            return githubEmojiResultSymbol[status] || status;
-        }
-        switch (status) {
-            case 'ok':
-                return args.unicode ? '✅' : colors.green(status);
-            case 'warn':
-                return args.unicode ? '⚠' : colors.yellow(status);
-            case 'fail':
-                return args.unicode ? '❌' : colors.red(bold(status, args.markdown));
-            default:
-                return status;
-        }
-    }
-
-    const table = new Table({
-        colors: false,
-        style: {compact: args.markdown},
-        chars: args.markdown ? markdownChars : {},
-        head: ['', ...versions.map((version: string) => colors.reset(version))]
-    });
-    const mainbin = binaries.filter(bin => bin.type == 'main')[0]!!;
-    const importantSym = args.markdown ? '\\*' : '*';
-    for (const binary of binaries) {
-        let name = `${binary.type}${binary.important ? importantSym : ''}: ${binary.name}`;
-        const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
-        const important = binary.type == 'main' || needed.includes(binary.name);
-        if (binary.important) {
-            name = colors.reset(bold(name, args.markdown));
-        } else {
-            name = colors.reset(name);
-        }
-        table.push({
-            [name]: versions.map(version => {
-                const results = versionedResults[version]!!;
-                const status = results[binary.name]!!.status(results, ipkinfo.links);
-                if (important && status == 'fail') {
-                    process.exitCode = 1;
-                }
-                return applyStyle(status);
-            })
-        })
-    }
-
-    process.stdout.write(table.toString());
-    process.stdout.write('\n\n');
-    process.stdout.write(`  ${importantSym}: main executable or libraries directly linked to main executable`);
-    process.stdout.write('\n');
-}
-
-async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo) {
-    const libdir = path.join(dir, 'lib');
-
-    const binaries: BinaryInfo[] = [];
-    const mainBin = await binInfo(path.join(dir, exe), 'main');
-    binaries.push(mainBin);
-
-    const libsInfo = await listLibraries(libdir, mainBin);
-    binaries.push(...libsInfo.libs);
-
-    async function verifyBinaries(binaries: BinaryInfo[], version: string): Promise<Dict<VerifyResult>> {
-        return Object.assign({}, ...await Promise.all(binaries.map(async binary => {
-            const verify = await verifyElf(binary, [libdir], version);
-            return {[binary.name]: verify};
-        })));
-    }
-
+function optVersions(args: Args): string[] {
     const versions = allVersions.filter(version => {
         if (args.min_os && semver.lt(version, args.min_os)) {
             return false;
@@ -221,118 +266,85 @@ async function verifyExecutable(dir: string, exe: string, ipkinfo: IpkInfo) {
         return true;
     });
     if (!versions.length) {
-        console.error('No version available');
-        return;
+        throw new Error('No version available');
     }
+    return versions;
+}
 
-    const versionedResults: Dict<Dict<VerifyResult>> = Object.assign({}, ...await Promise.all(versions
-        .map(async version => {
-            const verify = await verifyBinaries(binaries, version);
-            return {[version]: verify};
-        })));
-
-
-    binaries.sort((a, b) => {
-        const importantDiff = Number(b.important) - Number(a.important);
-        if (importantDiff != 0) return importantDiff;
-        if (a.type == 'main') return -1;
-        if (b.type == 'main') return 1;
-        return a.name.localeCompare(b.name);
+function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
+                      versionedResults: Dict<Dict<VerifyResult>>) {
+    printer.table(versions.map(v => colors.bold(v)), table => {
+        const mainbin = binaries.filter(bin => bin.type == 'main')[0]!;
+        for (const binary of binaries) {
+            let name = `${binary.important ? 'required ' : ''}${binary.type}: ${binary.name}`;
+            const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
+            const important = binary.type == 'main' || needed.includes(binary.name);
+            if (!important) {
+                name = name.reset;
+            }
+            table.push({
+                [name]: versions.map(version => {
+                    const results = versionedResults[version]!;
+                    const status = results[binary.name]!.status;
+                    if (important && status === 'fail') {
+                        process.exitCode = 1;
+                    }
+                    if (args.github_emoji) {
+                        return `:${status}:`;
+                    } else {
+                        switch (status) {
+                            case 'fail':
+                                return status.red;
+                            case 'warn':
+                                return status.yellow;
+                            case 'ok':
+                                return status.green;
+                        }
+                    }
+                })
+            })
+        }
     });
-    printTable(binaries, libsInfo, versions, versionedResults, ipkinfo, args);
 }
 
-async function main(tmp: string, args: Args) {
-    for (const pkg of args.packages) {
-        if (!args.quiet) {
-            console.log(`Extracting package ${path.basename(pkg)}...`);
-        }
+function printDetails(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
+                      versionedResults: Dict<Dict<VerifyResult>>) {
+    const mainbin = binaries.filter(bin => bin.type == 'main')[0]!;
+    for (const version of versions) {
+        printer.h4(`On webOS ${version}:`);
 
-        const ipkinfo: IpkInfo = await extractIpk(tmp, pkg);
+        let ok = true;
+        for (const binary of binaries) {
+            const result = versionedResults[version]![binary.name]!;
+            if (result.status === 'ok') {
+                continue;
+            }
 
-        process.stdout.write(bold(`Compatibility info for ${ipkinfo.name}:`, args.markdown));
-        process.stdout.write('\n\n');
-        for (const appdir of ipkinfo.appdirs) {
-            const appinfo = require(path.join(appdir, 'appinfo.json')) as AppInfo;
-            if (appinfo.type !== 'native') {
-                process.stdout.write(`Application ${appinfo.id} is not native.\n`);
-                continue;
+            const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
+            const important = binary.type == 'main' || needed.includes(binary.name);
+            let name = `${important ? 'required ' : ''}${binary.type}: ${binary.name}`;
+            if (important) {
+                name = colors.bold(name);
             }
-            process.stdout.write(bold(`Application ${appinfo.id} (v${appinfo.version}):`, args.markdown));
-            process.stdout.write('\n\n');
-            await verifyExecutable(appdir, appinfo.main, ipkinfo);
+            printer.li(name, 0);
+
+            for (const lib of result.missingLibraries) {
+                printer.li(`Missing library: ${lib}`.red, 1);
+            }
+            for (const ref of result.missingReferences) {
+                printer.li(`Missing symbol: ${ref}`.red, 1);
+            }
+            for (const ref of result.noVersionReferences) {
+                printer.li(`No version info: ${ref}`.yellow, 1);
+            }
+            for (const ref of result.indirectReferences) {
+                printer.li(`Indirectly referencing: ${ref}`.yellow, 1);
+            }
+
+            ok = false;
         }
-        for (const svcdir of ipkinfo.svcdirs) {
-            const svcinfo = require(path.join(svcdir, 'services.json')) as ServiceInfo;
-            if (svcinfo.engine !== 'native') {
-                process.stdout.write(`Service ${svcinfo.id} is not native.\n`);
-                continue;
-            }
-            if (!svcinfo.executable) {
-                console.error(`Service ${svcinfo.id} doesn't have valid executable.\n`);
-                continue;
-            }
-            process.stdout.write(bold(`Service ${svcinfo.id}`, args.markdown));
-            process.stdout.write('\n\n');
-            await verifyExecutable(svcdir, svcinfo.executable, ipkinfo);
+        if (ok) {
+            printer.body('Didn\'t find any issue');
         }
     }
 }
-
-const argparser = new ArgumentParser();
-argparser.add_argument('packages', {type: String, nargs: '+', help: 'List of IPKs'});
-argparser.add_argument('--markdown', '-m', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Print validation result in Markdown format, useful for automation'
-});
-argparser.add_argument('--unicode', '-u', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Use unicode symbols for result output'
-});
-argparser.add_argument('--github-emoji', '-e', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Use GitHub Emojis (:ok:) for result output'
-});
-
-argparser.add_argument('--min-os', {
-    dest: 'min_os'
-});
-
-argparser.add_argument('--max-os', {
-    dest: 'max_os'
-});
-argparser.add_argument('--max-os-exclusive', {
-    dest: 'max_os_exclusive'
-});
-
-argparser.add_argument('--summary', '-s', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Display summary of issues'
-});
-
-const verbosity = argparser.add_mutually_exclusive_group();
-verbosity.add_argument('--verbose', '-v', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Print more logs'
-});
-verbosity.add_argument('--quiet', '-q', {
-    action: 'store_const',
-    const: true,
-    default: false,
-    help: 'Do not print anything except result'
-});
-
-const args: Args = argparser.parse_args();
-mkdtemp(path.resolve(os.tmpdir(), 'webosbrew-compat-checker-')).then(async (tmp: string) => {
-    await main(tmp, args).finally(() => rm(tmp, {recursive: true}));
-});

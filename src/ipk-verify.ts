@@ -20,7 +20,7 @@ import Dict = NodeJS.Dict;
 
 interface Args extends Printer.Options, WebOSVersions.Options {
     packages: string[];
-    summary: boolean;
+    no_summary: boolean;
     details: boolean;
     verbose: boolean;
     quiet: boolean;
@@ -45,11 +45,11 @@ class LibsInfo {
 const argparser = new ArgumentParser();
 argparser.add_argument('packages', {type: String, nargs: '+', help: 'List of IPKs'});
 WebOSVersions.setupArgParser(argparser);
-argparser.add_argument('--summary', '-s', {
+argparser.add_argument('--no-summary', '-S', {
     action: 'store_const',
     const: true,
     default: false,
-    help: 'Display summary of issues'
+    help: 'Don\'t display summary of issues'
 });
 
 argparser.add_argument('--details', '-d', {
@@ -172,7 +172,7 @@ async function printVerifyResults(dir: string, exe: string, ipkinfo: IpkInfo, ve
         if (b.type == 'main') return 1;
         return a.name.localeCompare(b.name);
     });
-    if (args.summary) {
+    if (!args.no_summary) {
         printSummary(binaries, libsInfo, versions, versionedResults);
     }
     if (args.details) {

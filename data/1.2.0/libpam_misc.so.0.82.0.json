@@ -1,0 +1,26 @@
+{
+  "names": [
+    "libpam_misc.so.0",
+    "libpam_misc.so.0.82.0"
+  ],
+  "symbols": [
+    "LIBPAM_MISC_1.0",
+    "misc_conv@LIBPAM_MISC_1.0",
+    "pam_binary_handler_fn@LIBPAM_MISC_1.0",
+    "pam_binary_handler_free@LIBPAM_MISC_1.0",
+    "pam_misc_conv_died@LIBPAM_MISC_1.0",
+    "pam_misc_conv_die_line@LIBPAM_MISC_1.0",
+    "pam_misc_conv_die_time@LIBPAM_MISC_1.0",
+    "pam_misc_conv_warn_line@LIBPAM_MISC_1.0",
+    "pam_misc_conv_warn_time@LIBPAM_MISC_1.0",
+    "pam_misc_drop_env@LIBPAM_MISC_1.0",
+    "pam_misc_paste_env@LIBPAM_MISC_1.0",
+    "pam_misc_setenv@LIBPAM_MISC_1.0"
+  ],
+  "needed": [
+    "libpam.so.0",
+    "libdl.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

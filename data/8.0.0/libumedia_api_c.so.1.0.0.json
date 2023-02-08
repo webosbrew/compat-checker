@@ -1,0 +1,27 @@
+{
+  "names": [
+    "libumedia_api_c.so.1",
+    "libumedia_api_c.so.1.0.0"
+  ],
+  "symbols": [
+    "uMediaClientCreate",
+    "uMediaClientCreatePrivate",
+    "uMediaClientDestroy",
+    "uMediaClientLoad",
+    "uMediaClientPause",
+    "uMediaClientPlay",
+    "uMediaClientSeek",
+    "uMediaClientUnload",
+    "_Z18uMediaClientAttachPvPc",
+    "_ZTI11MediaPlayer",
+    "_ZTS11MediaPlayer",
+    "_ZTV11MediaPlayer"
+  ],
+  "needed": [
+    "libumedia_api.so.1",
+    "libstdc++.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

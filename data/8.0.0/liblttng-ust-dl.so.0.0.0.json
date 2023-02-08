@@ -1,0 +1,31 @@
+{
+  "names": [
+    "liblttng-ust-dl.so.0",
+    "liblttng-ust-dl.so.0.0.0"
+  ],
+  "symbols": [
+    "dlclose",
+    "dlmopen",
+    "dlopen",
+    "__start___tracepoints_ptrs",
+    "__stop___tracepoints_ptrs",
+    "__tracepoint_lttng_ust_dl___build_id",
+    "__tracepoint_lttng_ust_dl___debug_link",
+    "__tracepoint_lttng_ust_dl___dlclose",
+    "__tracepoint_lttng_ust_dl___dlmopen",
+    "__tracepoint_lttng_ust_dl___dlopen",
+    "__tracepoint_provider_lttng_ust_dl"
+  ],
+  "needed": [
+    "liblttng-ust.so.0",
+    "liblttng-ust-tracepoint.so.0",
+    "librt.so.1",
+    "libdl.so.2",
+    "liburcu-bp.so.6",
+    "liburcu-cds.so.6",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6",
+    "ld-linux.so.3"
+  ]
+}

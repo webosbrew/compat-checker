@@ -1,0 +1,30 @@
+{
+  "names": [
+    "libgstbasedrm-1.0.so.0",
+    "libgstbasedrm-1.0.so.0.1200.0"
+  ],
+  "symbols": [
+    "gst_basedrm_get_type"
+  ],
+  "needed": [
+    "libgstbase-1.0.so.0",
+    "libgstreamer-1.0.so.0",
+    "librt.so.1",
+    "libsoup-2.4.so.1",
+    "libsqlite3.so.0",
+    "libgio-2.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libresolv.so.2",
+    "libgobject-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpcre.so.1",
+    "libpthread.so.0",
+    "libxml2.so.2",
+    "libdl.so.2",
+    "libz.so.1",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

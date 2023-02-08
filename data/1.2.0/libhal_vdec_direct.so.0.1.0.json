@@ -1,0 +1,22 @@
+{
+  "names": [
+    "libhal_vdec_direct.so",
+    "libhal_vdec_direct.so.0",
+    "libhal_vdec_direct.so.0.1.0"
+  ],
+  "symbols": [
+    "HAL_VDEC_DIRECT_Close",
+    "HAL_VDEC_DIRECT_GetVideoInfo",
+    "HAL_VDEC_DIRECT_Open",
+    "HAL_VDEC_DIRECT_Play",
+    "HAL_VDEC_DIRECT_SetDEId",
+    "HAL_VDEC_DIRECT_Stop",
+    "logmm_module_hal_vdec_direct"
+  ],
+  "needed": [
+    "liblxv.so.0",
+    "liblogs.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

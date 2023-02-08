@@ -1,0 +1,16 @@
+{
+  "symbols": [
+    "C_GetFunctionList@NSS_3.1",
+    "NSS_3.1"
+  ],
+  "needed": [
+    "libplc4.so",
+    "libplds4.so",
+    "libnspr4.so",
+    "libc.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libnssckbi.so"
+  ]
+}

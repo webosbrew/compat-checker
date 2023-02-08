@@ -1,0 +1,20 @@
+{
+  "symbols": [
+    "bmp_analyse",
+    "bmp_create",
+    "bmp_decode",
+    "bmp_decode_trans",
+    "bmp_finalise",
+    "ico_analyse",
+    "ico_collection_create",
+    "ico_finalise",
+    "ico_find"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libnsbmp.so.0.1.0"
+  ]
+}

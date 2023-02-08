@@ -1,0 +1,26 @@
+{
+  "names": [
+    "libgstlxclock-1.0.so",
+    "libgstlxclock-1.0.so.0",
+    "libgstlxclock-1.0.so.0.9.0"
+  ],
+  "symbols": [
+    "gst_lxclock_get_type",
+    "gst_lxclock_new"
+  ],
+  "needed": [
+    "libgstbase-1.0.so.0",
+    "libgstreamer-1.0.so.0",
+    "libgmodule-2.0.so.0",
+    "libm.so.6",
+    "librt.so.1",
+    "libdl.so.2",
+    "libgobject-2.0.so.0",
+    "libffi.so.6",
+    "libglib-2.0.so.0",
+    "libpcre.so.1",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

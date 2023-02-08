@@ -1,0 +1,21 @@
+{
+  "names": [
+    "liblttng-ust-fd.so.0",
+    "liblttng-ust-fd.so.0.0.0"
+  ],
+  "symbols": [
+    "close",
+    "fclose"
+  ],
+  "needed": [
+    "liblttng-ust.so.0",
+    "liblttng-ust-tracepoint.so.0",
+    "librt.so.1",
+    "libdl.so.2",
+    "liburcu-bp.so.6",
+    "liburcu-cds.so.6",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

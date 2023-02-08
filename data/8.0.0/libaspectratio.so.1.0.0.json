@@ -1,0 +1,29 @@
+{
+  "names": [
+    "libaspectratio.so.1",
+    "libaspectratio.so.1.0.0"
+  ],
+  "symbols": [
+    "aspectratioCalculateWindow",
+    "avInputAr",
+    "convertEnumToEnum",
+    "DefinitionTable",
+    "getTableOverScanATSC",
+    "getTableOverScanATSC30",
+    "getTableOverScanCN",
+    "getTableOverScanDVB",
+    "getTableOverScanJP",
+    "getTableScaleRatioByWSSAFD",
+    "memcpy",
+    "orbitMoveConvert",
+    "orbitWindowConvert",
+    "TBL_ARC_OUT_RATIO",
+    "TBL_INAR_OUT_RATIO_HEIGHT",
+    "TBL_INAR_OUT_RATIO_WIDTH"
+  ],
+  "needed": [
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

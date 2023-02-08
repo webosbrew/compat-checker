@@ -2,7 +2,7 @@
 
 import {ArgumentParser} from "argparse";
 
-import fs from "fs";
+import fs, {promises} from "fs";
 import path from "path";
 import {dumpSymbols, LibInfo, listNeeded} from "./utils";
 import {readFile} from "fs/promises";
@@ -10,37 +10,38 @@ import {readFile} from "fs/promises";
 interface Args {
     input: string;
     output: string;
-    release?: string;
 }
 
 
 async function getSystemVersion(input: string): Promise<string> {
-    const issue = (await readFile(path.join(input, 'etc', 'issue'))).toString('utf-8');
-    const match = /(\d+\.\d+\.\d+)/.exec(issue);
+    const issue = (await readFile(path.join(input, 'rootfs.pak.unsquashfs', 'etc', 'starfish-release'))).toString('utf-8');
+    const match = /release (\d+\.\d+\.\d+)/.exec(issue);
     if (!match) throw Error('Failed to read firmware file system');
-    return match[0];
+    return match[1];
 }
 
-async function getExtLibPaths(input: string): Promise<string[]> {
-    return (await readFile(path.join(input, 'etc', 'ld.so.conf'), {encoding: 'utf-8'}))
+async function getLdLibPaths(input: string): Promise<string[]> {
+    return (await readFile(path.join(input, 'rootfs.pak.unsquashfs', 'etc', 'ld.so.conf'), {encoding: 'utf-8'}))
         .split('\n')
         .filter(l => l)
-        .map(l => l.trim().substring(1));
+        .map(l => l.trim());
 }
 
 async function main(args: Args) {
-    const version = args.release ?? await getSystemVersion(args.input);
+    const version = await getSystemVersion(args.input);
     if (!version) {
+        console.warn('Can\'t infer system version')
         return;
     }
     console.log(`Extracting symbols list for webOS ${version}`);
 
-    const libpaths = ['lib', 'usr/lib'];
-    try {
-        libpaths.push(...(await getExtLibPaths(args.input)));
-    } catch (e) {
-        console.warn('Failed to read /etc/ld.so.conf, continue with default paths...');
-    }
+    const parts = (await promises.readdir(args.input)).filter(n => n.endsWith('.unsquashfs'));
+    const libpaths = ['/lib', '/usr/lib', ...await getLdLibPaths(args.input)].map(p => {
+        if (p.startsWith('/mnt/bsppart/')) {
+            return path.join(parts.find(v => v.startsWith('bsppart'))!, p.substring(13));
+        }
+        return path.join(parts.find(v => v.startsWith('rootfs'))!, p.substring(1));
+    });
 
     const libs: { [key: string]: LibInfo } = {};
     const index: { [key: string]: string } = {};
@@ -105,8 +106,14 @@ async function main(args: Args) {
 }
 
 const argparser = new ArgumentParser();
-argparser.add_argument('-i', '--input', {type: String, required: true});
-argparser.add_argument('-o', '--output', {type: String, required: true});
-argparser.add_argument('-r', '--release', {type: String, required: false});
+argparser.add_argument('-i', '--input', {
+    type: String,
+    required: true,
+    help: 'Directory of extracted firmware'
+});
+argparser.add_argument('-o', '--output', {
+    type: String,
+    required: true
+});
 
-main(argparser.parse_args());
+main(argparser.parse_args()).catch(e => console.error(e));

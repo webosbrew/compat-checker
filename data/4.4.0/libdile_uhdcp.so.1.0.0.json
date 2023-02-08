@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libdile_uhdcp.so.1",
+    "libdile_uhdcp.so.1.0.0"
+  ],
+  "symbols": [
+    "DILE_UHDCP_Decrypt",
+    "_DILE_UHDCP_GetSeStoreDataID",
+    "DILE_UHDCP_ReadCertificate",
+    "DILE_UHDCP_SetCW"
+  ],
+  "needed": [
+    "libhal_sstr.so.2",
+    "libsestore.so.0",
+    "libdrmddi.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

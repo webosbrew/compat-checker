@@ -1,0 +1,23 @@
+{
+  "names": [
+    "libusc.so",
+    "libusc.so.0",
+    "libusc.so.0.1"
+  ],
+  "symbols": [
+    "PVRCleanupUniflexHw",
+    "PVRUniFlexCompileToHw",
+    "PVRUniFlexCompileToUspBin",
+    "PVRUniFlexCreateContext",
+    "PVRUniFlexDestroyContext",
+    "PVRUniFlexDestroyUspBin",
+    "PVRUniFlexGetInputInstDesc",
+    "PVRUniFlexInitInst",
+    "PVRUniFlexInitTextureParameters",
+    "PVRUniFlexUnpackTextureStateConstantOffset"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "symbols": [
+    "pmBase64Decode",
+    "pmBase64Encode",
+    "pmDestructMultipart",
+    "pmDestructParserResults",
+    "pmDestructXMLAttributeList",
+    "pmDestructXMLNodeList",
+    "pmGetLong",
+    "pmGetULong",
+    "pmGetXMLAttributes",
+    "pmIndexOf",
+    "pmInPlaceXmlUnEscape",
+    "pmParseLine",
+    "pmParseMultipart",
+    "pmParseSpace",
+    "pmParseSpaceAdv",
+    "pmParseString",
+    "pmParseStringAdv",
+    "pmParseXML",
+    "pmProcessXMLNodeList",
+    "pmReadInnerXML",
+    "pmStackCreate",
+    "pmStackDestroy",
+    "pmStackIsEmpty",
+    "pmStackLock",
+    "pmStackPeekStack",
+    "pmStackPop",
+    "pmStackPush",
+    "pmStackUnLock",
+    "pmStrdup",
+    "pmStrndup",
+    "pmWcslen",
+    "pmXmlEscape",
+    "pmXmlEscapeLength",
+    "ppDestructCPC",
+    "ppParseCPC"
+  ],
+  "needed": [
+    "libc.so.6"
+  ],
+  "names": [
+    "libtpl_cpc.so"
+  ]
+}

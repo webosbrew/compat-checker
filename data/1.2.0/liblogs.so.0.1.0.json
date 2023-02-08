@@ -1,0 +1,17 @@
+{
+  "names": [
+    "liblogs.so",
+    "liblogs.so.0",
+    "liblogs.so.0.1.0"
+  ],
+  "symbols": [
+    "logmm_dummy_mask",
+    "logmm_printl",
+    "log_opendev",
+    "log_writef"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libpamc.so.0",
+    "libpamc.so.0.82.1"
+  ],
+  "symbols": [
+    "LIBPAMC_1.0",
+    "pamc_converse@LIBPAMC_1.0",
+    "pamc_disable@LIBPAMC_1.0",
+    "pamc_end@LIBPAMC_1.0",
+    "pamc_list_agents@LIBPAMC_1.0",
+    "pamc_load@LIBPAMC_1.0",
+    "pamc_start@LIBPAMC_1.0"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

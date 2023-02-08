@@ -1,0 +1,18 @@
+{
+  "symbols": [
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoNS3_7weekdayE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_10minute_tagEEE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_10second_tagEEE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_7day_tagEEE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_8hour_tagEEE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_8year_tagEEE",
+    "_ZN4absl12lts_2021032413time_internal4cctz6detaillsERSoRKNS3_10civil_timeINS3_9month_tagEEE"
+  ],
+  "needed": [
+    "libstdc++.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libabsl_civil_time.so"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "names": [
+    "libicudata.so.50",
+    "libicudata.so.50.1.2"
+  ],
+  "symbols": [
+    "icudt50_dat"
+  ],
+  "needed": []
+}

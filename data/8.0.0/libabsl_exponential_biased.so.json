@@ -1,0 +1,14 @@
+{
+  "symbols": [
+    "_ZN4absl12lts_2021032413base_internal17ExponentialBiased10InitializeEv",
+    "_ZN4absl12lts_2021032413base_internal17ExponentialBiased12GetSkipCountEx",
+    "_ZN4absl12lts_2021032413base_internal17ExponentialBiased9GetStrideEx"
+  ],
+  "needed": [
+    "libm.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libabsl_exponential_biased.so"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "symbols": [],
+  "needed": [
+    "libgcc_s.so.1",
+    "libpthread.so.0"
+  ],
+  "names": [
+    "libarm_compute_core.so"
+  ]
+}

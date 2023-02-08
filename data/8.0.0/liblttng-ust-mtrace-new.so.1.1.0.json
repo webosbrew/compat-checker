@@ -1,0 +1,26 @@
+{
+  "names": [
+    "liblttng-ust-mtrace-new.so.1",
+    "liblttng-ust-mtrace-new.so.1.1.0"
+  ],
+  "symbols": [
+    "__start___tracepoints_ptrs",
+    "__stop___tracepoints_ptrs",
+    "__tracepoint_mtrace_new___delete",
+    "__tracepoint_mtrace_new___delete_arr",
+    "__tracepoint_mtrace_new___new",
+    "__tracepoint_mtrace_new___new_arr",
+    "__tracepoint_provider_mtrace_new",
+    "_Z16lookup_functionsv",
+    "_ZdaPv",
+    "_ZdlPv",
+    "_Znaj",
+    "_Znwj"
+  ],
+  "needed": [
+    "liblttng-ust.so.0",
+    "libdl.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

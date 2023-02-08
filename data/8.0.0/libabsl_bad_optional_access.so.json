@@ -1,0 +1,19 @@
+{
+  "symbols": [
+    "_ZN4absl12lts_2021032417optional_internal25throw_bad_optional_accessEv",
+    "_ZN4absl12lts_2021032419bad_optional_accessD0Ev",
+    "_ZN4absl12lts_2021032419bad_optional_accessD1Ev",
+    "_ZN4absl12lts_2021032419bad_optional_accessD2Ev",
+    "_ZNK4absl12lts_2021032419bad_optional_access4whatEv",
+    "_ZTIN4absl12lts_2021032419bad_optional_accessE",
+    "_ZTSN4absl12lts_2021032419bad_optional_accessE",
+    "_ZTVN4absl12lts_2021032419bad_optional_accessE"
+  ],
+  "needed": [
+    "libstdc++.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libabsl_bad_optional_access.so"
+  ]
+}

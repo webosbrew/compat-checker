@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libsystrim.so.3",
+    "libsystrim.so.3.0.0"
+  ],
+  "symbols": [
+    "begin_watch",
+    "check_zygote_process",
+    "end_watch",
+    "_read_comm",
+    "read_func",
+    "sleep_func"
+  ],
+  "needed": [
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

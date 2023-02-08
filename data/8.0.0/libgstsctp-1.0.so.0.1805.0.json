@@ -1,0 +1,19 @@
+{
+  "names": [
+    "libgstsctp-1.0.so.0",
+    "libgstsctp-1.0.so.0.1805.0"
+  ],
+  "symbols": [
+    "gst_sctp_buffer_add_receive_meta",
+    "gst_sctp_buffer_add_send_meta",
+    "gst_sctp_receive_meta_api_get_type",
+    "gst_sctp_receive_meta_get_info",
+    "gst_sctp_send_meta_api_get_type",
+    "gst_sctp_send_meta_get_info"
+  ],
+  "needed": [
+    "libgstreamer-1.0.so.0",
+    "libglib-2.0.so.0",
+    "libgcc_s.so.1"
+  ]
+}

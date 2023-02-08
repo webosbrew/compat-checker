@@ -1,0 +1,26 @@
+{
+  "names": [
+    "libvocon_ext_stream.so",
+    "libvocon_ext_stream.so.4.10.4"
+  ],
+  "symbols": [
+    "st_CloseSharedStreamReaderFromFile",
+    "st_CloseSharedStreamWriterToFile",
+    "st_CreateAudioInFromFile",
+    "st_CreateAudioInFromStream",
+    "st_CreatePagePoolStreamReaderFromFile",
+    "st_CreateSharedStreamReaderFromFile",
+    "st_CreateSharedStreamWriterToFile",
+    "st_CreateStreamReaderFromFile",
+    "st_CreateStreamReaderFromMemory",
+    "st_CreateStreamWriterToFile",
+    "st_CreateStreamWriterToMemory"
+  ],
+  "needed": [
+    "libdl.so.2",
+    "librt.so.1",
+    "libpthread.so.0",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

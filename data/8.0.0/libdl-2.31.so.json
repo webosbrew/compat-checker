@@ -1,0 +1,25 @@
+{
+  "symbols": [
+    "dladdr@GLIBC_2.4",
+    "dladdr1@GLIBC_2.4",
+    "dlclose@GLIBC_2.4",
+    "dlerror@GLIBC_2.4",
+    "_dlfcn_hook@GLIBC_PRIVATE",
+    "dlinfo@GLIBC_2.4",
+    "dlmopen@GLIBC_2.4",
+    "dlopen@GLIBC_2.4",
+    "dlsym@GLIBC_2.4",
+    "dlvsym@GLIBC_2.4",
+    "GLIBC_2.4",
+    "GLIBC_PRIVATE",
+    "__libdl_freeres@GLIBC_PRIVATE"
+  ],
+  "needed": [
+    "libc.so.6",
+    "ld-linux.so.3"
+  ],
+  "names": [
+    "libdl-2.31.so",
+    "libdl.so.2"
+  ]
+}

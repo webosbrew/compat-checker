@@ -1,0 +1,34 @@
+{
+  "names": [
+    "libsnapshot-boot.so.1",
+    "libsnapshot-boot.so.1.2.0"
+  ],
+  "symbols": [
+    "find_sbm_process",
+    "get_cmdline_option",
+    "GetSBMLogContext",
+    "klog",
+    "main",
+    "_parse_offset",
+    "_parse_partinfo",
+    "remakeReasonToStr",
+    "SBWaitForSnapshotDone",
+    "snapshot_boot_mode",
+    "snapshot_boot_ready",
+    "snapshot_boot_remake",
+    "snapshot_boot_remake_log",
+    "snapshot_boot_wait",
+    "snapshot_boot_wakeup",
+    "SNAPSHOT_Log",
+    "SNAPSHOT_LOG_FILE",
+    "_SNAPSHOT_LogLock",
+    "SNAPSHOT_PrintLog",
+    "SNAPSHOT_RemoveLogHeader",
+    "typeToStr"
+  ],
+  "needed": [
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

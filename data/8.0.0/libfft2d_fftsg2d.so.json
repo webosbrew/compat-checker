@@ -1,0 +1,20 @@
+{
+  "symbols": [
+    "cdft2d",
+    "cdft2d_sub",
+    "ddct2d",
+    "ddst2d",
+    "ddxt2d_sub",
+    "rdft2d",
+    "rdft2dsort",
+    "rdft2d_sub"
+  ],
+  "needed": [
+    "libfft2d_fftsg.so",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libfft2d_fftsg2d.so"
+  ]
+}

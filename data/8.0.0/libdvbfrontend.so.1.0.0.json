@@ -1,0 +1,16 @@
+{
+  "symbols": [
+    "HAL_DVBV5_SetCountry",
+    "HAL_DVBV5_SetGPIOTable",
+    "HAL_DVBV5_SetTunerModelName",
+    "HAL_DVBV5_SetTunerNR",
+    "HAL_DVBV5_SetTunerType"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ],
+  "names": [
+    "libdvbfrontend.so.1.0.0"
+  ]
+}

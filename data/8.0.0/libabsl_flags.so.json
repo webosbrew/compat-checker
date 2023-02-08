@@ -1,0 +1,9 @@
+{
+  "symbols": [],
+  "needed": [
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libabsl_flags.so"
+  ]
+}

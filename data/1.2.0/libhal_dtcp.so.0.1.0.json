@@ -1,0 +1,15 @@
+{
+  "names": [
+    "libhal_dtcp.so",
+    "libhal_dtcp.so.0",
+    "libhal_dtcp.so.0.1.0"
+  ],
+  "symbols": [
+    "HAL_DTCP_GetCryptoConstPath",
+    "HAL_DTCP_GetDeviceSetPath"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

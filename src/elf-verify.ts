@@ -4,10 +4,10 @@ import {ArgumentParser} from "argparse";
 import {binInfo, verifyElf} from "./utils";
 
 import path from "path";
-import colors from 'colors';
 import {WebOSVersions} from "./webos-versions";
+import {Printer} from "./printer";
 
-interface Args extends WebOSVersions.Options {
+interface Args extends WebOSVersions.Options, Printer.Options {
     libdirs: string[];
     executables?: string[];
     files?: string[];
@@ -15,6 +15,7 @@ interface Args extends WebOSVersions.Options {
 
 async function main(args: Args) {
     let versions = WebOSVersions.list(args);
+    const printer = new Printer(process.stdout, args);
     for (const version of versions) {
         console.log(`On webOS ${version}`);
         console.log('--------');
@@ -24,16 +25,16 @@ async function main(args: Args) {
             const info = await binInfo(file, 'main');
             const result = await verifyElf(info, args.libdirs, version);
             for (const lib of result.missingLibraries) {
-                console.error(colors.red(`Missing library: ${lib}`));
+                console.error(printer.chalk.red(`Missing library: ${lib}`));
             }
             for (const ref of result.missingReferences) {
-                console.error(colors.red(`Missing symbol: ${ref}`));
+                console.error(printer.chalk.red(`Missing symbol: ${ref}`));
             }
             for (const ref of result.noVersionReferences) {
-                console.warn(colors.yellow(`No version info: ${ref}`));
+                console.warn(printer.chalk.yellow(`No version info: ${ref}`));
             }
             for (const ref of result.indirectReferences) {
-                console.warn(colors.yellow(`Indirectly referencing: ${ref}`));
+                console.warn(printer.chalk.yellow(`Indirectly referencing: ${ref}`));
             }
             console.log();
         }
@@ -63,6 +64,7 @@ group.add_argument('files', {
     help: 'ELF binaries to verify',
 });
 WebOSVersions.setupArgParser(argparser);
+Printer.setupArgParser(argparser);
 
 main(argparser.parse_args()).catch(error => {
     if (error instanceof Error) {

@@ -13,7 +13,6 @@ import tar, {ReadEntry} from 'tar';
 import {AppInfo, ServiceInfo} from "./types";
 import {toGenerator} from "./to-generator";
 import {Printer} from "./printer";
-import colors from "colors";
 import {WebOSVersions} from "./webos-versions";
 import Dict = NodeJS.Dict;
 
@@ -238,14 +237,14 @@ async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsI
 
 function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
                       versionedResults: Dict<Dict<VerifyResult>>) {
-    printer.table(versions.map(v => colors.bold(v)), table => {
+    printer.table(versions.map(v => printer.chalk.bold(v)), table => {
         const mainbin = binaries.filter(bin => bin.type == 'main')[0]!;
         for (const binary of binaries) {
             let name = `${binary.important ? 'required ' : ''}${binary.type}: ${binary.name}`;
             const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
             const important = binary.type == 'main' || needed.includes(binary.name);
-            if (!important) {
-                name = name.reset;
+            if (important) {
+                name = printer.chalk.bold(name);
             }
             table.push({
                 [name]: versions.map(version => {
@@ -259,11 +258,11 @@ function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
                     } else {
                         switch (status) {
                             case 'fail':
-                                return status.red;
+                                return printer.chalk.red(status);
                             case 'warn':
-                                return status.yellow;
+                                return printer.chalk.yellow(status);
                             case 'ok':
-                                return status.green;
+                                return printer.chalk.green(status);
                         }
                     }
                 })
@@ -289,21 +288,21 @@ function printDetails(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
             const important = binary.type == 'main' || needed.includes(binary.name);
             let name = `${important ? 'required ' : ''}${binary.type}: ${binary.name}`;
             if (important) {
-                name = colors.bold(name);
+                name = printer.chalk.bold(name);
             }
             printer.li(name, 0);
 
             for (const lib of result.missingLibraries) {
-                printer.li(`Missing library: ${lib}`.red, 1);
+                printer.li(printer.chalk.red(`Missing library: ${lib}`), 1);
             }
             for (const ref of result.missingReferences) {
-                printer.li(`Missing symbol: ${ref}`.red, 1);
+                printer.li(printer.chalk.red(`Missing symbol: ${ref}`), 1);
             }
             for (const ref of result.noVersionReferences) {
-                printer.li(`No version info: ${ref}`.yellow, 1);
+                printer.li(printer.chalk.yellow(`No version info: ${ref}`), 1);
             }
             for (const ref of result.indirectReferences) {
-                printer.li(`Indirectly referencing: ${ref}`.yellow, 1);
+                printer.li(printer.chalk.yellow(`Indirectly referencing: ${ref}`), 1);
             }
 
             ok = false;

@@ -1,7 +1,7 @@
 import WritableStream = NodeJS.WritableStream;
 import {ArgumentParser} from "argparse";
 import Table from "cli-table";
-import colors from "colors";
+import chalk, {Chalk} from "chalk";
 
 
 export class Printer {
@@ -13,7 +13,10 @@ export class Printer {
     };
     private lastElem?: string = undefined;
 
+    public readonly chalk: Chalk;
+
     constructor(private stream: WritableStream, private options: Printer.Options) {
+        this.chalk = new chalk.Instance({level: options.markdown ? 0 : 2});
     }
 
     body(str: string) {
@@ -56,9 +59,13 @@ export class Printer {
         this.prependBreak('table');
         const table = new Table({
             colors: false,
-            style: {compact: this.options.markdown},
+            style: {
+                compact: this.options.markdown,
+                head: [],
+                border: this.options.markdown ? [] : ['grey']
+            },
             chars: this.options.markdown ? this.markdownChars : {},
-            head: ['', ...header.map(col => colors.reset(col))]
+            head: ['', ...header.map(s => this.chalk.bold(s))]
         });
         setup(table);
         this.stream.write(table.toString());
@@ -82,7 +89,6 @@ export namespace Printer {
     export declare interface Options {
 
         markdown: boolean;
-        unicode: boolean;
     }
 
     export function setupArgParser(argparser: ArgumentParser) {
@@ -91,12 +97,6 @@ export namespace Printer {
             const: true,
             default: false,
             help: 'Print validation result in Markdown format, useful for automation'
-        });
-        argparser.add_argument('--unicode', '-u', {
-            action: 'store_const',
-            const: true,
-            default: false,
-            help: 'Use unicode symbols for result output'
         });
     }
 }

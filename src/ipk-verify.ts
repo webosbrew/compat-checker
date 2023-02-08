@@ -10,24 +10,20 @@ import {ArEntry, ArReader} from "ar-async";
 import os from "os";
 import {existsSync, lstatSync} from "fs";
 import tar, {ReadEntry} from 'tar';
-import semver from 'semver';
 import {AppInfo, ServiceInfo} from "./types";
 import {toGenerator} from "./to-generator";
 import {Printer} from "./printer";
 import colors from "colors";
+import {WebOSVersions} from "./webos-versions";
 import Dict = NodeJS.Dict;
 
-const allVersions: string[] = require(path.join(__dirname, '../data/versions.json'));
 
-interface Args extends Printer.Options {
+interface Args extends Printer.Options, WebOSVersions.Options {
     packages: string[];
     summary: boolean;
     details: boolean;
     verbose: boolean;
     quiet: boolean;
-    min_os?: string;
-    max_os?: string;
-    max_os_exclusive?: string;
     github_emoji: boolean;
 }
 
@@ -48,18 +44,7 @@ class LibsInfo {
 
 const argparser = new ArgumentParser();
 argparser.add_argument('packages', {type: String, nargs: '+', help: 'List of IPKs'});
-
-argparser.add_argument('--min-os', {
-    dest: 'min_os'
-});
-
-argparser.add_argument('--max-os', {
-    dest: 'max_os'
-});
-argparser.add_argument('--max-os-exclusive', {
-    dest: 'max_os_exclusive'
-});
-
+WebOSVersions.setupArgParser(argparser);
 argparser.add_argument('--summary', '-s', {
     action: 'store_const',
     const: true,
@@ -104,7 +89,7 @@ mkdtemp(path.resolve(os.tmpdir(), 'webosbrew-compat-checker-')).then(async (tmp:
 });
 
 async function main(tmp: string, args: Args) {
-    const versions = optVersions(args);
+    const versions = WebOSVersions.list(args);
 
     for (const pkg of args.packages) {
         if (!args.quiet) {
@@ -249,26 +234,6 @@ async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsI
     return new LibsInfo(await Promise.all(libpaths
         .filter(p => !libstats[p].isSymbolicLink())
         .map(async p => await binInfo(p, 'lib', mainbin, links))), links);
-}
-
-function optVersions(args: Args): string[] {
-    const versions = allVersions.filter(version => {
-        if (args.min_os && semver.lt(version, args.min_os)) {
-            return false;
-        }
-        if (args.max_os && semver.gt(version, args.max_os)) {
-            return false;
-        }
-        // noinspection RedundantIfStatementJS
-        if (args.max_os_exclusive && semver.gte(version, args.max_os_exclusive)) {
-            return false;
-        }
-        return true;
-    });
-    if (!versions.length) {
-        throw new Error('No version available');
-    }
-    return versions;
 }
 
 function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],

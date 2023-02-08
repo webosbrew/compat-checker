@@ -5,16 +5,16 @@ import {binInfo, verifyElf} from "./utils";
 
 import path from "path";
 import colors from 'colors';
+import {WebOSVersions} from "./webos-versions";
 
-const versions = require(path.join(__dirname, '../data/versions.json'));
-
-interface Args {
+interface Args extends WebOSVersions.Options {
     libdirs: string[];
     executables?: string[];
     files?: string[];
 }
 
 async function main(args: Args) {
+    let versions = WebOSVersions.list(args);
     for (const version of versions) {
         console.log(`On webOS ${version}`);
         console.log('--------');
@@ -62,6 +62,7 @@ group.add_argument('files', {
     default: [],
     help: 'ELF binaries to verify',
 });
+WebOSVersions.setupArgParser(argparser);
 
 main(argparser.parse_args()).catch(error => {
     if (error instanceof Error) {

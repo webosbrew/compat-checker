@@ -134,7 +134,10 @@ async function printVerifyResults(dir: string, exe: string, ipkinfo: IpkInfo, ve
     const binaries: BinaryInfo[] = [];
     const mainBin = await binInfo(path.join(dir, exe), 'main');
     binaries.push(mainBin);
-    const rpathDirs = mainBin.rpath.map(p => path.resolve(dir, p));
+    const rpathDirs = mainBin.rpath.filter(p => {
+        // For webOS app, only relative RPATH makes sense
+        return !p.startsWith('/');
+    }).map(p => path.resolve(dir, p));
     const libdirs = [...rpathDirs, ...[libdir].filter(p => !rpathDirs.includes(p))];
 
     const allLibs: BinaryInfo[] = [];

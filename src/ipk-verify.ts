@@ -257,7 +257,14 @@ function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
                         process.exitCode = 1;
                     }
                     if (args.github_emoji) {
-                        return `:${status}:`;
+                        switch (status) {
+                            case 'fail':
+                                return ':x:';
+                            case 'warn':
+                                return ':warning:';
+                            case 'ok':
+                                return ':ok:';
+                        }
                     } else {
                         switch (status) {
                             case 'fail':

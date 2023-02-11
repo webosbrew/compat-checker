@@ -1,0 +1,47 @@
+{
+  "names": [
+    "libhal_audio_pcm.so",
+    "libhal_audio_pcm.so.0",
+    "libhal_audio_pcm.so.0.1.0",
+    "libhal_audio_pcm.so.2",
+    "libhal_audio_pcm.so.2.0.1"
+  ],
+  "symbols": [
+    "APCM_Callback_Thread",
+    "APCM_Destroy",
+    "APCM_GetI2SChannelCount",
+    "APCM_Initialize",
+    "APCM_LockSemaphore",
+    "APCM_ProcessCallbackEventMessage",
+    "APCM_SendPCMCallback",
+    "APCM_StartCapture",
+    "APCM_StopCapture",
+    "APCM_UnlockSemaphore",
+    "gAPCM0SemaId",
+    "gAPCM1SemaId",
+    "gAPCM2SemaId",
+    "gApcmDebugPrintCount",
+    "gApcmModuleInfo",
+    "gAudioAPCMContext",
+    "gHalAudioApcmLogmFd",
+    "gHalAudioApcmLogmFdCount",
+    "gpfnCallBackAdecWarning",
+    "HAL_AUDIO_PCM_CloseClock",
+    "HAL_AUDIO_PCM_GetClock",
+    "HAL_AUDIO_PCM_GetData",
+    "HAL_AUDIO_PCM_GetInfo",
+    "HAL_AUDIO_PCM_OpenClock",
+    "HAL_AUDIO_PCM_RegSendPCMCallback",
+    "HAL_AUDIO_PCM_RegUploadCallBack",
+    "HAL_AUDIO_PCM_SetDataCount",
+    "HAL_AUDIO_PCM_SetInfo",
+    "HAL_AUDIO_PCM_SetVolume",
+    "HAL_AUDIO_PCM_StartUpload",
+    "HAL_AUDIO_PCM_StopUpload"
+  ],
+  "needed": [
+    "libkadaptor.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

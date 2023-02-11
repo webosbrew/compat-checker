@@ -1,0 +1,18 @@
+{
+  "symbols": [
+    "createInjection",
+    "_ZNSt6vectorISsSaISsEE19_M_emplace_back_auxIIRKSsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE19_M_emplace_back_auxIJRKSsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE9push_backERKSs",
+    "_ZNSt6vectorISsSaISsEED1Ev",
+    "_ZNSt6vectorISsSaISsEED2Ev"
+  ],
+  "needed": [
+    "libv8.so",
+    "libstdc++.so.6",
+    "libgcc_s.so.1"
+  ],
+  "names": [
+    "libhbbtv_inj.so"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "symbols": [
+    "createInjection",
+    "_ZN9__gnu_cxx12__to_xstringISscEET_PFiPT0_jPKS2_St9__va_listEjS5_z",
+    "_ZN9__gnu_cxx6__stoaIddcIEEET0_PFT_PKT1_PPS3_DpT2_EPKcS5_PjS9_",
+    "_ZN9__gnu_cxx6__stoaIddcJEEET0_PFT_PKT1_PPS3_DpT2_EPKcS5_PjS9_",
+    "_ZNKSt6vectorISsSaISsEE12_M_check_lenEjPKc",
+    "_ZNSt6vectorISsSaISsEE12emplace_backIISsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE12emplace_backIJSsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE19_M_emplace_back_auxIIRKSsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE19_M_emplace_back_auxIJRKSsEEEvDpOT_",
+    "_ZNSt6vectorISsSaISsEE9push_backERKSs",
+    "_ZNSt6vectorISsSaISsEED1Ev",
+    "_ZNSt6vectorISsSaISsEED2Ev",
+    "_ZSteqIcSt11char_traitsIcESaIcEEbRKSbIT_T0_T1_EPKS3_"
+  ],
+  "needed": [
+    "libv8.so",
+    "libstdc++.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6",
+    "ld-linux.so.3"
+  ],
+  "names": [
+    "libinettv_inj.so"
+  ]
+}

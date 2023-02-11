@@ -62,7 +62,7 @@ async function main(args: Args) {
         }
         for (let file of fs.readdirSync(dir, {withFileTypes: true})) {
             let item: LibInfo | null = null;
-            if (!file.name.includes('.so')) continue;
+            if (!file.name.match(/^.+.so(\.\w+)*$/)) continue;
             if (file.isFile()) {
                 item = libs[file.name] || {};
                 try {

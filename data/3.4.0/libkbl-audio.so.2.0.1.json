@@ -1,0 +1,14 @@
+{
+  "names": [
+    "libkbl-audio.so",
+    "libkbl-audio.so.2",
+    "libkbl-audio.so.2.0.1"
+  ],
+  "symbols": [
+    "audio_get_dsp_data"
+  ],
+  "needed": [
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

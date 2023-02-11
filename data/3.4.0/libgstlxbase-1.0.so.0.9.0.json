@@ -1,0 +1,21 @@
+{
+  "names": [
+    "libgstlxbase-1.0.so",
+    "libgstlxbase-1.0.so.0",
+    "libgstlxbase-1.0.so.0.9.0"
+  ],
+  "symbols": [
+    "gst_lx_buffer_new_and_alloc",
+    "gst_lx_buffer_set_priv",
+    "gst_lxlog_deinit",
+    "gst_lxlog_init",
+    "gst_lxutil_option_int",
+    "gst_lxutil_option_str"
+  ],
+  "needed": [
+    "liblogs.so.2",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

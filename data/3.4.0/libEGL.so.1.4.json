@@ -1,0 +1,13 @@
+{
+  "names": [
+    "libEGL.so",
+    "libEGL.so.1",
+    "libEGL.so.1.4"
+  ],
+  "symbols": [],
+  "needed": [
+    "libmali.so",
+    "libpthread.so.0",
+    "libc.so.6"
+  ]
+}

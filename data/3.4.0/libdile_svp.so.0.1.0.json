@@ -1,0 +1,34 @@
+{
+  "names": [
+    "libdile_svp.so.0",
+    "libdile_svp.so.0.1.0"
+  ],
+  "symbols": [
+    "DILE_SVP_CheckAuTypeIsDolbyHdrMeta",
+    "DILE_SVP_CloseSecureCpb",
+    "DILE_SVP_CloseSecureCpbEx",
+    "DILE_SVP_CopyFromSecureBuffer",
+    "DILE_SVP_CopyToSecureDecryptBuffer",
+    "DILE_SVP_DecryptTsVideo",
+    "DILE_SVP_FlushSecureDecryptBuffer",
+    "DILE_SVP_FlushSecureDecryptBufferEx",
+    "DILE_SVP_GetAuInformation",
+    "DILE_SVP_GetSecureCpbInformation",
+    "DILE_SVP_GetSecureDecryptBufferHandle",
+    "DILE_SVP_GetSecureDecryptBufferHandleEx",
+    "DILE_SVP_IsSecureReformatterSupported",
+    "DILE_SVP_OpenSecureCpb",
+    "DILE_SVP_OpenSecureCpbEx",
+    "DILE_SVP_SetSecureReformatter",
+    "DILE_SVP_SetSecureReformatterEx",
+    "DILE_SVP_Widevine_DecryptAudio",
+    "DILE_SVP_WidevineDecryptCTR",
+    "DILE_SVP_Widevine_DecryptVideo",
+    "DILE_SVP_WidevineSelectKey"
+  ],
+  "needed": [
+    "libhal_svp.so.2",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

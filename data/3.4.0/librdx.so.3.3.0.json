@@ -1,0 +1,25 @@
+{
+  "names": [
+    "librdx.so.3",
+    "librdx.so.3.3.0"
+  ],
+  "symbols": [
+    "create_rdx_report_metadata",
+    "destroy_rdx_report_metadata",
+    "_getlibrdxcontext",
+    "get_modified_date",
+    "make_room_for_new_trigger",
+    "rdx_make_report",
+    "rdx_make_report_from_file",
+    "rdx_report_metadata_set_cause",
+    "rdx_report_metadata_set_component",
+    "rdx_report_metadata_set_detail",
+    "rdx_report_metadata_set_payload_filename"
+  ],
+  "needed": [
+    "libglib-2.0.so.0",
+    "libPmLogLib.so.3",
+    "libgcc_s.so.1",
+    "libc.so.6"
+  ]
+}

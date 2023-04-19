@@ -169,15 +169,16 @@ async function printVerifyResults(dir: string, exe: string, ipkinfo: IpkInfo, ve
 
     binaries.sort((a, b) => {
         const importantDiff = Number(b.important) - Number(a.important);
-        if (importantDiff != 0) return importantDiff;
-        if (a.type == 'main') return -1;
-        if (b.type == 'main') return 1;
+        if (importantDiff !== 0) return importantDiff;
+        if (a.type === 'main') return -1;
+        if (b.type === 'main') return 1;
         return a.name.localeCompare(b.name);
     });
     if (!args.no_summary) {
         printSummary(binaries, libsInfo, versions, versionedResults);
     }
     if (args.details) {
+        printer.hr();
         printDetails(binaries, libsInfo, versions, versionedResults);
     }
 }
@@ -241,11 +242,11 @@ async function listLibraries(libdir: string, mainbin: BinaryInfo): Promise<LibsI
 function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
                       versionedResults: Dict<Dict<VerifyResult>>) {
     printer.table(versions.map(v => printer.chalk.bold(v)), table => {
-        const mainbin = binaries.filter(bin => bin.type == 'main')[0]!;
+        const mainbin = binaries.filter(bin => bin.type === 'main')[0]!;
         for (const binary of binaries) {
             let name = `${binary.important ? 'required ' : ''}${binary.type}: ${binary.name}`;
             const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
-            const important = binary.type == 'main' || needed.includes(binary.name);
+            const important = binary.type === 'main' || needed.includes(binary.name);
             if (important) {
                 name = printer.chalk.bold(name);
             }
@@ -283,7 +284,8 @@ function printSummary(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
 
 function printDetails(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: string[],
                       versionedResults: Dict<Dict<VerifyResult>>) {
-    const mainbin = binaries.filter(bin => bin.type == 'main')[0]!;
+    printer.beginDetails('Verification Details');
+    const mainbin = binaries.filter(bin => bin.type === 'main')[0]!;
     for (const version of versions) {
         printer.h4(`On webOS ${version}:`);
 
@@ -295,7 +297,7 @@ function printDetails(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
             }
 
             const needed = mainbin.needed.map(name => libsInfo.links[name] || name);
-            const important = binary.type == 'main' || needed.includes(binary.name);
+            const important = binary.type === 'main' || needed.includes(binary.name);
             let name = `${important ? 'required ' : ''}${binary.type}: ${binary.name}`;
             if (important) {
                 name = printer.chalk.bold(name);
@@ -321,4 +323,5 @@ function printDetails(binaries: BinaryInfo[], libsInfo: LibsInfo, versions: stri
             printer.body('Didn\'t find any issue');
         }
     }
+    printer.endDetails();
 }

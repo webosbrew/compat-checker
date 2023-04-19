@@ -2,6 +2,7 @@ import WritableStream = NodeJS.WritableStream;
 import {ArgumentParser} from "argparse";
 import Table from "cli-table";
 import chalk, {Chalk} from "chalk";
+import escapeHTML from "escape-html";
 
 
 export class Printer {
@@ -82,6 +83,19 @@ export class Printer {
         this.lastElem = e;
     }
 
+    beginDetails(summary: string) {
+        if (!this.options.markdown) {
+            return;
+        }
+        this.stream.write(`\n<details>\n<summary>${escapeHTML(summary)}</summary>\n`);
+    }
+
+    endDetails() {
+        if (!this.options.markdown) {
+            return;
+        }
+        this.stream.write('\n</details>\n')
+    }
 }
 
 export namespace Printer {

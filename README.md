@@ -1,4 +1,4 @@
-# webOS Compatibility Checker
+# [Deprecated] webOS Compatibility Checker - use [dev-toolbox-cli](https://github.com/webosbrew/dev-toolbox-cli)!
 
 A simple static analyzer for webOS application
 
